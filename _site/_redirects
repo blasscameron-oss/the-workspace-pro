@@ -1,0 +1,14 @@
+# Redirect from old Netlify subdomain to custom domain
+https://hilarious-kashata-ca8d6f.netlify.app/* https://www.theworkspacepro.com/:splat 301
+
+# Allow Cloudflare Pages domain verification
+/.well-known/* 200
+
+# Redirect non-www to www (or vice versa based on preference)
+theworkspacepro.com/* https://www.theworkspacepro.com/:splat 301
+
+# Clean URL redirects (remove .html extensions if needed)
+/content/*.html /content/:splat 301
+
+# SPA fallback - for client-side routing
+/* /index.html 200
