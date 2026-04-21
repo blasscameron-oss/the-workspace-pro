@@ -19,6 +19,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug files
+        run: |
+          ls -la
+          ls -la content/
+          echo "Sync script exists?"
+          ls -la sync_site.sh || true
+
+      - name: Build site
+        run: |
+          chmod +x ./sync_site.sh
+          ./sync_site.sh
+          echo "Built _site directory:"
+          ls -la _site/
+          ls -la _site/content/ | head -5
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
