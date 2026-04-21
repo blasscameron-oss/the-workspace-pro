@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Workspace Pro – Ergonomic Home Office Guides, Reviews & Tips</title>
+    <title>Ergonomic Home Office Guides, Reviews & Tips | The Workspace Pro</title>
     <meta name="description" content="Expert-curated ergonomic home office guides, product recommendations, and daily tips for a healthier, more productive workspace.">
     <!-- Open Graph / Social -->
     <meta property="og:title" content="The Workspace Pro – Ergonomic Home Office Guides, Reviews & Tips">
@@ -21,7 +21,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"></noscript>
     <!-- Font Awesome 6.6.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <!-- Favicon -->
@@ -50,9 +51,10 @@
             darkMode: 'class',
         }
     </script>
-    <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="preload" as="style" href="/static/css/custom.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/static/css/custom.css"></noscript>
     <!-- Lunr.js for search -->
-    <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" async></script>
     <script>
         // Dark mode detection
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -223,7 +225,7 @@
                     <picture>
                         <source type="image/webp" srcset="/static/images/products/bekant-desk-400.webp 400w, /static/images/products/bekant-desk-800.webp 800w, /static/images/products/bekant-desk-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
                         <source type="image/jpeg" srcset="/static/images/products/bekant-desk-400.jpg 400w, /static/images/products/bekant-desk-800.jpg 800w, /static/images/products/bekant-desk-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
-                        <img src="/static/images/products/bekant-desk-800.jpg" alt="IKEA BEKANT Sit/Stand Desk with white tabletop and black legs, shown in a modern home office" loading="lazy" decoding="async" class="max-h-full object-contain">
+                        <img src="/static/images/products/bekant-desk-800.jpg" alt="IKEA BEKANT Sit/Stand Desk with white tabletop and black legs, shown in a modern home office" loading="lazy" decoding="async" width="800" height="600" class="max-h-full object-contain">
                     </picture>
                 </div>
                 <div class="p-8">
@@ -267,7 +269,7 @@
                     <picture>
                         <source type="image/webp" srcset="/static/images/products/hyken-chair-400.webp 400w, /static/images/products/hyken-chair-800.webp 800w, /static/images/products/hyken-chair-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
                         <source type="image/jpeg" srcset="/static/images/products/hyken-chair-400.jpg 400w, /static/images/products/hyken-chair-800.jpg 800w, /static/images/products/hyken-chair-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
-                        <img src="/static/images/products/hyken-chair-800.jpg" alt="Staples Hyken Technical Mesh Task Chair with black mesh back, adjustable lumbar support, and headrest" loading="lazy" decoding="async" class="max-h-full object-contain">
+                        <img src="/static/images/products/hyken-chair-800.jpg" alt="Staples Hyken Technical Mesh Task Chair with black mesh back, adjustable lumbar support, and headrest" loading="lazy" decoding="async" width="800" height="600" class="max-h-full object-contain">
                     </picture>
                 </div>
                 <div class="p-8">
@@ -311,7 +313,7 @@
                     <picture>
                         <source type="image/webp" srcset="/static/images/products/dell-monitor-400.webp 400w, /static/images/products/dell-monitor-800.webp 800w, /static/images/products/dell-monitor-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
                         <source type="image/jpeg" srcset="/static/images/products/dell-monitor-400.jpg 400w, /static/images/products/dell-monitor-800.jpg 800w, /static/images/products/dell-monitor-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
-                        <img src="/static/images/products/dell-monitor-800.jpg" alt="Dell 24′′ Monitor (S2421HN) with thin bezels, 1080p IPS panel, and VESA mount compatibility" loading="lazy" decoding="async" class="max-h-full object-contain">
+                        <img src="/static/images/products/dell-monitor-800.jpg" alt="Dell 24′′ Monitor (S2421HN) with thin bezels, 1080p IPS panel, and VESA mount compatibility" loading="lazy" decoding="async" width="800" height="600" class="max-h-full object-contain">
                     </picture>
                 </div>
                 <div class="p-8">
@@ -409,7 +411,7 @@
             <a href="/content/home-office-lighting-guide/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
                 <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
 
-                    <img src="/static/images/home-office-lighting.jpg" alt="Home Office Lighting Guide: How to Choose the Best Lights for Productivity" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    <img src="/static/images/home-office-lighting.jpg" alt="Home Office Lighting Guide: How to Choose the Best Lights for Productivity" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
 
                 </div>
                 <div class="p-8">
@@ -423,7 +425,7 @@
             <a href="/content/ergonomic-office-chair-buying-guide/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
                 <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
 
-                    <img src="/static/images/blog-06.jpg" alt="Ergonomic Office Chair Buying Guide: What to Look For" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    <img src="/static/images/blog-06.jpg" alt="Ergonomic Office Chair Buying Guide: What to Look For" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
 
                 </div>
                 <div class="p-8">
@@ -437,7 +439,7 @@
             <a href="/content/dual-monitor-setup-productivity/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
                 <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
 
-                    <img src="/static/images/blog-02.jpg" alt="Dual Monitor Setup: Ultimate Productivity Boost for Remote Work" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    <img src="/static/images/blog-02.jpg" alt="Dual Monitor Setup: Ultimate Productivity Boost for Remote Work" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
 
                 </div>
                 <div class="p-8">
