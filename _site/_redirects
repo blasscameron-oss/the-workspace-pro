@@ -9,6 +9,3 @@ theworkspacepro.com/* https://www.theworkspacepro.com/:splat 301
 
 # Clean URL redirects (remove .html extensions if needed)
 /content/*.html /content/:splat 301
-
-# SPA fallback - for client-side routing
-/* /index.html 200
