@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | The Workspace Pro</title>
+    <meta name="description" content="Expert-curated ergonomic home office guides, product recommendations, and daily tips to build a healthier, more productive workspace. Discover top picks for desks, chairs, monitors, and accessories.">
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Home | The Workspace Pro">
+    <meta property="og:description" content="Expert-curated ergonomic home office guides, product recommendations, and daily tips to build a healthier, more productive workspace.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hilarious-kashata-ca8d6f.netlify.app/">
+    <meta property="og:image" content="https://hilarious-kashata-ca8d6f.netlify.app/static/images/og-default.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Home | The Workspace Pro">
+    <meta name="twitter:description" content="Expert-curated ergonomic home office guides, product recommendations, and daily tips to build a healthier, more productive workspace.">
+    <meta name="twitter:image" content="https://hilarious-kashata-ca8d6f.netlify.app/static/images/og-default.png">
+    <link rel="canonical" href="https://www.theworkspacepro.com/">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6.6.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'surface': '#fefcf8',
+                        'card': '#ffffff',
+                        'border': '#e8e3da',
+                        'primary': '#2a6b7e',
+                        'primary-light': '#4a8fa3',
+                        'accent': '#c86b4a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <!-- Lunr.js for search -->
+    <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>
+    <script>
+        // Dark mode detection
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+        } else {
+            localStorage.theme = 'light';
+        }
+    </script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CF_ANALYTICS_TOKEN_HERE"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Workspace Pro",
+      "description": "Expert-curated ergonomic home office guides, product recommendations, and daily tips to build a healthier, more productive workspace.",
+      "url": "https://www.theworkspacepro.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.theworkspacepro.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Workspace Pro",
+      "url": "https://www.theworkspacepro.com/",
+      "logo": "https://www.theworkspacepro.com/static/images/logo.png",
+      "sameAs": [
+        "https://twitter.com/workspacepro",
+        "https://www.facebook.com/workspacepro",
+        "https://www.instagram.com/workspacepro"
+      ]
+    }
+    </script>
+</head>
+<body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 font-sans antialiased">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-6 py-3 rounded-xl z-50">Skip to main content</a>
+    <!-- Navigation -->
+    <header role="banner" class="sticky top-0 z-50 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-border dark:border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-chair text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">Workspace<span class="text-accent">Pro</span></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav role="navigation" class="hidden md:flex items-center gap-8">
+                    <a href="/" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary transition">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary transition">Products</a>
+                    <a href="/#tip-of-day" class="font-medium hover:text-primary transition">Tips</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition">Podcasts</a>
+                    <a href="/about/" class="font-medium hover:text-primary transition">About</a>
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button onclick="toggleSearch()" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition" aria-label="Open search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center gap-4 md:hidden">
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="mobileMenuButton" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border dark:border-zinc-800 pt-4">
+                <div class="flex flex-col gap-4">
+                    <a href="/" class="font-medium hover:text-primary transition py-2">Home</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary transition py-2">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary transition py-2">Products</a>
+                    <a href="/#tip-of-day" class="font-medium hover:text-primary transition py-2">Tips</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition py-2">Podcasts</a>
+                    <a href="/about/" class="font-medium hover:text-primary transition py-2">About</a>
+                    <div class="pt-4 border-t border-border dark:border-zinc-800">
+                        <button onclick="toggleSearch()" class="w-full text-left p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition" aria-label="Open search">
+                            <i class="fa-solid fa-magnifying-glass mr-3"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- Hero Section (only on home page) - Will be overridden by index.njk -->
+
+
+
+
+
+
+<!-- Hero Section -->
+<section class="hero-bg text-white py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">Build a workspace that works.</h1>
+        <p class="text-xl md:text-2xl text-zinc-200 mb-10 max-w-3xl mx-auto">Expert-curated guides, product recommendations, and ergonomic tips for a healthier, more productive home office.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#top-picks" class="bg-accent hover:bg-accent/90 text-white font-semibold px-10 py-4 rounded-2xl transition">Explore Top Picks</a>
+            <a href="#guides" class="bg-white/20 hover:bg-white/30 text-white font-semibold px-10 py-4 rounded-2xl backdrop-blur-sm transition">Read Latest Guides</a>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Tip of the Day -->
+
+
+<section id="tip-of-day" class="py-16 bg-white dark:bg-zinc-900 border-b border-border dark:border-zinc-800">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl mx-auto bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 p-10 rounded-3xl border border-emerald-100 dark:border-emerald-900">
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-lightbulb text-4xl text-emerald-600"></i>
+                <div>
+                    <p class="uppercase text-emerald-600 dark:text-emerald-400 font-semibold tracking-widest text-sm">Tip of the Day</p>
+                    <h3 id="tip-category" class="text-2xl font-semibold">Organization</h3>
+                </div>
+            </div>
+            <p id="tip-text" class="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">Keep your desk surface clutter-free-use cable trays and drawer organizers.</p>
+            <div class="mt-8 flex items-center gap-4 text-sm">
+                <span class="text-emerald-600">Refreshes daily</span>
+                <a href="/tips/" class="text-emerald-600 hover:underline font-medium">View all tips →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Top Picks -->
+<section id="top-picks" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-bold tracking-tight">Workspace Top Picks</h2>
+                <p class="text-zinc-600 dark:text-zinc-400 mt-3">Most recommended products for a productive home office in 2026</p>
+            </div>
+            <a href="/deals/" class="text-emerald-600 font-medium flex items-center gap-2 hover:gap-3 transition">
+                View all recommendations <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <p class="text-sm text-zinc-500 mb-6">We earn a commission if you purchase through our links. Prices are checked regularly and updated as of April 17, 2026.</p>
+        <div class="grid md:grid-cols-3 gap-8">
+
+
+
+            <div class="product-card bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                <div class="h-64 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-8">
+                    <picture>
+                        <source type="image/webp" srcset="/static/images/products/bekant-desk-400.webp 400w, /static/images/products/bekant-desk-800.webp 800w, /static/images/products/bekant-desk-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <source type="image/jpeg" srcset="/static/images/products/bekant-desk-400.jpg 400w, /static/images/products/bekant-desk-800.jpg 800w, /static/images/products/bekant-desk-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <img src="/static/images/products/bekant-desk-800.jpg" alt="IKEA BEKANT Sit/Stand Desk with white tabletop and black legs, shown in a modern home office" loading="lazy" decoding="async" class="max-h-full object-contain">
+                    </picture>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-semibold text-xl">IKEA BEKANT Sit/Stand Desk</h3>
+                            <p class="text-emerald-600 font-medium">$309 USD</p>
+                            <p class="text-xs text-zinc-500">Price as of Apr 17, 2026</p>
+                        </div>
+                        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">IKEA</span>
+                    </div>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6">Electric height-adjustable desk, 47′′, sturdy frame, 10-year warranty.</p>
+                    <ul class="space-y-2 text-sm mb-8">
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Electric height adjustment</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 47′′ width</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 10-year warranty</li>
+
+
+
+
+                    </ul>
+                    <a href="https://www.ikea.com/us/en/search/?q=BEKANT+sit+stand+desk" target="_blank" rel="sponsored noopener noreferrer" class="block w-full text-center bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-4 rounded-2xl font-semibold hover:bg-emerald-600 hover:text-white transition">
+                        Check Price
+                    </a>
+                    <p class="text-xs text-zinc-500 mt-2 text-center">We may earn a commission at no extra cost to you. Prices checked daily.</p>
+                </div>
+            </div>
+
+
+
+            <div class="product-card bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                <div class="h-64 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-8">
+                    <picture>
+                        <source type="image/webp" srcset="/static/images/products/hyken-chair-400.webp 400w, /static/images/products/hyken-chair-800.webp 800w, /static/images/products/hyken-chair-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <source type="image/jpeg" srcset="/static/images/products/hyken-chair-400.jpg 400w, /static/images/products/hyken-chair-800.jpg 800w, /static/images/products/hyken-chair-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <img src="/static/images/products/hyken-chair-800.jpg" alt="Staples Hyken Technical Mesh Task Chair with black mesh back, adjustable lumbar support, and headrest" loading="lazy" decoding="async" class="max-h-full object-contain">
+                    </picture>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-semibold text-xl">Staples Hyken Technical Mesh Task Chair</h3>
+                            <p class="text-emerald-600 font-medium">$139.99 USD</p>
+                            <p class="text-xs text-zinc-500">Price as of Apr 17, 2026</p>
+                        </div>
+                        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">Staples</span>
+                    </div>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6">Ergonomic mesh chair with adjustable lumbar, headrest, and armrests.</p>
+                    <ul class="space-y-2 text-sm mb-8">
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Adjustable lumbar</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Mesh back</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Headrest</li>
+
+
+
+
+                    </ul>
+                    <a href="https://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119" target="_blank" rel="sponsored noopener noreferrer" class="block w-full text-center bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-4 rounded-2xl font-semibold hover:bg-emerald-600 hover:text-white transition">
+                        Check Price
+                    </a>
+                    <p class="text-xs text-zinc-500 mt-2 text-center">We may earn a commission at no extra cost to you. Prices checked daily.</p>
+                </div>
+            </div>
+
+
+
+            <div class="product-card bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                <div class="h-64 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center p-8">
+                    <picture>
+                        <source type="image/webp" srcset="/static/images/products/dell-monitor-400.webp 400w, /static/images/products/dell-monitor-800.webp 800w, /static/images/products/dell-monitor-1600.webp 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <source type="image/jpeg" srcset="/static/images/products/dell-monitor-400.jpg 400w, /static/images/products/dell-monitor-800.jpg 800w, /static/images/products/dell-monitor-1600.jpg 1600w" sizes="(max-width: 768px) 400px, 800px">
+                        <img src="/static/images/products/dell-monitor-800.jpg" alt="Dell 24′′ Monitor (S2421HN) with thin bezels, 1080p IPS panel, and VESA mount compatibility" loading="lazy" decoding="async" class="max-h-full object-contain">
+                    </picture>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-semibold text-xl">Dell 24′′ Monitor (S2421HN)</h3>
+                            <p class="text-emerald-600 font-medium">$229.99 USD</p>
+                            <p class="text-xs text-zinc-500">Price as of Apr 17, 2026</p>
+                        </div>
+                        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-full">Dell</span>
+                    </div>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6">24′′ 1080p IPS monitor with thin bezels and VESA mount compatibility.</p>
+                    <ul class="space-y-2 text-sm mb-8">
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 24′′ IPS panel</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 1080p resolution</li>
+
+
+
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Thin bezels</li>
+
+
+
+
+                    </ul>
+                    <a href="https://www.amazon.com/s?k=Dell+S2421HN+monitor" target="_blank" rel="sponsored noopener noreferrer" class="block w-full text-center bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-4 rounded-2xl font-semibold hover:bg-emerald-600 hover:text-white transition">
+                        Check Price
+                    </a>
+                    <p class="text-xs text-zinc-500 mt-2 text-center">We may earn a commission at no extra cost to you. Prices checked daily.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "IKEA BEKANT Sit/Stand Desk",
+      "description": "Electric height-adjustable desk, 47″, sturdy frame, 10-year warranty.",
+      "image": "/static/images/products/bekant-desk-800.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "309",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.ikea.com/us/en/search/?q=BEKANT+sit+stand+desk"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Staples Hyken Technical Mesh Task Chair",
+      "description": "Ergonomic mesh chair with adjustable lumbar, headrest, and armrests.",
+      "image": "/static/images/products/hyken-chair-800.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "139.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Dell 24′′ Monitor (S2421HN)",
+      "description": "24′′ 1080p IPS monitor with thin bezels and VESA mount compatibility.",
+      "image": "/static/images/products/dell-monitor-800.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "229.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.amazon.com/s?k=Dell+S2421HN+monitor"
+      }
+    }
+  ]
+}
+</script></section>
+
+<!-- Latest Guides -->
+<section id="guides" class="py-20 bg-zinc-100 dark:bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold tracking-tight text-center mb-4">Latest Workspace Guides</h2>
+        <p class="text-zinc-600 dark:text-zinc-400 text-center mb-12">Expert-curated articles to help you build a better home office</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+            <a href="/content/home-office-lighting-guide/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
+                <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
+
+                    <img src="/static/images/home-office-lighting.jpg" alt="Home Office Lighting Guide: How to Choose the Best Lights for Productivity" loading="lazy" decoding="async" class="w-full h-full object-cover">
+
+                </div>
+                <div class="p-8">
+                    <p class="text-xs text-zinc-500 mb-2">April 10, 2026</p>
+                    <h3 class="font-semibold text-xl leading-tight group-hover:text-emerald-600 transition">Home Office Lighting Guide: How to Choose the Best Lights for Productivity</h3>
+                </div>
+            </a>
+
+
+
+            <a href="/content/ergonomic-office-chair-buying-guide/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
+                <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
+
+                    <img src="/static/images/blog-06.jpg" alt="Ergonomic Office Chair Buying Guide: What to Look For" loading="lazy" decoding="async" class="w-full h-full object-cover">
+
+                </div>
+                <div class="p-8">
+                    <p class="text-xs text-zinc-500 mb-2">April 11, 2026</p>
+                    <h3 class="font-semibold text-xl leading-tight group-hover:text-emerald-600 transition">Ergonomic Office Chair Buying Guide: What to Look For</h3>
+                </div>
+            </a>
+
+
+
+            <a href="/content/dual-monitor-setup-productivity/" class="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900 transition">
+                <div class="h-48 bg-zinc-200 dark:bg-zinc-700">
+
+                    <img src="/static/images/blog-02.jpg" alt="Dual Monitor Setup: Ultimate Productivity Boost for Remote Work" loading="lazy" decoding="async" class="w-full h-full object-cover">
+
+                </div>
+                <div class="p-8">
+                    <p class="text-xs text-zinc-500 mb-2">April 11, 2026</p>
+                    <h3 class="font-semibold text-xl leading-tight group-hover:text-emerald-600 transition">Dual Monitor Setup: Ultimate Productivity Boost for Remote Work</h3>
+                </div>
+            </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="text-center mt-12">
+            <a href="/content/guides/" class="inline-flex items-center gap-3 bg-emerald-600 text-white px-10 py-4 rounded-2xl font-semibold hover:bg-emerald-700 transition">
+                View All Guides <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section id="newsletter" class="py-20">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Want more workspace tips?</h2>
+        <p class="text-zinc-600 dark:text-zinc-400 mb-8">Subscribe to our free newsletter for weekly tips, product roundups, and ergonomic advice.</p>
+        <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+            <div class="relative flex-1">
+                <label for="newsletter-email" class="sr-only">Email address</label>
+                <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" aria-describedby="consent-note" required class="w-full px-6 py-4 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-2xl focus:outline-none focus:border-emerald-600">
+            </div>
+            <div class="w-full flex items-center gap-2 text-sm text-zinc-600 mt-2">
+                <input type="checkbox" id="consent" name="consent" required class="rounded">
+                <label for="consent" id="consent-note">I agree to receive email updates (see <a href="/privacy/" class="text-emerald-600 underline">Privacy Policy</a>)</label>
+            </div>
+            <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-2xl font-semibold transition">
+                Subscribe
+            </button>
+        </form>
+        <div id="newsletter-message" class="hidden mt-4 px-4 py-3 rounded-xl text-sm"></div>
+        <p class="text-xs text-zinc-500 mt-6">Zero spam. Unsubscribe anytime.</p>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.querySelector('form[name="newsletter"]');
+          const messageDiv = document.getElementById('newsletter-message');
+          if (form) {
+            form.addEventListener('submit', async function(e) {
+              e.preventDefault();
+              // Basic validation
+              const email = form.querySelector('input[type="email"]').value.trim();
+              const consent = form.querySelector('input[type="checkbox"]').checked;
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+              }
+              if (!consent) {
+                showMessage('You must agree to the privacy policy.', 'error');
+                return;
+              }
+              // Disable button
+              const button = form.querySelector('button[type="submit"]');
+              const originalText = button.textContent;
+              button.textContent = 'Subscribing...';
+              button.disabled = true;
+              // Simulate submission (Netlify will handle actual POST)
+              try {
+                const response = await fetch('/', {
+                  method: 'POST',
+                  body: new FormData(form),
+                });
+                if (response.ok) {
+                  showMessage('Thank you! Please check your email to confirm your subscription.', 'success');
+                  form.reset();
+                } else {
+                  throw new Error('Submission failed');
+                }
+              } catch (error) {
+                showMessage('Sorry, something went wrong. Please try again later.', 'error');
+              } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+              }
+            });
+          }
+          function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `mt-4 px-4 py-3 rounded-xl text-sm ${type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-800 border border-red-200'}`;
+            messageDiv.classList.remove('hidden');
+            setTimeout(() => {
+              messageDiv.classList.add('hidden');
+            }, 5000);
+          }
+        });
+        </script>
+    </div>
+</section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo" class="bg-zinc-900 text-zinc-400 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-chair text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">Workspace<span class="text-accent">Pro</span></span>
+                    </a>
+                    <p class="text-sm">Helping you build a healthier, more productive home office since 2021.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Guides</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/content/ergonomic-office-chair-buying-guide/" class="hover:text-white transition">Ergonomics</a></li>
+                        <li><a href="/content/productive-workspace-mindset/" class="hover:text-white transition">Productivity</a></li>
+                        <li><a href="/content/home-office-lighting-guide/" class="hover:text-white transition">Lighting</a></li>
+                        <li><a href="/content/cable-management-solutions/" class="hover:text-white transition">Cable Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Products</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/#top-picks" class="hover:text-white transition">Desks</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Chairs</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Monitors</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Connect</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="/contact/" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-zinc-800 mt-12 pt-8 text-sm text-center">
+                <p>&copy; 2026 The Workspace Pro. All rights reserved. <a href="/privacy/" class="text-accent hover:underline">Privacy Policy</a> | <a href="/terms/" class="text-accent hover:underline">Terms of Service</a></p>
+                <p class="mt-2 text-zinc-500">This site uses affiliate links. We only recommend products we genuinely believe in.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden transition-opacity duration-300" aria-hidden="true">
+        <div class="absolute inset-0" onclick="toggleSearch()"></div>
+        <div class="relative max-w-3xl mx-auto mt-20 px-6">
+            <div class="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                <div class="p-6 border-b border-zinc-200 dark:border-zinc-800">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Search the site</h2>
+                        <button onclick="toggleSearch()" aria-label="Close search" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-zinc-400"></i>
+                        <input type="search" id="search-input" placeholder="Type to search articles, guides, and tips..."
+                               class="w-full pl-12 pr-4 py-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    </div>
+                    <p class="text-sm text-zinc-500 mt-3">Press <kbd class="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 rounded text-xs font-mono">Ctrl</kbd> + <kbd class="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 rounded text-xs font-mono">K</kbd> to open/close search</p>
+                </div>
+                <div id="search-results" class="p-6 max-h-[60vh] overflow-y-auto">
+                    <div class="text-center p-8 text-zinc-500">
+                        <p>Type at least 2 characters to search</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/search.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Dark mode toggle functions
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateDarkModeIcon();
+        }
+
+        function updateDarkModeIcon() {
+            const icon = document.getElementById('darkModeIcon');
+            if (icon) {
+                icon.className = document.documentElement.classList.contains('dark')
+                    ? 'fa-solid fa-sun'
+                    : 'fa-solid fa-moon';
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Close mobile menu on click outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.getElementById('mobileMenuButton');
+            if (mobileMenu && !mobileMenu.contains(event.target) && menuButton && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Initialize dark mode icon on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDarkModeIcon();
+            updateDailyTip();
+        });
+
+        // Tip of the Day rotation
+        function updateDailyTip() {
+            const tips = [
+                { category: 'Organization', text: 'Keep your desk surface clutter-free-use cable trays and drawer organizers.' },
+                { category: 'Ergonomics', text: 'Position your monitor so the top is at or slightly below eye level to reduce neck strain.' },
+                { category: 'Lighting', text: 'Use indirect lighting to reduce screen glare and eye fatigue. A desk lamp with adjustable brightness is ideal.' },
+                { category: 'Productivity', text: 'Batch similar tasks together and use time-blocking to maintain focus throughout the day.' },
+                { category: 'Health', text: 'Take a 5-minute break every hour to stand, stretch, and look away from your screen.' },
+                { category: 'Cable Management', text: 'Use adhesive cable clips under your desk to keep wires organized and out of sight.' },
+                { category: 'Mindset', text: 'Start each work session with a clear intention-write down the one thing you must accomplish.' }
+            ];
+
+            // Pick a tip based on day of year (so it rotates daily)
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const tipIndex = dayOfYear % tips.length;
+            const tip = tips[tipIndex];
+
+            const categoryEl = document.getElementById('tip-category');
+            const textEl = document.getElementById('tip-text');
+
+            if (categoryEl) categoryEl.textContent = tip.category;
+            if (textEl) textEl.textContent = tip.text;
+        }
+
+        // Search functionality
+        function toggleSearch() {
+            const overlay = document.getElementById('search-overlay');
+            if (!overlay) return;
+            const wasHidden = overlay.classList.contains('hidden');
+            if (wasHidden) {
+                overlay.classList.remove('hidden');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.getElementById('search-input').focus();
+                // Load search script if not already loaded
+                if (!window.searchLoaded) {
+                    const script = document.createElement('script');
+                    script.src = '/static/js/search.js';
+                    script.onload = () => { window.searchLoaded = true; };
+                    document.head.appendChild(script);
+                }
+            } else {
+                overlay.classList.add('hidden');
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        // Bind search buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchButtons = document.querySelectorAll('button[aria-label="Open search"]');
+            searchButtons.forEach(btn => {
+                btn.addEventListener('click', toggleSearch);
+            });
+            // Ctrl+K shortcut
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    toggleSearch();
+                }
+                // Escape to close
+                if (e.key === 'Escape') {
+                    const overlay = document.getElementById('search-overlay');
+                    if (overlay && !overlay.classList.contains('hidden')) {
+                        overlay.classList.add('hidden');
+                    }
+                }
+            });
+            // Close overlay when clicking outside results
+            const overlay = document.getElementById('search-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay || e.target.classList.contains('absolute')) {
+                        overlay.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (link && link.getAttribute('href') !== '#') {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html><!-- Test auto-deploy -->

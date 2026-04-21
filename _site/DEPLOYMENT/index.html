@@ -1,0 +1,87 @@
+<h1>Deployment Instructions for The Workspace Pro</h1>
+<h2>Quick Deploy (Drag &amp; Drop)</h2>
+<ol>
+<li><strong>Download</strong> this ZIP file (<code>theworkspacepro-optimized.zip</code>)</li>
+<li>Go to <strong>https://app.netlify.com/drop</strong></li>
+<li>Drag and drop the ZIP file onto the Netlify drop zone</li>
+<li>Netlify will automatically deploy your site</li>
+</ol>
+<h2>Custom Domain Setup</h2>
+<p>After deployment:</p>
+<ol>
+<li>In Netlify dashboard, go to <strong>Site settings</strong> → <strong>Domain management</strong></li>
+<li>Click <strong>Add custom domain</strong></li>
+<li>Enter <code>theworkspacepro.com</code> and <code>www.theworkspacepro.com</code></li>
+<li>Follow Netlify's DNS instructions:
+<ul>
+<li><strong>Option A (Recommended)</strong>: Use Netlify DNS</li>
+<li><strong>Option B</strong>: Update existing DNS at Namecheap:
+<ul>
+<li>Remove existing A records</li>
+<li>Add A record for <code>@</code> → <code>75.2.60.5</code></li>
+<li>Add A record for <code>www</code> → <code>75.2.60.5</code></li>
+<li>Wait 24-48 hours for DNS propagation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>Optimization Features Included</h2>
+<p>This build includes the following performance optimizations:</p>
+<h3>✅ Image Optimization</h3>
+<ul>
+<li><strong>WebP format</strong> with JPEG/PNG fallbacks (picture element)</li>
+<li><strong>Lazy loading</strong> for below‑the‑fold images</li>
+<li><strong>Async decoding</strong> to prevent main‑thread blocking</li>
+<li><strong>Responsive sizes</strong> via <code>sizes=&quot;100vw&quot;</code></li>
+</ul>
+<h3>✅ JavaScript Optimization</h3>
+<ul>
+<li><strong>Dynamic loading</strong> of search scripts (Lunr.js + search.js)</li>
+<li><strong>Only loads when needed</strong> (when search overlay opens)</li>
+<li><strong>Preconnect hints</strong> for CDN resources</li>
+</ul>
+<h3>✅ CSS Optimization</h3>
+<ul>
+<li><strong>Tailwind CSS v4</strong> with minimal production output</li>
+<li><strong>Critical font loading</strong> with <code>preload</code> and <code>font‑display: swap</code></li>
+<li><strong>Minified via cssnano</strong> in production builds</li>
+</ul>
+<h3>✅ Caching &amp; Delivery</h3>
+<ul>
+<li><strong>Immutable caching</strong> for static assets (1 year)</li>
+<li><strong>Netlify CDN</strong> with edge delivery</li>
+<li><strong>Compression</strong> (gzip/Brotli) enabled via Netlify</li>
+</ul>
+<h3>✅ User Experience</h3>
+<ul>
+<li><strong>Stamatiou‑inspired design</strong> (muted palette, clean typography)</li>
+<li><strong>Mobile‑first responsive</strong> with tap‑target optimizations</li>
+<li><strong>Dark mode toggle</strong> with localStorage persistence</li>
+<li><strong>Smooth scroll</strong> for anchor links</li>
+<li><strong>Client‑side search</strong> with Lunr.js</li>
+<li><strong>Affiliate‑ready product cards</strong> with disclosures</li>
+</ul>
+<h2>Post‑Deployment Checks</h2>
+<p>After deployment, verify:</p>
+<ol>
+<li><strong>Images load correctly</strong> (check WebP support in Chrome DevTools → Network)</li>
+<li><strong>Search functionality</strong> (click search icon, type a query)</li>
+<li><strong>Mobile responsiveness</strong> (test on phone or Chrome DevTools device mode)</li>
+<li><strong>Dark mode toggle</strong> (click theme toggle in header)</li>
+<li><strong>Product cards</strong> display with affiliate links</li>
+</ol>
+<h2>Affiliate Setup</h2>
+<p>To monetize product recommendations:</p>
+<ol>
+<li>Sign up for affiliate programs (Amazon Associates, etc.)</li>
+<li>Update <code>affiliateUrl</code> fields in <code>_data/products.json</code></li>
+<li>Redeploy or use Netlify's Git‑based deployment for updates</li>
+</ol>
+<h2>Support</h2>
+<p>For issues or questions, refer to the project documentation or contact the development team.</p>
+<hr>
+<p><strong>Build Date</strong>: April 16, 2026<br>
+<strong>Optimized By</strong>: OpenClaw with Full‑Stack Dev Skill<br>
+<strong>Framework</strong>: Eleventy (11ty) + Tailwind CSS v4<br>
+<strong>Deployment</strong>: Netlify (static hosting)</p>
