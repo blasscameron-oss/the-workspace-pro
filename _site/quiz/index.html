@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Personality Quiz | The Workspace Pro</title>
+    <meta name="description" content="Discover your workspace personality and get personalized product recommendations.">
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Workspace Personality Quiz | The Workspace Pro">
+    <meta property="og:description" content="Discover your workspace personality and get personalized product recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theworkspacepro.com/quiz/">
+    <meta property="og:image" content="https://theworkspacepro.com/images/og-default.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Workspace Personality Quiz | The Workspace Pro">
+    <meta name="twitter:description" content="Discover your workspace personality and get personalized product recommendations.">
+    <meta name="twitter:image" content="https://theworkspacepro.com/images/og-default.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6.6.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'surface': '#fefcf8',
+                        'card': '#ffffff',
+                        'border': '#e8e3da',
+                        'primary': '#2a6b7e',
+                        'primary-light': '#4a8fa3',
+                        'accent': '#c86b4a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        /* Ensure our custom colors are available as CSS variables for dark mode */
+        :root {
+            --color-surface: #fefcf8;
+            --color-card: #ffffff;
+            --color-border: #e8e3da;
+            --color-primary: #2a6b7e;
+            --color-accent: #c86b4a;
+            --font-family-display: 'Playfair Display', serif;
+        }
+        .dark {
+            --color-surface: #0f172a;
+            --color-card: #1e293b;
+            --color-border: #334155;
+            --color-primary: #4a8fa3; /* lighter teal for dark mode */
+            --color-accent: #e48c6d; /* lighter terracotta for dark mode */
+        }
+        .bg-surface { background-color: var(--color-surface); }
+        .bg-card { background-color: var(--color-card); }
+        .border-border { border-color: var(--color-border); }
+        .text-primary { color: var(--color-primary); }
+        .text-accent { color: var(--color-accent); }
+        .bg-primary { background-color: var(--color-primary); }
+        .bg-accent { background-color: var(--color-accent); }
+        .gradient-text {
+            background-image: linear-gradient(to right, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .font-display { font-family: var(--font-family-display); }
+    </style>
+    <script>
+        // Dark mode detection
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+        } else {
+            localStorage.theme = 'light';
+        }
+    </script>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#2a6b7e" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WorkspacePro">
+    <link rel="apple-touch-icon" href="/images/favicon-192.png">
+    <link rel="icon" type="image/png" href="/images/favicon-192.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://theworkspacepro.com/#organization",
+          "name": "The Workspace Pro",
+          "description": "Productive Workspace Guides &amp; Reviews",
+          "url": "https://theworkspacepro.com",
+          "email": "hello@theworkspacepro.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://theworkspacepro.com/images/favicon-192.png",
+            "width": 192,
+            "height": 192
+          },
+          "sameAs": []
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://theworkspacepro.com/#website",
+          "name": "The Workspace Pro",
+          "description": "Productive Workspace Guides &amp; Reviews",
+          "url": "https://theworkspacepro.com",
+          "publisher": {
+            "@id": "https://theworkspacepro.com/#organization"
+          },
+          "potentialAction": [{
+            "@type": "SearchAction",
+            "target": "https://theworkspacepro.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }]
+        }
+      ]
+    }
+    </script>
+    
+    
+
+</head>
+<body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 font-sans antialiased">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-border dark:border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-chair text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">Workspace<span class="text-accent">Pro</span></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="/" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="/#guides" class="font-medium hover:text-primary transition">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary transition">Products</a>
+                    <a href="/compare/" class="font-medium hover:text-primary transition">Compare</a>
+                    <a href="/deals/" class="font-medium hover:text-primary transition">Deals</a>
+                    <a href="/tips/" class="font-medium hover:text-primary transition">Tips</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary transition">Quiz</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition">Podcasts</a>
+                    <a href="/about/" class="font-medium hover:text-primary transition">About</a>
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <div class="flex items-center gap-4 md:hidden">
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="mobileMenuButton" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border dark:border-zinc-800 pt-4">
+                <div class="flex flex-col gap-4">
+                    <a href="/" class="font-medium hover:text-primary transition py-2">Home</a>
+                    <a href="/#guides" class="font-medium hover:text-primary transition py-2">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary transition py-2">Products</a>
+                    <a href="/compare/" class="font-medium hover:text-primary transition py-2">Compare</a>
+                    <a href="/deals/" class="font-medium hover:text-primary transition py-2">Deals</a>
+                    <a href="/tips/" class="font-medium hover:text-primary transition py-2">Tips</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary transition py-2">Quiz</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition py-2">Podcasts</a>
+                    <a href="/about/" class="font-medium hover:text-primary transition py-2">About</a>
+                    <div class="pt-4 border-t border-border dark:border-zinc-800">
+                        <button class="w-full text-left p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition" aria-label="Search">
+                            <i class="fa-solid fa-magnifying-glass mr-3"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        
+        
+        
+
+<section class="py-20">
+    <div class="max-w-4xl mx-auto px-6">
+        <!-- Quiz Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold mb-6">What's Your Workspace Personality?</h1>
+            <p class="text-xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">Take this 5‑question quiz to discover your ideal setup style and get personalized product recommendations.</p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+            <!-- Progress Bar -->
+            <div class="h-2 bg-zinc-100 dark:bg-zinc-800">
+                <div id="quiz-progress" class="h-full bg-primary transition-all duration-500" style="width: 0%"></div>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="question-screen" class="p-10">
+                <div class="mb-10">
+                    <h2 id="question-text" class="text-3xl font-bold mb-6"></h2>
+                    <p class="text-zinc-500">Select the option that best describes you.</p>
+                </div>
+
+                <div id="options-container" class="grid gap-4 mb-10">
+                    <!-- Options injected by JS -->
+                </div>
+
+                <div class="flex justify-between">
+                    <button id="prev-btn" class="px-8 py-3 border border-zinc-300 dark:border-zinc-700 rounded-2xl font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition opacity-50 cursor-not-allowed" disabled>
+                        <i class="fa-solid fa-arrow-left mr-3"></i> Previous
+                    </button>
+                    <div class="text-sm text-zinc-500">
+                        Question <span id="current-step">1</span> of <span id="total-steps">5</span>
+                    </div>
+                    <button id="next-btn" class="px-8 py-3 bg-primary text-white font-semibold rounded-2xl hover:bg-primary/90 transition">
+                        Next <i class="fa-solid fa-arrow-right ml-3"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Screen (hidden initially) -->
+            <div id="results-screen" class="hidden p-10">
+                <div class="text-center mb-12">
+                    <div id="persona-icon" class="text-6xl mb-6 inline-flex items-center justify-center w-32 h-32 rounded-3xl"></div>
+                    <h2 id="persona-name" class="text-4xl font-bold mb-4"></h2>
+                    <p id="persona-tagline" class="text-xl text-zinc-600 dark:text-zinc-400 mb-6"></p>
+                    <p id="persona-description" class="text-lg max-w-2xl mx-auto"></p>
+                </div>
+
+                <!-- Recommended Products -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold mb-8">Recommended for You</h3>
+                    <div id="recommended-products" class="grid md:grid-cols-2 gap-8">
+                        <!-- Products injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Matching Tips -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold mb-8">Tips for Your Workspace Style</h3>
+                    <div id="recommended-tips" class="space-y-6">
+                        <!-- Tips injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button id="retake-btn" class="px-8 py-4 border border-zinc-300 dark:border-zinc-700 rounded-2xl font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i class="fa-solid fa-rotate-right mr-3"></i> Retake Quiz
+                    </button>
+                    <a href="/compare/" class="px-8 py-4 bg-primary text-white font-semibold rounded-2xl hover:bg-primary/90 transition text-center">
+                        <i class="fa-solid fa-scale-balanced mr-3"></i> Compare Products
+                    </a>
+                    <a href="/deals/" class="px-8 py-4 bg-accent text-white font-semibold rounded-2xl hover:bg-accent/90 transition text-center">
+                        <i class="fa-solid fa-tag mr-3"></i> View Current Deals
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Info Footer -->
+        <div class="mt-12 text-center text-sm text-zinc-500">
+            <p><i class="fa-solid fa-clock mr-2"></i> Takes about 2 minutes. Your answers are not stored.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Embed quiz data -->
+<script>
+    const quizData = {"questions":[{"id":"hours","text":"How many hours do you typically work at your desk each day?","options":[{"text":"Less than 4 hours","value":"casual","points":{"minimalist":2,"ergo":1,"budget":2,"aesthetic":1}},{"text":"4–8 hours","value":"standard","points":{"minimalist":1,"ergo":3,"budget":2,"aesthetic":2}},{"text":"8+ hours","value":"intensive","points":{"minimalist":0,"ergo":5,"budget":1,"aesthetic":1}}]},{"id":"pain","text":"What's your biggest workspace pain point?","options":[{"text":"Back/neck discomfort","value":"ergo","points":{"minimalist":0,"ergo":5,"budget":2,"aesthetic":1}},{"text":"Eye strain or poor lighting","value":"lighting","points":{"minimalist":1,"ergo":2,"budget":2,"aesthetic":3}},{"text":"Clutter and cable mess","value":"organization","points":{"minimalist":4,"ergo":1,"budget":3,"aesthetic":2}},{"text":"Limited desk space","value":"space","points":{"minimalist":5,"ergo":2,"budget":3,"aesthetic":1}}]},{"id":"budget","text":"What's your approximate budget for workspace upgrades?","options":[{"text":"Under $200","value":"low","points":{"minimalist":3,"ergo":1,"budget":5,"aesthetic":1}},{"text":"$200–$500","value":"medium","points":{"minimalist":2,"ergo":3,"budget":3,"aesthetic":2}},{"text":"$500+","value":"high","points":{"minimalist":1,"ergo":5,"budget":1,"aesthetic":4}}]},{"id":"style","text":"Which aesthetic describes your ideal workspace?","options":[{"text":"Minimal & clean","value":"minimal","points":{"minimalist":5,"ergo":1,"budget":2,"aesthetic":4}},{"text":"Ergonomic & functional","value":"functional","points":{"minimalist":1,"ergo":5,"budget":2,"aesthetic":2}},{"text":"Cozy & personal","value":"cozy","points":{"minimalist":2,"ergo":2,"budget":3,"aesthetic":5}},{"text":"High‑tech & modern","value":"tech","points":{"minimalist":3,"ergo":3,"budget":1,"aesthetic":4}}]},{"id":"space","text":"How would you describe your available desk space?","options":[{"text":"Very limited (small desk/nook)","value":"small","points":{"minimalist":5,"ergo":2,"budget":3,"aesthetic":2}},{"text":"Average (dedicated desk area)","value":"medium","points":{"minimalist":2,"ergo":3,"budget":2,"aesthetic":3}},{"text":"Plenty of room (large desk or separate office)","value":"large","points":{"minimalist":1,"ergo":4,"budget":1,"aesthetic":4}}]}],"personas":[{"id":"minimalist","name":"The Minimalist","tagline":"Less is more.","description":"You value clean lines, uncluttered surfaces, and smart space‑saving solutions. Your ideal workspace is efficient, distraction‑free, and easy to maintain.","icon":"fa-solid fa-broom","color":"text-emerald-600","bgColor":"bg-emerald-50 dark:bg-emerald-950","recommendedCategories":["desk","accessories"],"priority":["organization","space-saving","cable management"]},{"id":"ergo","name":"The Ergonomics Enthusiast","tagline":"Health first.","description":"You prioritize posture, comfort, and long‑term health. Your workspace is engineered for all‑day support, with adjustability at every point.","icon":"fa-solid fa-heart-pulse","color":"text-primary","bgColor":"bg-primary/10","recommendedCategories":["chair","desk","monitor"],"priority":["adjustability","lumbar support","eye level"]},{"id":"budget","name":"The Budget‑Focused","tagline":"Smart value.","description":"You seek the best bang for your buck—durable, practical upgrades that deliver maximum impact without breaking the bank.","icon":"fa-solid fa-wallet","color":"text-amber-600","bgColor":"bg-amber-50 dark:bg-amber-950","recommendedCategories":["accessories","lighting"],"priority":["affordability","durability","multi‑function"]},{"id":"aesthetic","name":"The Aesthetic Curator","tagline":"Beautifully productive.","description":"Your workspace is an extension of your personal style. You blend form and function, choosing pieces that inspire and elevate your environment.","icon":"fa-solid fa-palette","color":"text-purple-600","bgColor":"bg-purple-50 dark:bg-purple-950","recommendedCategories":["lighting","accessories"],"priority":["design","materials","ambiance"]}]};
+    const productsData = [{"id":"ikea-bekant-desk","name":"IKEA BEKANT Sit/Stand Desk","description":"Electric height‑adjustable desk, 47″, sturdy frame, 10‑year warranty.","price":309,"priceCurrency":"USD","category":"desk","brand":"IKEA","features":["Electric height adjustment","47″ width","10‑year warranty","Stable frame"],"image":"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.ikea.com/us/en/search/?q=BEKANT%20desk","store":"IKEA","featured":true,"ecoFriendly":true,"articleSlugs":["home-office-budget-setup-under-1000","best-standing-desks-under-500"]},{"id":"staples-hyken-chair","name":"Staples Hyken Technical Mesh Task Chair","description":"Ergonomic mesh chair with adjustable lumbar, headrest, and armrests.","price":139.99,"priceCurrency":"USD","category":"chair","brand":"Staples","features":["Adjustable lumbar","Mesh back","Headrest","Tilt tension"],"image":"https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.staples.com/search?query=Hyken%20chair","store":"Staples","featured":true,"articleSlugs":["home-office-budget-setup-under-1000","ergonomic-office-chair-buying-guide"]},{"id":"dell-s2421hn-monitor","name":"Dell 24″ Monitor (S2421HN)","description":"24″ 1080p IPS monitor with thin bezels and VESA mount compatibility.","price":229.99,"priceCurrency":"USD","category":"monitor","brand":"Dell","features":["24″ IPS panel","1080p resolution","Thin bezels","VESA mount"],"image":"https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.amazon.com/s?k=Dell+24+monitor+S2421HN","store":"Dell","featured":true,"articleSlugs":["home-office-budget-setup-under-1000","dual-monitor-setup-productivity"]},{"id":"logitech-mk850","name":"Logitech MK850 Performance Wireless","description":"Ergonomic split keyboard and mouse combo with multi‑device connectivity.","price":79,"priceCurrency":"USD","category":"accessories","brand":"Logitech","features":["Split keyboard","Wireless","Multi‑device","Included mouse"],"image":"https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.logitech.com/en-us/products/keyboards/mk850-performance-wireless.920-008479.html","store":"Logitech","articleSlugs":["home-office-budget-setup-under-1000","ergonomic-accessories-home-office"]},{"id":"taotronics-desk-lamp","name":"Taotronics LED Desk Lamp","description":"Adjustable color temperature (3000‑6000K) desk lamp with USB charging.","price":59,"priceCurrency":"USD","category":"lighting","brand":"Taotronics","features":["Adjustable color temperature","Brightness memory","USB charging","Flexible arm"],"image":"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.taotronics.com/products/tt-dl16-led-desk-lamp","store":"Taotronics","ecoFriendly":true,"articleSlugs":["home-office-budget-setup-under-1000","home-office-lighting-guide"]},{"id":"amazon-basics-dual-stand","name":"Amazon Basics Dual Monitor Stand","description":"Dual monitor stand that clamps to desk, no drilling required.","price":30,"priceCurrency":"USD","category":"accessories","brand":"Amazon Basics","features":["Clamp mount","No drilling","Adjustable height","Cable management"],"image":"https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.amazon.com/AmazonBasics-Dual-Monitor-Stand-Adjustable/dp/B071ZN2N5Q","store":"Amazon","ecoFriendly":true,"articleSlugs":["dual-monitor-setup-productivity","cable-management-solutions"]},{"id":"huanuo-monitor-arm","name":"HUANUO Single Monitor Mount","description":"Gas‑spring monitor arm with full motion and cable management.","price":89,"priceCurrency":"USD","category":"accessories","brand":"HUANUO","features":["Gas spring","Full motion","Cable management","VESA compatible"],"image":"https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2070&auto=format&fit=crop","affiliateUrl":"https://www.amazon.com/HUANUO-Monitor-Adjustable-Computer-10-32/dp/B07N4Q5H6Z","store":"Amazon","articleSlugs":["home-office-budget-setup-under-1000","dual-monitor-setup-productivity"]}];
+    const tipsData = [{"id":1,"text":"Place your monitor at arm’s length, with the top of the screen at or slightly below eye level.","category":"Ergonomics"},{"id":2,"text":"Use a standing desk for 30‑minute intervals to reduce back strain and improve circulation.","category":"Health"},{"id":3,"text":"Keep your desk surface clutter‑free—use cable trays and drawer organizers.","category":"Organization"},{"id":4,"text":"Invest in an ergonomic chair with lumbar support; your back will thank you in five years.","category":"Investments"},{"id":5,"text":"Add a live plant to your workspace—it boosts mood, air quality, and productivity.","category":"Wellness"},{"id":6,"text":"Use warm‑white LED bulbs (2700‑3000K) for ambient lighting to reduce eye strain.","category":"Lighting"},{"id":7,"text":"Take a 5‑minute break every hour: stretch, walk, or just look out a window.","category":"Habits"},{"id":8,"text":"Position your desk perpendicular to windows to avoid glare on your screen.","category":"Layout"}];
+</script>
+
+<!-- Quiz JavaScript -->
+<script>
+    // Quiz state
+    let currentQuestion = 0;
+    let answers = [];
+    let scores = {
+        minimalist: 0,
+        ergo: 0,
+        budget: 0,
+        aesthetic: 0
+    };
+
+    // DOM elements
+    const questionScreen = document.getElementById('question-screen');
+    const resultsScreen = document.getElementById('results-screen');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progressBar = document.getElementById('quiz-progress');
+    const currentStepEl = document.getElementById('current-step');
+    const totalStepsEl = document.getElementById('total-steps');
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        totalStepsEl.textContent = quizData.questions.length;
+        loadQuestion(currentQuestion);
+        
+        // Button events
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        document.getElementById('retake-btn').addEventListener('click', resetQuiz);
+    });
+
+    // Load question
+    function loadQuestion(index) {
+        const question = quizData.questions[index];
+        questionText.textContent = question.text;
+        currentStepEl.textContent = index + 1;
+        
+        // Update progress bar
+        const progress = ((index + 1) / quizData.questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        
+        // Render options
+        optionsContainer.innerHTML = '';
+        question.options.forEach((option, i) => {
+            const isSelected = answers[index] === i;
+            const optionEl = document.createElement('button');
+            optionEl.className = `w-full text-left p-6 rounded-2xl border-2 transition ${isSelected 
+                ? 'border-primary bg-primary/5 dark:bg-primary/10' 
+                : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700'}`;
+            optionEl.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected 
+                            ? 'border-primary bg-primary text-white' 
+                            : 'border-zinc-300 dark:border-zinc-700'}">
+                            ${isSelected ? '<i class="fa-solid fa-check text-xs"></i>' : String.fromCharCode(65 + i)}
+                        </div>
+                        <span class="font-medium">${option.text}</span>
+                    </div>
+                    ${isSelected ? '<i class="fa-solid fa-check text-primary"></i>' : ''}
+                </div>
+            `;
+            optionEl.addEventListener('click', () => selectOption(i));
+            optionsContainer.appendChild(optionEl);
+        });
+        
+        // Update buttons
+        prevBtn.disabled = index === 0;
+        prevBtn.classList.toggle('opacity-50', index === 0);
+        prevBtn.classList.toggle('cursor-not-allowed', index === 0);
+        
+        nextBtn.textContent = index === quizData.questions.length - 1 ? 'See Results' : 'Next';
+        nextBtn.disabled = answers[index] === undefined;
+        nextBtn.classList.toggle('opacity-50', answers[index] === undefined);
+        nextBtn.classList.toggle('cursor-not-allowed', answers[index] === undefined);
+    }
+
+    // Select option
+    function selectOption(optionIndex) {
+        answers[currentQuestion] = optionIndex;
+        
+        // Update scores
+        const question = quizData.questions[currentQuestion];
+        const option = question.options[optionIndex];
+        
+        // Reset previous selection's points if reselecting
+        if (answers[currentQuestion] !== undefined && answers[currentQuestion] !== optionIndex) {
+            const prevOption = question.options[answers[currentQuestion]];
+            Object.keys(prevOption.points).forEach(persona => {
+                scores[persona] -= prevOption.points[persona];
+            });
+        }
+        
+        // Add new points
+        Object.keys(option.points).forEach(persona => {
+            scores[persona] += option.points[persona];
+        });
+        
+        loadQuestion(currentQuestion);
+    }
+
+    // Next question
+    function nextQuestion() {
+        if (answers[currentQuestion] === undefined) return;
+        
+        if (currentQuestion < quizData.questions.length - 1) {
+            currentQuestion++;
+            loadQuestion(currentQuestion);
+        } else {
+            showResults();
+        }
+    }
+
+    // Previous question
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            loadQuestion(currentQuestion);
+        }
+    }
+
+    // Calculate winning persona
+    function getWinningPersona() {
+        let maxScore = -1;
+        let winner = null;
+        
+        Object.keys(scores).forEach(persona => {
+            if (scores[persona] > maxScore) {
+                maxScore = scores[persona];
+                winner = persona;
+            }
+        });
+        
+        return quizData.personas.find(p => p.id === winner);
+    }
+
+    // Show results
+    function showResults() {
+        const persona = getWinningPersona();
+        if (!persona) return;
+        
+        // Update persona display
+        document.getElementById('persona-icon').className = `${persona.icon} ${persona.color} ${persona.bgColor} p-8`;
+        document.getElementById('persona-name').textContent = persona.name;
+        document.getElementById('persona-tagline').textContent = persona.tagline;
+        document.getElementById('persona-description').textContent = persona.description;
+        
+        // Show recommended products
+        const recommendedProducts = productsData.filter(product => 
+            persona.recommendedCategories.includes(product.category)
+        ).slice(0, 4);
+        
+        const productsContainer = document.getElementById('recommended-products');
+        productsContainer.innerHTML = recommendedProducts.map(product => `
+            <div class="bg-zinc-50 dark:bg-zinc-800 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-700 hover:border-primary transition">
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="w-20 h-20 rounded-xl bg-white dark:bg-zinc-900 flex items-center justify-center flex-shrink-0">
+                        <img src="${product.image}" alt="${product.name}" class="max-w-full max-h-full object-contain">
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2">${product.name}</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">${product.brand} · $${product.price} ${product.priceCurrency}</p>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/20 text-primary">${product.category}</span>
+                    </div>
+                </div>
+                <a href="${product.affiliateUrl}" target="_blank" rel="nofollow noopener" class="block w-full text-center py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition">
+                    Shop Now
+                </a>
+            </div>
+        `).join('');
+        
+        // Show matching tips
+        const relevantTips = tipsData.filter(tip => 
+            persona.priority.some(keyword => 
+                tip.text.toLowerCase().includes(keyword.toLowerCase()) ||
+                tip.category.toLowerCase().includes(keyword.toLowerCase())
+            )
+        ).slice(0, 3);
+        
+        const tipsContainer = document.getElementById('recommended-tips');
+        tipsContainer.innerHTML = relevantTips.map(tip => `
+            <div class="bg-gradient-to-r from-primary/5 to-transparent p-6 rounded-2xl border border-primary/20">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/20 text-primary mb-3 inline-block">${tip.category}</span>
+                        <p class="font-medium">${tip.text}</p>
+                    </div>
+                    <button class="text-primary hover:text-primary/80 flex-shrink-0 ml-4" onclick="navigator.clipboard.writeText('${tip.text}'); alert('Tip copied!')">
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+        
+        // Switch screens
+        questionScreen.classList.add('hidden');
+        resultsScreen.classList.remove('hidden');
+    }
+
+    // Reset quiz
+    function resetQuiz() {
+        currentQuestion = 0;
+        answers = [];
+        scores = {
+            minimalist: 0,
+            ergo: 0,
+            budget: 0,
+            aesthetic: 0
+        };
+        
+        resultsScreen.classList.add('hidden');
+        questionScreen.classList.remove('hidden');
+        loadQuestion(currentQuestion);
+    }
+</script>
+
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-zinc-400 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-chair text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">Workspace<span class="text-accent">Pro</span></span>
+                    </a>
+                    <p class="text-sm">Helping you build a healthier, more productive home office since 2021.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Guides</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/#guides" class="hover:text-white transition">Ergonomics</a></li>
+                        <li><a href="/#guides" class="hover:text-white transition">Productivity</a></li>
+                        <li><a href="/#guides" class="hover:text-white transition">Lighting</a></li>
+                        <li><a href="/#guides" class="hover:text-white transition">Cable Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Products</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/#top-picks" class="hover:text-white transition">Desks</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Chairs</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Monitors</a></li>
+                        <li><a href="/#top-picks" class="hover:text-white transition">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Connect</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="mailto:hello@theworkspacepro.com" class="hover:text-white transition">Email</a></li>
+                        <li><a href="#" class="hover:text-white transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="/contact/" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-zinc-800 mt-12 pt-8 text-sm text-center">
+                <p>&copy; 2026 The Workspace Pro. All rights reserved. <a href="#" class="text-accent hover:underline">Privacy Policy</a> | <a href="#" class="text-accent hover:underline">Terms</a></p>
+                <p class="mt-2 text-zinc-500">This site uses affiliate links. We only recommend products we genuinely believe in.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Dark mode toggle functions
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateDarkModeIcon();
+        }
+        
+        function updateDarkModeIcon() {
+            const icon = document.getElementById('darkModeIcon');
+            if (icon) {
+                icon.className = document.documentElement.classList.contains('dark') 
+                    ? 'fa-solid fa-sun' 
+                    : 'fa-solid fa-moon';
+            }
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+        
+        // Close mobile menu on click outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.getElementById('mobileMenuButton');
+            if (mobileMenu && !mobileMenu.contains(event.target) && menuButton && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Initialize dark mode icon on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDarkModeIcon();
+        });
+        
+        // Smooth scroll for anchor links
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (link && link.getAttribute('href') !== '#') {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-start justify-center p-6 pt-20">
+        <div class="bg-white dark:bg-zinc-900 rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden border border-zinc-300 dark:border-zinc-800">
+            <!-- Search Input -->
+            <div class="p-6 border-b border-zinc-200 dark:border-zinc-800">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 transform -translate-y-1/2 text-zinc-500"></i>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Search guides, products, tips..." 
+                        autocomplete="off"
+                        class="w-full pl-14 pr-6 py-5 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg" />
+                    <button id="close-search" class="absolute right-6 top-1/2 transform -translate-y-1/2 text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+                <p class="text-sm text-zinc-500 mt-4">Search across all guides, product reviews, and tips.</p>
+            </div>
+
+            <!-- Results Container -->
+            <div id="search-results" class="max-h-[60vh] overflow-y-auto p-6">
+                <div id="search-empty" class="text-center py-12">
+                    <i class="fa-solid fa-search text-4xl text-zinc-400 mb-6"></i>
+                    <h3 class="text-xl font-semibold mb-2">Start typing to search</h3>
+                    <p class="text-zinc-500">Results will appear here as you type.</p>
+                </div>
+                <div id="search-loading" class="hidden text-center py-12">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    <p class="mt-4 text-zinc-500">Loading search index...</p>
+                </div>
+                <div id="search-results-list" class="hidden space-y-4"></div>
+                <div id="search-no-results" class="hidden text-center py-12">
+                    <i class="fa-solid fa-compass text-4xl text-zinc-400 mb-6"></i>
+                    <h3 class="text-xl font-semibold mb-2">No results found</h3>
+                    <p class="text-zinc-500">Try different keywords or browse our guides.</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-6 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm text-zinc-500">
+                <div class="flex justify-between">
+                    <span>Powered by Lunr.js</span>
+                    <span id="search-count">0 results</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lunr.js for search -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+
+    <!-- Search JavaScript -->
+    <script>
+        // Search state
+        let searchIndex = null;
+        let searchDocuments = null;
+        let searchReady = false;
+
+        // DOM elements
+        const searchModal = document.getElementById('search-modal');
+        const searchInput = document.getElementById('search-input');
+        const closeSearchBtn = document.getElementById('close-search');
+        const searchResults = document.getElementById('search-results');
+        const searchEmpty = document.getElementById('search-empty');
+        const searchLoading = document.getElementById('search-loading');
+        const searchResultsList = document.getElementById('search-results-list');
+        const searchNoResults = document.getElementById('search-no-results');
+        const searchCount = document.getElementById('search-count');
+
+        // Open search modal when search buttons are clicked
+        document.querySelectorAll('button[aria-label="Search"]').forEach(btn => {
+            btn.addEventListener('click', openSearch);
+        });
+
+        // Close modal
+        closeSearchBtn.addEventListener('click', closeSearch);
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) closeSearch();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+K or Cmd+K to open search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                openSearch();
+            }
+            // Escape to close
+            if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+                closeSearch();
+            }
+        });
+
+        // Search input handling
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (searchReady) {
+                    performSearch(this.value.trim());
+                }
+            }, 300);
+        });
+
+        // Open search modal
+        function openSearch() {
+            searchModal.classList.remove('hidden');
+            searchInput.focus();
+            loadSearchIndex();
+        }
+
+        // Close search modal
+        function closeSearch() {
+            searchModal.classList.add('hidden');
+            searchInput.value = '';
+            showEmptyState();
+        }
+
+        // Load search index (once)
+        async function loadSearchIndex() {
+            if (searchReady) return;
+
+            searchEmpty.classList.add('hidden');
+            searchLoading.classList.remove('hidden');
+
+            try {
+                const response = await fetch('/search.json');
+                const data = await response.json();
+                
+                // Reconstruct Lunr index
+                searchIndex = lunr.Index.load(data.index);
+                searchDocuments = data.documents.reduce((map, doc) => {
+                    map[doc.url] = doc;
+                    return map;
+                }, {});
+
+                searchReady = true;
+                searchLoading.classList.add('hidden');
+                searchEmpty.classList.remove('hidden');
+
+                // If there's already text in the input, search immediately
+                if (searchInput.value.trim()) {
+                    performSearch(searchInput.value.trim());
+                }
+            } catch (err) {
+                console.error('Failed to load search index:', err);
+                searchLoading.classList.add('hidden');
+                searchEmpty.classList.remove('hidden');
+                searchEmpty.innerHTML = `
+                    <i class="fa-solid fa-exclamation-triangle text-4xl text-amber-500 mb-6"></i>
+                    <h3 class="text-xl font-semibold mb-2">Search unavailable</h3>
+                    <p class="text-zinc-500">Search index could not be loaded. Please try again later.</p>
+                `;
+            }
+        }
+
+        // Perform search
+        function performSearch(query) {
+            if (!query) {
+                showEmptyState();
+                return;
+            }
+
+            const results = searchIndex.search(query);
+            displayResults(results);
+        }
+
+        // Display results
+        function displayResults(results) {
+            if (results.length === 0) {
+                searchResultsList.classList.add('hidden');
+                searchNoResults.classList.remove('hidden');
+                searchCount.textContent = '0 results';
+                return;
+            }
+
+            searchNoResults.classList.add('hidden');
+            searchResultsList.classList.remove('hidden');
+            searchCount.textContent = `${results.length} result${results.length !== 1 ? 's' : ''}`;
+
+            // Limit to top 10
+            const topResults = results.slice(0, 10);
+
+            searchResultsList.innerHTML = topResults.map(result => {
+                const doc = searchDocuments[result.ref];
+                return `
+                    <a href="${doc.url}" class="block p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10 transition">
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-semibold text-lg">${doc.title}</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/20 text-primary">${doc.category || 'Guide'}</span>
+                        </div>
+                        <p class="text-zinc-600 dark:text-zinc-400 mb-4">${doc.description}</p>
+                        <div class="flex items-center text-sm text-zinc-500">
+                            <i class="fa-solid fa-calendar mr-2"></i>
+                            ${doc.date}
+                            <i class="fa-solid fa-arrow-up-right-from-square ml-4 mr-2"></i>
+                            ${doc.url.replace('/content/', '').replace('/', '')}
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // Show empty state
+        function showEmptyState() {
+            searchResultsList.classList.add('hidden');
+            searchNoResults.classList.add('hidden');
+            searchEmpty.classList.remove('hidden');
+            searchCount.textContent = '0 results';
+        }
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/js/service-worker.js')
+                    .then(reg => {
+                        console.log('Service Worker registered:', reg);
+                    })
+                    .catch(err => {
+                        console.error('Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>
