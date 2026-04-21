@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REAL_TOKEN="cfut_2FwhIfvNRxBkiErMVLR9rkEhxyGa6kC5Y7QRwlLq6bcee2de"
+REAL_TOKEN="YOUR_CF_ANALYTICS_TOKEN_HERE"
 
 echo "Replacing Cloudflare Analytics token in HTML files..."
 
