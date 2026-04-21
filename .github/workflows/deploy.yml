@@ -28,11 +28,32 @@ jobs:
 
       - name: Build site
         run: |
-          chmod +x ./sync_site.sh
-          ./sync_site.sh
+          echo "Creating _site directory..."
+          mkdir -p _site
+          mkdir -p _site/static/css
+          mkdir -p _site/static/images
+          mkdir -p _site/static/js
+          mkdir -p _site/content
+          
+          echo "Copying HTML files..."
+          cp index.html _site/
+          
+          # Copy content directory
+          cp -r content/* _site/content/ 2>/dev/null || true
+          
+          # Copy static assets
+          cp static/css/custom.css _site/static/css/
+          cp -r static/images/* _site/static/images/ 2>/dev/null || true
+          cp -r static/js/* _site/static/js/ 2>/dev/null || true
+          
+          # Copy config files
+          cp sitemap.xml robots.txt search.json _site/ 2>/dev/null || echo "Config files missing"
+          cp netlify.toml _headers _redirects _routes.json _site/ 2>/dev/null || echo "Deployment configs missing"
+          
           echo "Built _site directory:"
           ls -la _site/
           ls -la _site/content/ | head -5
+          echo "Total HTML files: $(find _site -name '*.html' | wc -l)"
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
