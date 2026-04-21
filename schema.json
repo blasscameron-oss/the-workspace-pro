@@ -1,0 +1,27 @@
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Home Office Lighting Guide: How to Choose the Best Lights for Productivity",
+      "description": "Home office lighting guide: How to choose the best lights for productivity, reduce eye strain, and create an ideal work environment with natural and artificial lighting.",
+      "image": "https://www.theworkspacepro.com/static/images/og-default.png",
+      "author": {
+        "@type": "Organization",
+        "name": "The Workspace Pro Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Workspace Pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.theworkspacepro.com/static/images/logo.png"
+        }
+      },
+      "datePublished": "2026-04-01",
+      "dateModified": "2026-04-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.theworkspacepro.com/content/home-office-lighting-guide/"
+      }
+    }
+    </script>

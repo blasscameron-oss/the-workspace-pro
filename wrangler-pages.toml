@@ -1,0 +1,11 @@
+name = "the-workspace-pro"
+compatibility_date = "2026-04-19"
+pages_build_output_dir = "."
+
+[[routes]]
+pattern = "/*"
+script_name = "_worker"
+
+[site]
+bucket = "."
+entry-point = "."

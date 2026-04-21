@@ -1,0 +1,56 @@
+# Build outputs
+*.zip
+*.tar.gz
+*.tgz
+*.log
+*.bak
+*.backup
+
+# Development tools
+node_modules/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+temp/
+
+# Python
+__pycache__/
+*.pyc
+
+# Content (optional, if you want to keep source)
+# content/
+# static/
+# css/
+
+# Deployment packages
+workspace-pro-*.zip
+theworkspacepro-*.zip
+static-site*.zip
+
+# Script outputs
+check_improvements.sh
+check_site.sh
+sync_site.sh
+update_all.sh
+update_all_simple.sh
+fix.sh
+cleanup_duplicates.sh
+
+# Generated files
+download_page.html
+test.html
+test.txt
+test_perl.pl
+
+# Cloudflare / Netlify config backups
+netlify.toml.backup
+wrangler.toml.backup
+
+# Ignore the parent workspace files
+../*
