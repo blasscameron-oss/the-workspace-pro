@@ -54,3 +54,6 @@ wrangler.toml.backup
 
 # Ignore the parent workspace files
 ../*
+
+# Analytics token (keep local)
+analytics-token.txt

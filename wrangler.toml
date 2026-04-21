@@ -7,7 +7,6 @@ command = "echo 'Static site - no build needed'"
 
 [site]
 bucket = "./_site"
-entry-point = "."
 
 [[routes]]
 pattern = "theworkspacepro.com/*"
