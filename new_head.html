@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>The Workspace Pro | Expert Ergonomic Home Office Guides & Product Recommendations</title>
+    <meta name="description" content="Build a healthier, more productive home office. Expert‑curated ergonomic guides, 2026’s top desk, chair & monitor picks, daily tips, and unbiased reviews. Join 15,000+ professionals.">
+    <meta name="keywords" content="ergonomic home office, standing desk, office chair, monitor setup, productivity tips, cable management, workspace lighting, remote work">
+    <meta name="author" content="The Workspace Pro">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.theworkspacepro.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theworkspacepro.com/">
+    <meta property="og:title" content="The Workspace Pro | Expert Ergonomic Home Office Guides & Product Recommendations">
+    <meta property="og:description" content="Build a healthier, more productive home office. Expert‑curated ergonomic guides, 2026’s top desk, chair & monitor picks, daily tips, and unbiased reviews.">
+    <meta property="og:image" content="https://www.theworkspacepro.com/static/images/og-home-2026.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Modern home office with standing desk, ergonomic chair, and natural lighting">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="The Workspace Pro">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@workspacepro">
+    <meta name="twitter:creator" content="@workspacepro">
+    <meta name="twitter:title" content="The Workspace Pro | Expert Ergonomic Home Office Guides & Product Recommendations">
+    <meta name="twitter:description" content="Build a healthier, more productive home office. Expert‑curated ergonomic guides, 2026’s top desk, chair & monitor picks, daily tips, and unbiased reviews.">
+    <meta name="twitter:image" content="https://www.theworkspacepro.com/static/images/og-home-2026.jpg">
+    <meta name="twitter:image:alt" content="Modern home office with standing desk, ergonomic chair, and natural lighting">
+    
+    <!-- Favicons & App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0d9488">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.6.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // New calming teal/blue‑green palette
+                        'surface': '#f9fafb',
+                        'card': '#ffffff',
+                        'border': '#e5e7eb',
+                        'primary': '#0d9488',        // Teal‑600
+                        'primary-light': '#5eead4',  // Teal‑300
+                        'primary-dark': '#115e59',   // Teal‑800
+                        'accent': '#06b6d4',         // Cyan‑500
+                        'accent-light': '#67e8f9',   // Cyan‑300
+                        'neutral': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'pulse-subtle': 'pulseSubtle 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <!-- Custom CSS (minimal) -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+    
+    <!-- Lunr.js for search (deferred) -->
+    <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script>
+    
+    <!-- Dark mode detection -->
+    <script>
+        (function() {
+            const stored = localStorage.theme;
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (stored === 'dark' || (!stored && prefersDark)) {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        })();
+    </script>
+    
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cfut_2FwhIfvNRxBkiErMVLR9rkEhxyGa6kC5Y7QRwlLq6bcee2de"}'></script>
+    
+    <!-- JSON‑LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://www.theworkspacepro.com/#organization",
+                "name": "The Workspace Pro",
+                "url": "https://www.theworkspacepro.com/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.theworkspacepro.com/static/images/logo.png",
+                    "width": 180,
+                    "height": 60
+                },
+                "sameAs": [
+                    "https://twitter.com/workspacepro",
+                    "https://www.facebook.com/workspacepro",
+                    "https://www.instagram.com/workspacepro",
+                    "https://www.linkedin.com/company/workspacepro"
+                ],
+                "description": "Expert‑curated ergonomic home office guides, product recommendations, and daily tips for a healthier, more productive workspace."
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://www.theworkspacepro.com/#website",
+                "url": "https://www.theworkspacepro.com/",
+                "name": "The Workspace Pro",
+                "description": "Expert‑curated ergonomic home office guides, product recommendations, and daily tips for a healthier, more productive workspace.",
+                "publisher": {
+                    "@id": "https://www.theworkspacepro.com/#organization"
+                },
+                "potentialAction": [{
+                    "@type": "SearchAction",
+                    "target": "https://www.theworkspacepro.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }],
+                "inLanguage": "en-US"
+            },
+            {
+                "@type": "CollectionPage",
+                "@id": "https://www.theworkspacepro.com/#homepage",
+                "url": "https://www.theworkspacepro.com/",
+                "name": "Home | The Workspace Pro",
+                "isPartOf": {
+                    "@id": "https://www.theworkspacepro.com/#website"
+                },
+                "description": "Build a healthier, more productive home office. Expert‑curated ergonomic guides, 2026’s top desk, chair & monitor picks, daily tips, and unbiased reviews.",
+                "breadcrumb": {
+                    "@id": "https://www.theworkspacepro.com/#breadcrumb"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://www.theworkspacepro.com/#breadcrumb",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.theworkspacepro.com/"
+                }]
+            }
+        ]
+    }
+    </script>
+</head>

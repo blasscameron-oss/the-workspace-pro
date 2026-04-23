@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://theworkspacepro.com/sitemap.xml
+Sitemap: https://www.theworkspacepro.com/sitemap.xml

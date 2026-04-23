@@ -1,0 +1,41 @@
+{
+  "amazonTag": "workspacepro-20",
+  "products": {
+    "standing-desk": {
+      "name": "2026 Electric Standing Desk",
+      "price": "$449.99",
+      "description": "Dual‑motor, 4 memory presets, solid wood top, 10‑year warranty.",
+      "affiliateUrl": "https://www.amazon.com/dp/B0XXXXXXX?tag=workspacepro-20",
+      "category": "desks"
+    },
+    "ergonomic-chair": {
+      "name": "Ergonomic Mesh Chair Pro",
+      "price": "$699.99",
+      "description": "4D armrests, adjustable lumbar, breathable mesh, 12‑year warranty.",
+      "affiliateUrl": "https://www.amazon.com/dp/B0XXXXXXX?tag=workspacepro-20",
+      "category": "chairs"
+    },
+    "monitor": {
+      "name": "32″ 4K IPS Monitor",
+      "price": "$529.99",
+      "description": "USB‑C, HDR600, 98% DCI‑P3, factory color calibration.",
+      "affiliateUrl": "https://www.amazon.com/dp/B0XXXXXXX?tag=workspacepro-20",
+      "category": "monitors"
+    },
+    "monitor-arm": {
+      "name": "Premium Monitor Arm",
+      "price": "$149.99",
+      "description": "Gas‑spring, 360° rotation, VESA 75/100, cable management.",
+      "affiliateUrl": "https://www.amazon.com/dp/B0XXXXXXX?tag=workspacepro-20",
+      "category": "accessories"
+    },
+    "keyboard": {
+      "name": "Ergonomic Split Keyboard",
+      "price": "$179.99",
+      "description": "Mechanical, hot‑swappable, split design, wrist rest included.",
+      "affiliateUrl": "https://www.amazon.com/dp/B0XXXXXXX?tag=workspacepro-20",
+      "category": "accessories"
+    }
+  },
+  "note": "Replace the placeholder Amazon ASINs (B0XXXXXXX) with actual product ASINs and update the tag with your Amazon Associates tag."
+}

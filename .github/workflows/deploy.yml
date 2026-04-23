@@ -37,9 +37,14 @@ jobs:
           
           echo "Copying HTML files..."
           cp index.html _site/
+          cp deals.html _site/ 2>/dev/null || true
           
           # Copy content directory
           cp -r content/* _site/content/ 2>/dev/null || true
+          
+          # Create deals directory
+          mkdir -p _site/deals
+          cp deals.html _site/deals/index.html 2>/dev/null || true
           
           # Copy static assets
           cp static/css/custom.css _site/static/css/
