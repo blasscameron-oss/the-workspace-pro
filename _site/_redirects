@@ -10,5 +10,8 @@ theworkspacepro.com/* https://www.theworkspacepro.com/:splat 301
 # Clean URL redirects (remove .html extensions if needed)
 /content/*.html /content/:splat 301
 
+# Exclude Google Search Console verification file from SPA fallback
+/google803b5c2f4a1e9d87.html 200
+
 # SPA fallback - for client-side routing
 /* /index.html 200
