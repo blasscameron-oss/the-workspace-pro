@@ -42,6 +42,23 @@ jobs:
           # Copy content directory
           cp -r content/* _site/content/ 2>/dev/null || true
           
+          # Map content pages to clean URLs (create matching top-level directories)
+          # This makes /about/ -> _site/about/index.html while keeping /content/about/
+          for dir in about guides tips contact podcasts privacy terms; do
+            if [ -d "_site/content/$dir" ]; then
+              mkdir -p "_site/$dir"
+              cp "_site/content/$dir/index.html" "_site/$dir/index.html" 2>/dev/null || true
+            fi
+          done
+          
+          # Map individual guide pages
+          for guide in home-office-lighting-guide ergonomic-office-chair-buying-guide cable-management-solutions dual-monitor-setup-productivity small-home-office-organization-hacks home-office-budget-setup-under-1000 home-office-desk-guide-2026 ergonomic-accessories-home-office productive-workspace-mindset best-standing-desks-under-500; do
+            if [ -d "_site/content/$guide" ]; then
+              mkdir -p "_site/$guide"
+              cp "_site/content/$guide/index.html" "_site/$guide/index.html" 2>/dev/null || true
+            fi
+          done
+          
           # Create deals directory
           mkdir -p _site/deals
           cp deals.html _site/deals/index.html 2>/dev/null || true

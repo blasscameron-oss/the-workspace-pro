@@ -1,39 +1,8 @@
-# Redirect from old Netlify subdomain to custom domain
-https://hilarious-kashata-ca8d6f.netlify.app/* https://www.theworkspacepro.com/:splat 301
-
 # Allow Cloudflare Pages domain verification
 /.well-known/* 200
-
-# Redirect non-www to www (or vice versa based on preference)
-theworkspacepro.com/* https://www.theworkspacepro.com/:splat 301
-
-# Clean URL redirects (remove .html extensions if needed)
-/content/*.html /content/:splat 301
-
-# Content page clean URLs (serve index.html from content/ subdirectories)
-/about/ /content/about/index.html 200
-/guides/ /content/guides/index.html 200
-/tips/ /content/tips/index.html 200
-/contact/ /content/contact/index.html 200
-/podcasts/ /content/podcasts/index.html 200
-/privacy/ /content/privacy/index.html 200
-/terms/ /content/terms/index.html 200
-/home/ /content/home/index.html 200
-
-# Guide page clean URLs
-/home-office-lighting-guide/ /content/home-office-lighting-guide/index.html 200
-/ergonomic-office-chair-buying-guide/ /content/ergonomic-office-chair-buying-guide/index.html 200
-/cable-management-solutions/ /content/cable-management-solutions/index.html 200
-/dual-monitor-setup-productivity/ /content/dual-monitor-setup-productivity/index.html 200
-/small-home-office-organization-hacks/ /content/small-home-office-organization-hacks/index.html 200
-/home-office-budget-setup-under-1000/ /content/home-office-budget-setup-under-1000/index.html 200
-/home-office-desk-guide-2026/ /content/home-office-desk-guide-2026/index.html 200
-/ergonomic-accessories-home-office/ /content/ergonomic-accessories-home-office/index.html 200
-/productive-workspace-mindset/ /content/productive-workspace-mindset/index.html 200
-/best-standing-desks-under-500/ /content/best-standing-desks-under-500/index.html 200
 
 # Exclude Google Search Console verification file from SPA fallback
 /google803b5c2f4a1e9d87.html 200
 
-# SPA fallback - for client-side routing (must come after all other rules)
+# SPA fallback - for client-side routing (content pages now at clean URLs via deploy.yml)
 /* /index.html 200
