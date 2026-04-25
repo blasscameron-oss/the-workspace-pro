@@ -19,6 +19,16 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blasscameron-oss/the-workspace-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/blasscameron-oss/the-workspace-pro/issues"
+  },
+  "homepage": "https://github.com/blasscameron-oss/the-workspace-pro#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  }
 }

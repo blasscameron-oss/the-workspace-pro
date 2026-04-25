@@ -24,36 +24,13 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://www.theworkspacepro.com/content/about/">
     
-    <!-- Fonts, Font Awesome, Tailwind, styles.css -->
+    <!-- Fonts & icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#2a6b7e',
-                        'primary-light': '#4a8fa3',
-                        'secondary': '#c86b4a',
-                        'secondary-light': '#e48c6d',
-                        'surface': '#fefcf8',
-                        'card': '#ffffff',
-                        'border': '#e8e3da',
-                        'text': '#1f2937',
-                        'text-light': '#6b7280',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    },
-                }
-            },
-            darkMode: 'class',
-        }
-    </script>
+    <!-- Tailwind CSS (pre-built) -->
+    <link rel="stylesheet" href="/static/css/tailwind.min.css">
     <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
@@ -383,6 +360,6 @@
     </footer>
     
     <!-- JavaScript -->
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/main.min.js" defer></script>
 </body>
 </html>

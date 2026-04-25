@@ -24,29 +24,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome 6.6.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'surface': '#fefcf8',
-                        'card': '#ffffff',
-                        'border': '#e8e3da',
-                        'primary': '#2a6b7e',
-                        'primary-light': '#4a8fa3',
-                        'accent': '#c86b4a',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    },
-                }
-            },
-            darkMode: 'class',
-        }
-    </script>
+    <!-- Tailwind CSS (pre-built) -->
+    <link rel="stylesheet" href="/static/css/tailwind.min.css">
+    
     <link rel="stylesheet" href="/static/css/custom.css">
     <script>
         // Dark mode detection
@@ -129,11 +109,6 @@
     <main>
         
         <!-- Hero Section (only on home page) - Will be overridden by index.njk -->
-        
-        
-        
-        
-        
 
 <article class="max-w-4xl mx-auto">
     <header class="mb-10">
@@ -153,7 +128,6 @@
     </div>
 </article>
 
-        
     </main>
 
     <!-- Footer -->
