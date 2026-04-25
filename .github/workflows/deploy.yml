@@ -52,7 +52,7 @@ jobs:
           done
           
           # Map individual guide pages
-          for guide in home-office-lighting-guide ergonomic-office-chair-buying-guide cable-management-solutions dual-monitor-setup-productivity small-home-office-organization-hacks home-office-budget-setup-under-1000 home-office-desk-guide-2026 ergonomic-accessories-home-office productive-workspace-mindset best-standing-desks-under-500; do
+          for guide in home-office-lighting-guide ergonomic-office-chair-buying-guide cable-management-solutions dual-monitor-setup-productivity small-home-office-organization-hacks home-office-budget-setup-under-1000 home-office-desk-guide-2026 ergonomic-accessories-home-office productive-workspace-mindset best-standing-desks-under-500 ultimate-home-office-setup-guide-2026; do
             if [ -d "_site/content/$guide" ]; then
               mkdir -p "_site/$guide"
               cp "_site/content/$guide/index.html" "_site/$guide/index.html" 2>/dev/null || true
