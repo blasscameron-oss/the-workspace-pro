@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Workspace Pro | Submit Your Workspace Setup</title>
+    <meta name="description" content="Show off your home office! Submit your workspace setup for a chance to be featured in our Community Setups gallery. Inspire others with your ergonomic tips and gear.">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="The Workspace Pro | Submit Your Workspace Setup">
+    <meta property="og:description" content="Show off your home office! Submit your workspace setup for a chance to be featured in our Community Setups gallery. Inspire others with your ergonomic tips and gear.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theworkspacepro.com/content/submit-workspace/">
+    <meta property="og:image" content="/static/images/og-home-2026.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Workspace Pro | Submit Your Workspace Setup">
+    <meta name="twitter:description" content="Show off your home office! Submit your workspace setup for a chance to be featured in our Community Setups gallery.">
+    <meta name="twitter:image" content="/static/images/og-home-2026.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.theworkspacepro.com/content/submit-workspace/">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2a6b7e',
+                        'primary-light': '#4a8fa3',
+                        'secondary': '#c86b4a',
+                        'secondary-light': '#e48c6d',
+                        'surface': '#fefcf8',
+                        'card': '#ffffff',
+                        'border': '#e8e3da',
+                        'text': '#1f2937',
+                        'text-light': '#6b7280',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Submit Your Workspace Setup",
+        "description": "Show off your home office! Submit your workspace setup for a chance to be featured in our Community Setups gallery.",
+        "url": "https://www.theworkspacepro.com/content/submit-workspace/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "The Workspace Pro",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.theworkspacepro.com/images/logo.png"
+            }
+        }
+    }
+    </script>
+</head>
+<body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col">
+    <!-- Dark mode toggle -->
+    <button id="darkModeToggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Toggle dark mode">
+        <i class="fas fa-moon text-primary text-xl"></i>
+        <i class="fas fa-sun text-primary text-xl hidden"></i>
+    </button>
+    
+    <!-- Sticky "Get daily tips" bar -->
+    <div id="stickyBar" class="sticky top-0 z-40 bg-primary text-white py-2 px-4 text-center hidden md:block">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-sm"><i class="fas fa-lightbulb mr-2"></i>Get daily workspace tips delivered to your inbox</span>
+            <button class="bg-secondary hover:bg-secondary-light text-white text-sm font-semibold py-1 px-3 rounded transition-colors" onclick="document.getElementById('newsletterModal').classList.remove('hidden')">Subscribe Now</button>
+        </div>
+    </div>
+    
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-30 bg-card shadow-sm border-b border-border">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                        <i class="fas fa-desktop text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-primary font-serif">The Workspace Pro</h1>
+                        <p class="text-xs text-text-light">Build a workspace that works</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="font-medium hover:text-primary transition-colors">Home</a>
+                    <a href="/content/tips/" class="font-medium hover:text-primary transition-colors">All Tips</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary transition-colors">Guides</a>
+                    <a href="/deals/" class="font-medium hover:text-primary transition-colors">Deals</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/about/" class="font-medium hover:text-primary transition-colors">About</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary transition-colors">Quiz</a>
+                    <button id="searchToggle" class="p-2 hover:bg-surface rounded-full transition-colors" aria-label="Search">
+                        <i class="fas fa-search text-text-light"></i>
+                    </button>
+                    <a href="#newsletter" class="bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-colors">Newsletter</a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Open menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation (hidden) -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="font-medium py-2 hover:text-primary transition-colors">Home</a>
+                    <a href="/content/tips/" class="font-medium py-2 hover:text-primary transition-colors">All Tips</a>
+                    <a href="/content/guides/" class="font-medium py-2 hover:text-primary transition-colors">Guides</a>
+                    <a href="/deals/" class="font-medium py-2 hover:text-primary transition-colors">Deals</a>
+                    <a href="/podcasts/" class="font-medium py-2 hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/about/" class="font-medium py-2 hover:text-primary transition-colors">About</a>
+                    <a href="/quiz/" class="font-medium py-2 hover:text-primary transition-colors">Quiz</a>
+                    <a href="#newsletter" class="bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Newsletter</a>
+                </div>
+            </div>
+            
+            <!-- Search overlay (hidden) -->
+            <div id="searchOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
+                <div class="bg-card rounded-xl shadow-2xl w-full max-w-2xl mx-4 animate-fade-in">
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold">Search The Workspace Pro</h2>
+                            <button id="searchClose" class="p-2 hover:bg-surface rounded-full">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Type to search guides, tips, products..." class="w-full p-4 pl-12 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-text-light"></i>
+                            <button id="searchButton" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-lg hover:bg-primary-light transition-colors">Search</button>
+                        </div>
+                        <div id="searchResults" class="mt-4 max-h-64 overflow-y-auto hidden">
+                            <!-- Results populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-primary/5 to-transparent py-20 md:py-28">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6 font-serif animate-fade-in">Share Your Workspace</h2>
+                    <p class="text-xl text-text-light max-w-2xl mx-auto animate-fade-in animation-delay-300">Join our community of productivity enthusiasts and inspire others with your setup.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Form Section -->
+        <section class="container mx-auto px-4 py-12" id="submitFormSection">
+            <div class="max-w-2xl mx-auto">
+                <!-- Success Message (hidden by default, shown via ?success=true) -->
+                <div id="successMessage" class="hidden bg-card rounded-2xl shadow-lg border border-border p-8 md:p-12 text-center animate-fade-in">
+                    <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-5xl text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-text mb-4 font-serif">Thanks for sharing!</h3>
+                    <p class="text-text-light text-lg mb-8 max-w-md mx-auto">Your workspace has been submitted for review. We'll email you if it's selected for the gallery.</p>
+                    <a href="/content/community-setups/" class="inline-block bg-primary hover:bg-primary-light text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-lg hover:shadow-xl">
+                        Browse the Community Gallery →
+                    </a>
+                </div>
+                
+                <!-- Form Card -->
+                <div id="formCard" class="bg-card rounded-2xl shadow-lg border border-border p-8 md:p-12">
+                    <form action="https://formspree.com/f/mrbbqqde" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="_subject" value="New Workspace Submission!" />
+                        <input type="hidden" name="_next" value="https://www.theworkspacepro.com/content/submit-workspace/?success=true" />
+                        
+                        <div class="space-y-6">
+                            <!-- Your Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Your Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" required
+                                       placeholder="How should we credit you?"
+                                       class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                            </div>
+                            
+                            <!-- Your Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Your Email <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                       placeholder="For notifications if your setup is featured"
+                                       class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                            </div>
+                            
+                            <!-- Workspace Title -->
+                            <div>
+                                <label for="title" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Workspace Title <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="title" name="title" required
+                                       placeholder="e.g., 'My Minimalist Standing Desk Setup'"
+                                       class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                            </div>
+                            
+                            <!-- Short Description -->
+                            <div>
+                                <label for="description" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Short Description <span class="text-red-500">*</span>
+                                </label>
+                                <textarea id="description" name="description" required rows="4"
+                                          placeholder="Tell us about your workspace — what works well, what you'd improve..."
+                                          class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text resize-vertical"></textarea>
+                            </div>
+                            
+                            <!-- Estimated Budget -->
+                            <div>
+                                <label for="budget" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Estimated Budget
+                                </label>
+                                <select id="budget" name="budget"
+                                        class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                                    <option value="">Select a budget range...</option>
+                                    <option value="Under $500">Under $500</option>
+                                    <option value="$500–$1,000">$500–$1,000</option>
+                                    <option value="$1,000–$2,000">$1,000–$2,000</option>
+                                    <option value="$2,000+">$2,000+</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Key Gear -->
+                            <div>
+                                <label for="gear" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Key Gear
+                                </label>
+                                <input type="text" id="gear" name="gear"
+                                       placeholder="e.g., Jarvis desk, Aeron chair, 34&quot; ultrawide monitor, etc."
+                                       class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                            </div>
+                            
+                            <!-- Photo URL -->
+                            <div>
+                                <label for="photo" class="block text-sm font-bold uppercase tracking-wider text-text-light mb-2">
+                                    Photo URL
+                                </label>
+                                <input type="text" id="photo" name="photo"
+                                       placeholder="Paste a URL to your workspace photo (ImgBB, Imgur, or Dropbox)"
+                                       class="w-full p-3 rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary bg-surface text-text">
+                                <p class="text-xs text-text-light mt-1">Upload to a free image hosting service and paste the direct image link.</p>
+                            </div>
+                            
+                            <!-- Agree to Terms -->
+                            <div class="pt-2">
+                                <label class="flex items-start gap-3 cursor-pointer">
+                                    <input type="checkbox" name="terms" required
+                                           class="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary bg-surface">
+                                    <span class="text-sm text-text-light">
+                                        I agree that my submission may be featured on The Workspace Pro <span class="text-red-500">*</span>
+                                    </span>
+                                </label>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="pt-4">
+                                <button type="submit"
+                                        class="w-full bg-secondary hover:bg-secondary-light text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl">
+                                    Submit to Gallery
+                                </button>
+                                <p class="text-xs text-text-light mt-4 text-center">
+                                    By submitting, you agree to our 
+                                    <a href="/terms/" class="text-primary hover:underline">Terms of Service</a> and 
+                                    <a href="/privacy/" class="text-primary hover:underline">Privacy Policy</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-primary mb-4 font-serif">How It Works</h3>
+                <p class="text-text-light max-w-2xl mx-auto">Getting your workspace featured is easy. Here's how it works.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="bg-card rounded-2xl shadow-lg border border-border p-8 text-center group hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                        <i class="fas fa-camera text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-text mb-3">Submit Your Setup</h4>
+                    <p class="text-text-light">Upload a photo and tell us about your workspace in 2 minutes.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-card rounded-2xl shadow-lg border border-border p-8 text-center group hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                        <i class="fas fa-check-circle text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-text mb-3">We Review</h4>
+                    <p class="text-text-light">Our team selects the best submissions to feature.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-card rounded-2xl shadow-lg border border-border p-8 text-center group hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                        <i class="fas fa-star text-2xl text-primary"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-text mb-3">Get Featured</h4>
+                    <p class="text-text-light">Your workspace could inspire thousands of readers!</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="container mx-auto px-4 py-12">
+            <div class="bg-card rounded-3xl shadow-lg border border-border p-8 md:p-12 text-center">
+                <h3 class="text-2xl font-bold text-primary mb-4 font-serif">Already Have a Workspace You Love?</h3>
+                <p class="text-text-light max-w-2xl mx-auto mb-6">Don't keep it to yourself — join our growing gallery of community setups and inspire the next generation of workspace builders.</p>
+                <a href="/content/community-setups/" class="bg-primary hover:bg-primary-light text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl">
+                    Browse the Gallery →</a>
+            </div>
+        </section>
+        
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="container mx-auto px-4 py-12">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 md:p-12 text-white text-center">
+                <h3 class="text-3xl font-bold mb-4 font-serif">Get Daily Workspace Tips</h3>
+                <p class="text-white/90 max-w-2xl mx-auto mb-8">Join 12,000+ subscribers who receive our weekly roundup of ergonomic advice, product deals, and productivity hacks.</p>
+                <form id="newsletterForm" class="max-w-xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input type="email" id="newsletterEmail" placeholder="Your email address" required class="flex-grow p-4 rounded-lg text-text" aria-label="Email address">
+                        <button type="submit" class="bg-white text-primary hover:bg-surface font-bold py-4 px-8 rounded-lg transition-colors">Subscribe Free</button>
+                    </div>
+                    <div class="mt-4 text-sm text-white/80">
+                        <input type="checkbox" id="consent" required class="mr-2">
+                        <label for="consent">I agree to receive weekly tips and occasional promotional emails. Unsubscribe anytime.</label>
+                    </div>
+                    <div id="newsletterMessage" class="mt-4 hidden p-4 bg-white/20 rounded-lg"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-card border-t border-border mt-24">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                            <i class="fas fa-desktop text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-primary font-serif">The Workspace Pro</h4>
+                            <p class="text-sm text-text-light">Build a workspace that works</p>
+                        </div>
+                    </div>
+                    <p class="text-text-light">Expert-curated guides, product recommendations, and ergonomic tips for a healthier, more productive home office.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-text-light hover:text-primary text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-text-light hover:text-primary text-xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-text-light hover:text-primary text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-text-light hover:text-primary text-xl"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-text mb-4">Explore</h5>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-text-light hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="/content/tips/" class="text-text-light hover:text-primary transition-colors">All Tips</a></li>
+                        <li><a href="/content/guides/" class="text-text-light hover:text-primary transition-colors">Guides</a></li>
+                        <li><a href="/deals/" class="text-text-light hover:text-primary transition-colors">Deals & Discounts</a></li>
+                        <li><a href="/podcasts/" class="text-text-light hover:text-primary transition-colors">Podcasts</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-text mb-4">Resources</h5>
+                    <ul class="space-y-2">
+                        <li><a href="/content/about/" class="text-text-light hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="/quiz/" class="text-text-light hover:text-primary transition-colors">Workspace Quiz</a></li>
+                        <li><a href="/submit-tip/" class="text-text-light hover:text-primary transition-colors">Submit a Tip</a></li>
+                        <li><a href="/contact/" class="text-text-light hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="/privacy/" class="text-text-light hover:text-primary transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-text mb-4">Stay Updated</h5>
+                    <p class="text-text-light mb-4">Get the latest workspace tips and deals directly in your inbox.</p>
+                    <form id="footerNewsletter" class="flex">
+                        <input type="email" placeholder="Email" class="flex-grow p-3 rounded-l-lg border border-border focus:outline-none" aria-label="Email for newsletter">
+                        <button type="submit" class="bg-primary hover:bg-primary-light text-white p-3 rounded-r-lg transition-colors"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <p class="text-xs text-text-light mt-4">We earn a commission if you purchase through our links. Prices are checked daily.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-border mt-12 pt-8 text-center text-text-light text-sm">
+                <p>&copy; 2026 The Workspace Pro. All rights reserved. | <a href="/privacy/" class="hover:text-primary">Privacy Policy</a> | <a href="/terms/" class="hover:text-primary">Terms of Service</a></p>
+                <p class="mt-2">Made with <i class="fas fa-heart text-secondary"></i> for productive workspaces everywhere.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Exit-intent newsletter modal -->
+    <div id="exitIntentModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-card rounded-2xl shadow-2xl max-w-md w-full animate-slide-up">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-primary">Before you go...</h3>
+                    <button id="closeExitModal" class="text-text-light hover:text-text p-2"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <p class="text-text-light mb-6">Get our free 7‑day workspace optimization guide when you subscribe to our newsletter.</p>
+                <form id="exitNewsletterForm">
+                    <input type="email" placeholder="Your email address" required class="w-full p-3 mb-4 rounded-lg border border-border" aria-label="Email for exit intent newsletter">
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-light text-white font-bold py-3 px-4 rounded-lg transition-colors">Get Free Guide</button>
+                </form>
+                <p class="text-xs text-text-light mt-4 text-center">Unsubscribe anytime. No spam.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Newsletter success modal -->
+    <div id="newsletterModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-card rounded-2xl shadow-2xl max-w-md w-full animate-slide-up">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-envelope-open-text text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-primary mb-2">You're subscribed!</h3>
+                <p class="text-text-light mb-6">Check your inbox for a welcome email with your free guide.</p>
+                <button id="closeNewsletterModal" class="bg-primary hover:bg-primary-light text-white font-bold py-3 px-8 rounded-lg transition-colors">Continue Exploring</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Submit tip modal -->
+    <div id="submitTipModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-card rounded-2xl shadow-2xl max-w-md w-full animate-slide-up">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-primary">Share Your Tip</h3>
+                    <button id="closeTipModal" class="text-text-light hover:text-text p-2"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <form id="tipForm">
+                    <div class="mb-4">
+                        <label for="tipName" class="block text-text font-medium mb-2">Name (optional)</label>
+                        <input type="text" id="tipName" class="w-full p-3 rounded-lg border border-border" aria-label="Your name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="tipText" class="block text-text font-medium mb-2">Your Workspace Tip *</label>
+                        <textarea id="tipText" rows="4" required class="w-full p-3 rounded-lg border border-border" aria-label="Your workspace tip"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="tipCategory" class="block text-text font-medium mb-2">Category</label>
+                        <select id="tipCategory" class="w-full p-3 rounded-lg border border-border" aria-label="Tip category">
+                            <option value="ergonomics">Ergonomics</option>
+                            <option value="organization">Organization</option>
+                            <option value="productivity">Productivity</option>
+                            <option value="lighting">Lighting</option>
+                            <option value="cable">Cable Management</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-light text-white font-bold py-3 px-4 rounded-lg transition-colors">Submit Tip</button>
+                </form>
+                <p class="text-xs text-text-light mt-4">By submitting, you agree that your tip may be featured on the site (with credit if you provide your name).</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Print button (floating) -->
+    <button id="printButton" class="fixed bottom-4 right-4 z-40 p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300 print:hidden" aria-label="Print page">
+        <i class="fas fa-print text-primary text-xl"></i>
+    </button>
+    
+    <!-- Social sharing buttons (floating) -->
+    <div class="fixed bottom-24 right-4 z-40 flex flex-col gap-3">
+        <button class="share-social p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" data-network="twitter" aria-label="Share on Twitter">
+            <i class="fab fa-twitter text-primary text-xl"></i>
+        </button>
+        <button class="share-social p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" data-network="linkedin" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin text-primary text-xl"></i>
+        </button>
+        <button class="share-social p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" data-network="facebook" aria-label="Share on Facebook">
+            <i class="fab fa-facebook text-primary text-xl"></i>
+        </button>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Check for success query parameter
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                document.getElementById('successMessage').classList.remove('hidden');
+                document.getElementById('formCard').classList.add('hidden');
+            }
+        })();
+        
+        // Dark mode toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            const moonIcon = this.querySelector('.fa-moon');
+            const sunIcon = this.querySelector('.fa-sun');
+            moonIcon.classList.toggle('hidden');
+            sunIcon.classList.toggle('hidden');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+        
+        // Restore dark mode preference
+        if (localStorage.getItem('darkMode') === 'true' ||
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('darkModeToggle').querySelector('.fa-moon').classList.add('hidden');
+            document.getElementById('darkModeToggle').querySelector('.fa-sun').classList.remove('hidden');
+        }
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Search toggle
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchClose = document.getElementById('searchClose');
+        
+        if (searchToggle) {
+            searchToggle.addEventListener('click', function() {
+                searchOverlay.classList.remove('hidden');
+                setTimeout(() => document.getElementById('searchInput').focus(), 100);
+            });
+        }
+        if (searchClose) {
+            searchClose.addEventListener('click', function() {
+                searchOverlay.classList.add('hidden');
+            });
+        }
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.add('hidden');
+            }
+        });
+        
+        // Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            const consent = document.getElementById('consent').checked;
+            if (!consent) {
+                const msg = document.getElementById('newsletterMessage');
+                msg.textContent = 'Please agree to the terms.';
+                msg.classList.remove('hidden');
+                return;
+            }
+            document.getElementById('newsletterModal').classList.remove('hidden');
+            this.reset();
+            document.getElementById('newsletterMessage').classList.add('hidden');
+        });
+        
+        // Footer newsletter
+        document.getElementById('footerNewsletter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('newsletterModal').classList.remove('hidden');
+            this.reset();
+        });
+        
+        // Exit intent modal
+        document.getElementById('closeExitModal').addEventListener('click', function() {
+            document.getElementById('exitIntentModal').classList.add('hidden');
+        });
+        document.getElementById('exitNewsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('newsletterModal').classList.remove('hidden');
+            document.getElementById('exitIntentModal').classList.add('hidden');
+            this.reset();
+        });
+        
+        // Close newsletter modal
+        document.getElementById('closeNewsletterModal').addEventListener('click', function() {
+            document.getElementById('newsletterModal').classList.add('hidden');
+        });
+        
+        // Submit tip modal
+        document.getElementById('closeTipModal').addEventListener('click', function() {
+            document.getElementById('submitTipModal').classList.add('hidden');
+        });
+        document.getElementById('tipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('submitTipModal').classList.add('hidden');
+            alert('Thanks for sharing your tip!');
+        });
+        
+        // Print button
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Social share buttons
+        document.querySelectorAll('.share-social').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const network = this.dataset.network;
+                const url = encodeURIComponent(window.location.href);
+                const text = encodeURIComponent('Share Your Workspace on The Workspace Pro');
+                let shareUrl = '';
+                if (network === 'twitter') {
+                    shareUrl = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+                } else if (network === 'linkedin') {
+                    shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+                } else if (network === 'facebook') {
+                    shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+                }
+                if (shareUrl) {
+                    window.open(shareUrl, '_blank', 'width=600,height=400');
+                }
+            });
+        });
+        
+        // Exit intent trigger
+        let exitShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY < 0 && !exitShown) {
+                exitShown = true;
+                setTimeout(function() {
+                    document.getElementById('exitIntentModal').classList.remove('hidden');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

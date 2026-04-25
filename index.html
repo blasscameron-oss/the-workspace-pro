@@ -140,8 +140,9 @@
                     <a href="/content/guides/" class="font-medium hover:text-primary transition-colors">Guides</a>
                     <a href="/deals/" class="font-medium hover:text-primary transition-colors">Deals</a>
                     <a href="/podcasts/" class="font-medium hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/community-setups/" class="font-medium hover:text-primary transition-colors">Community</a>
+                    <a href="/content/quiz/" class="font-medium hover:text-primary transition-colors">Quiz</a>
                     <a href="/content/about/" class="font-medium hover:text-primary transition-colors">About</a>
-                    <a href="/quiz/" class="font-medium hover:text-primary transition-colors">Quiz</a>
                     <button id="searchToggle" class="p-2 hover:bg-surface rounded-full transition-colors" aria-label="Search">
                         <i class="fas fa-search text-text-light"></i>
                     </button>
@@ -162,8 +163,9 @@
                     <a href="/content/guides/" class="font-medium py-2 hover:text-primary transition-colors">Guides</a>
                     <a href="/deals/" class="font-medium py-2 hover:text-primary transition-colors">Deals</a>
                     <a href="/podcasts/" class="font-medium py-2 hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/community-setups/" class="font-medium py-2 hover:text-primary transition-colors">Community</a>
+                    <a href="/content/quiz/" class="font-medium py-2 hover:text-primary transition-colors">Quiz</a>
                     <a href="/content/about/" class="font-medium py-2 hover:text-primary transition-colors">About</a>
-                    <a href="/quiz/" class="font-medium py-2 hover:text-primary transition-colors">Quiz</a>
                     <a href="#newsletter" class="bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Newsletter</a>
                 </div>
             </div>
@@ -462,24 +464,93 @@
             </div>
         </section>
         
-        <!-- Quiz CTA -->
+        <!-- Enhanced Quiz CTA -->
         <section class="container mx-auto px-4 py-12">
             <div class="bg-card rounded-3xl shadow-xl border border-border overflow-hidden">
                 <div class="md:flex">
                     <div class="md:w-1/2 p-8 md:p-12">
-                        <h3 class="text-3xl font-bold text-primary mb-4 font-serif">What's Your Workspace Personality?</h3>
-                        <p class="text-text-light mb-6">Take our 2‑minute quiz to discover your ideal desk setup, product recommendations, and personalized productivity tips.</p>
-                        <ul class="mb-8 space-y-2">
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> 5 simple questions</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> Custom product matches</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-3"></i> Free downloadable guide</li>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-secondary/10 text-secondary text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">New: 2026 Edition</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-primary mb-4 font-serif">Find Your Perfect Workspace in 2 Minutes</h3>
+                        <p class="text-text-light mb-6">Take our interactive quiz — 7 smart questions matched to <strong>5 unique workspace personas</strong>. Get personalized product picks, ergonomic tips, and a custom setup plan tailored to your work style, budget, and space.</p>
+                        <ul class="mb-8 space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-brain text-secondary text-lg mt-0.5"></i>
+                                <div><span class="font-semibold">7 questions → 5 personas</span><br><span class="text-sm text-text-light">The Productivity Pro, Ergonomic Enthusiast, Budget Builder, Creative Spirit, or Hybrid Hustler</span></div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-gift text-secondary text-lg mt-0.5"></i>
+                                <div><span class="font-semibold">Personalized matches</span><br><span class="text-sm text-text-light">Products, guides, and tips curated for your exact needs</span></div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-share-nodes text-secondary text-lg mt-0.5"></i>
+                                <div><span class="font-semibold">Save & share results</span><br><span class="text-sm text-text-light">Email your plan, share on social, or come back anytime</span></div>
+                            </li>
                         </ul>
-                        <a href="/quiz/" class="bg-secondary hover:bg-secondary-light text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl">Start the Quiz</a>
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <a href="/content/quiz/" class="bg-secondary hover:bg-secondary-light text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl inline-flex items-center gap-2">
+                                <i class="fas fa-compass"></i> Find Your Persona
+                            </a>
+                            <span class="text-sm text-text-light"><i class="fas fa-users mr-1"></i> 1,200+ completed</span>
+                        </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <img src="/static/images/productive-mindset.jpg" alt="Person working on laptop in a bright home office workspace" class="w-full h-full object-cover" loading="lazy">
+                    <div class="md:w-1/2 bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center p-12">
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-xl">
+                                <i class="fas fa-compass text-white text-4xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-2">Discover Your Workspace Persona</h4>
+                            <p class="text-text-light text-sm">The Productivity Pro · Ergonomic Enthusiast<br>Budget Builder · Creative Spirit · Hybrid Hustler</p>
+                            <div class="flex flex-wrap justify-center gap-2 mt-6">
+                                <span class="bg-primary/10 text-primary text-xs font-semibold py-1 px-3 rounded-full">Products</span>
+                                <span class="bg-secondary/10 text-secondary text-xs font-semibold py-1 px-3 rounded-full">Guides</span>
+                                <span class="bg-primary/10 text-primary text-xs font-semibold py-1 px-3 rounded-full">Tips</span>
+                                <span class="bg-secondary/10 text-secondary text-xs font-semibold py-1 px-3 rounded-full">Email Plan</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Community Section -->
+        <section class="container mx-auto px-4 py-12">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-primary mb-4 font-serif">Join the Community</h3>
+                <p class="text-text-light max-w-2xl mx-auto">Share your workspace, get inspired by others, and be part of a growing community of productivity enthusiasts.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <a href="/content/submit-workspace/" class="group bg-card rounded-3xl shadow-lg border border-border overflow-hidden transition-all hover:shadow-xl hover:border-secondary/30">
+                    <div class="p-8 md:p-12">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-camera text-2xl text-primary"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-text mb-3 group-hover:text-primary transition-colors">Submit Your Workspace</h4>
+                        <p class="text-text-light mb-6">Show off your setup! Share a photo and description of your workspace for a chance to be featured in our Community Gallery.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="bg-secondary/10 text-secondary text-sm font-semibold py-2 px-4 rounded-lg group-hover:bg-secondary group-hover:text-white transition-all">
+                                Share Yours <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                            <span class="text-xs text-text-light">Free · 2 minutes</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/content/community-setups/" class="group bg-card rounded-3xl shadow-lg border border-border overflow-hidden transition-all hover:shadow-xl hover:border-primary/30">
+                    <div class="p-8 md:p-12">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-images text-2xl text-primary"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-text mb-3 group-hover:text-primary transition-colors">Browse Community Setups</h4>
+                        <p class="text-text-light mb-6">Get inspired by real home offices from our community. See gear lists, budgets, and creative workspace ideas.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="bg-primary/10 text-primary text-sm font-semibold py-2 px-4 rounded-lg group-hover:bg-primary group-hover:text-white transition-all">
+                                Explore Gallery <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                            <span class="text-xs text-text-light">Updated weekly</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
     </main>
@@ -522,7 +593,9 @@
                     <h5 class="font-bold text-text mb-4">Resources</h5>
                     <ul class="space-y-2">
                         <li><a href="/content/about/" class="text-text-light hover:text-primary transition-colors">About Us</a></li>
-                        <li><a href="/quiz/" class="text-text-light hover:text-primary transition-colors">Workspace Quiz</a></li>
+                        <li><a href="/content/quiz/" class="text-text-light hover:text-primary transition-colors">Workspace Quiz</a></li>
+                        <li><a href="/content/submit-workspace/" class="text-text-light hover:text-primary transition-colors">Submit Your Workspace</a></li>
+                        <li><a href="/content/community-setups/" class="text-text-light hover:text-primary transition-colors">Community Setups</a></li>
                         <li><a href="/submit-tip/" class="text-text-light hover:text-primary transition-colors">Submit a Tip</a></li>
                         <li><a href="/contact/" class="text-text-light hover:text-primary transition-colors">Contact</a></li>
                         <li><a href="/privacy/" class="text-text-light hover:text-primary transition-colors">Privacy Policy</a></li>
