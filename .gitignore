@@ -57,3 +57,6 @@ wrangler.toml.backup
 
 # Analytics token (keep local)
 analytics-token.txt
+
+# Build output
+_site/
