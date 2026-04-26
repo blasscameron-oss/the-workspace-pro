@@ -19,68 +19,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug files
-        run: |
-          ls -la
-          ls -la content/
-          echo "Sync script exists?"
-          ls -la sync_site.sh || true
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - name: Build site
+      - name: Install Tailwind CSS
+        run: npm install -g tailwindcss
+
+      - name: Build Tailwind CSS
+        run: npx tailwindcss --input static/css/tailwind-input.css --output static/css/tailwind.min.css
+
+      - name: Build site to _site
         run: |
-          echo "Creating _site directory..."
           mkdir -p _site
-          mkdir -p _site/static/css
-          mkdir -p _site/static/images
-          mkdir -p _site/static/js
-          mkdir -p _site/content
-          
-          echo "Copying HTML files..."
-          cp index.html _site/
-          cp deals.html _site/ 2>/dev/null || true
-          
-          # Copy content directory
-          cp -r content/* _site/content/ 2>/dev/null || true
-          
-          # Map content pages to clean URLs (create matching top-level directories)
-          # This makes /about/ -> _site/about/index.html while keeping /content/about/
-          for dir in about guides tips contact podcasts privacy terms; do
-            if [ -d "_site/content/$dir" ]; then
-              mkdir -p "_site/$dir"
-              cp "_site/content/$dir/index.html" "_site/$dir/index.html" 2>/dev/null || true
-            fi
-          done
-          
-          # Map individual guide pages
-          for guide in quiz submit-workspace community-setups home-office-lighting-guide ergonomic-office-chair-buying-guide cable-management-solutions dual-monitor-setup-productivity small-home-office-organization-hacks home-office-budget-setup-under-1000 home-office-desk-guide-2026 ergonomic-accessories-home-office productive-workspace-mindset best-standing-desks-under-500 ultimate-home-office-setup-guide-2026 best-ergonomic-office-chairs-2026; do
-            if [ -d "_site/content/$guide" ]; then
-              mkdir -p "_site/$guide"
-              cp "_site/content/$guide/index.html" "_site/$guide/index.html" 2>/dev/null || true
-            fi
-          done
-          
-          # Create deals directory
-          mkdir -p _site/deals
-          cp deals.html _site/deals/index.html 2>/dev/null || true
-          
-          # Copy static assets
-          cp static/css/custom.css _site/static/css/
-          cp -r static/images/* _site/static/images/ 2>/dev/null || true
-          cp -r static/js/* _site/static/js/ 2>/dev/null || true
-          
-          # Copy config files
-          cp sitemap.xml robots.txt search.json _site/ 2>/dev/null || echo "Config files missing"
-          cp netlify.toml _headers _redirects _routes.json _site/ 2>/dev/null || echo "Deployment configs missing"
-          
-          echo "Built _site directory:"
-          ls -la _site/
-          ls -la _site/content/ | head -5
-          echo "Total HTML files: $(find _site -name '*.html' | wc -l)"
+          rsync -a --delete \
+            --exclude='_site' --exclude='.git' --exclude='node_modules' \
+            --exclude='pipeline_output' --exclude='pipeline_source' \
+            --exclude='clean_site' --exclude='cloudflare_lite' \
+            --exclude='cloudflare_minimal' --exclude='quick_test' \
+            --exclude='deploy_root' --exclude='AFFILIATE_SETUP' \
+            --exclude='DEPLOY' --exclude='README' \
+            --exclude='Dockerfile' --exclude='docker-build' \
+            --exclude='package.json' --exclude='package-lock.json' \
+            ./ _site/
+
+      - name: Debug build output
+        run: ls -la _site/ && ls _site/static/css/ && wc -c _site/static/css/tailwind.min.css
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site --project-name=the-workspace-pro --branch=main
-          workingDirectory: .
+          command: pages deploy _site --project-name the-workspace-pro --branch main
