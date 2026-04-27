@@ -111,99 +111,97 @@
   <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-6 py-3 rounded-xl z-[100] shadow-lg" href="#main-content">
    Skip to main content
   </a>
-  <header class="sticky top-0 z-50 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-border dark:border-neutral-800 shadow-sm transition-all duration-300" role="banner">
-   <div class="max-w-7xl mx-auto px-6 py-4 relative">
-    <div class="flex justify-between items-center">
-     <!-- Logo -->
-     <a aria-label="The Workspace Pro – Home" class="flex items-center gap-3 group" href="/">
-      <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-       <i class="fa-solid fa-chair text-white text-xl">
-       </i>
-      </div>
-      <div>
-       <span class="text-2xl font-black tracking-tight text-neutral-900 dark:text-white">
-        Workspace
-       </span>
-       <span class="text-2xl font-black tracking-tight text-accent">
-        Pro
-       </span>
-      </div>
-     </a>
-     <!-- Desktop Navigation -->
-     <nav aria-label="Main" class="hidden md:flex items-center gap-8" role="navigation">
-      <a class="font-medium hover:text-primary transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full" href="/">
-       Home
-      </a>
-      <a class="font-medium hover:text-primary transition-colors" href="/content/guides/">
-       Guides
-      </a>
-      <a class="font-medium hover:text-primary transition-colors" href="/deals/">
-       Products
-      </a>
-      <a class="font-medium hover:text-primary transition-colors" href="/podcasts/">
-       Podcasts
-      </a>
-      <a class="font-medium hover:text-primary transition-colors" href="/about/">
-       About
-      </a>
-      <div class="flex items-center gap-4 ml-4">
-       <button aria-label="Open search" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" onclick="toggleSearch()">
-        <i class="fa-solid fa-magnifying-glass">
-        </i>
-       </button>
-       <button aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" onclick="toggleDarkMode()">
-        <i class="fa-solid fa-moon" id="darkModeIcon">
-        </i>
-       </button>
-       <a class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-sm" href="#newsletter">
-        Join Free
-       </a>
-      </div>
-     </nav>
-     <!-- Mobile menu button -->
-     <div class="flex items-center gap-4 md:hidden">
-      <button aria-label="Open search" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" onclick="toggleSearch()">
-       <i class="fa-solid fa-magnifying-glass">
-       </i>
-      </button>
-      <button aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" onclick="toggleDarkMode()">
-       <i class="fa-solid fa-moon" id="darkModeIcon">
-       </i>
-      </button>
-      <button aria-label="Toggle mobile menu" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" id="mobileMenuButton" onclick="toggleMobileMenu()">
-       <i class="fa-solid fa-bars">
-       </i>
-      </button>
-     </div>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden fixed left-0 right-0 top-16 z-50 bg-card border-b border-border shadow-xl pb-4 pt-4">
-     <div class="flex flex-col gap-4">
-      <a class="font-medium hover:text-primary transition-colors py-2" href="/">
-       Home
-      </a>
-      <a class="font-medium hover:text-primary transition-colors py-2" href="/content/guides/">
-       Guides
-      </a>
-      <a class="font-medium hover:text-primary transition-colors py-2" href="/deals/">
-       Products
-      </a>
-      <a class="font-medium hover:text-primary transition-colors py-2" href="/podcasts/">
-       Podcasts
-      </a>
-      <a class="font-medium hover:text-primary transition-colors py-2" href="/about/">
-       About
-      </a>
-      <div class="pt-4 border-t border-border dark:border-neutral-800">
-       <a class="block w-full text-center bg-primary hover:bg-primary-dark text-white py-3 rounded-xl font-semibold transition-colors" href="#newsletter">
-        Join Free Newsletter
-       </a>
-      </div>
-     </div>
-    </div>
-   </div>
-  </header>
-  <main class="flex-grow max-w-7xl mx-auto px-6 py-12" id="main-content">
+    <!-- Top Persistent Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-border dark:border-neutral-800 shadow-sm" role="banner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-14 md:h-16">
+                
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-2 shrink-0" aria-label="The Workspace Pro – Home">
+                    <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-primary flex items-center justify-center shadow-sm">
+                        <i class="fas fa-desktop text-white text-base md:text-lg"></i>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="text-lg md:text-xl font-bold text-primary font-serif whitespace-nowrap">The Workspace Pro</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-3 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-surface">Home</a>
+                    <a href="/content/guides/" class="px-3 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-surface">Guides</a>
+                    <a href="/deals/" class="px-3 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-surface">Deals</a>
+                    <a href="/content/quiz/" class="px-3 py-2 text-sm font-bold text-primary bg-primary/10 rounded-lg border border-primary/20 hover:bg-primary/15 transition-colors flex items-center gap-1"><i class="fas fa-star text-xs"></i> Quiz</a>
+                    <a href="/content/community-setups/" class="px-3 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg hover:bg-surface">Community</a>
+                </nav>
+                
+                <!-- Right side controls -->
+                <div class="flex items-center gap-1 md:gap-1.5">
+                    <button id="searchToggle" onclick="toggleSearch()" class="p-2 rounded-full hover:bg-surface dark:hover:bg-neutral-800 transition-colors" aria-label="Open search">
+                        <i class="fas fa-search text-text-light dark:text-neutral-400 text-lg"></i>
+                    </button>
+                    <button id="navDarkToggle" onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-surface dark:hover:bg-neutral-800 transition-colors" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon text-primary text-lg" id="navDarkIcon"></i>
+                        <i class="fas fa-sun text-primary text-lg hidden" id="navLightIcon"></i>
+                    </button>
+                    <button id="mobileMenuToggle" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 transition-colors" aria-label="Open menu">
+                        <i class="fas fa-bars text-xl text-text dark:text-neutral-200"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu backdrop -->
+        <div id="mobileMenuOverlay" class="hidden fixed inset-0 z-40 bg-black/40" onclick="closeMobileMenu()"></div>
+        
+        <!-- Mobile slide-in panel -->
+        <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-72 max-w-[85vw] z-50 bg-card dark:bg-neutral-900 shadow-2xl overflow-y-auto">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 border-b border-border dark:border-neutral-800">
+                    <span class="font-bold text-primary"><i class="fas fa-desktop mr-2"></i>Menu</span>
+                    <button onclick="closeMobileMenu()" class="p-2 rounded-full hover:bg-surface dark:hover:bg-neutral-800 transition-colors" aria-label="Close menu">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex-1 p-4 space-y-1">
+                    <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-home w-5 text-primary"></i> Home</a>
+                    <a href="/content/guides/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-compass w-5 text-primary"></i> Guides</a>
+                    <a href="/deals/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-tag w-5 text-primary"></i> Deals</a>
+                    <a href="/content/quiz/" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 border border-primary/20 font-bold text-primary transition-colors" onclick="closeMobileMenu()"><i class="fas fa-star w-5 text-primary"></i> Quiz</a>
+                    <a href="/content/community-setups/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-users w-5 text-primary"></i> Community</a>
+                    <hr class="my-4 border-border dark:border-neutral-800">
+                    <a href="/content/tips/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-lightbulb w-5 text-primary"></i> Tips</a>
+                    <a href="/podcasts/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-podcast w-5 text-primary"></i> Podcasts</a>
+                    <a href="/content/about/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface dark:hover:bg-neutral-800 font-medium transition-colors" onclick="closeMobileMenu()"><i class="fas fa-info-circle w-5 text-primary"></i> About</a>
+                </div>
+                <div class="p-4 border-t border-border dark:border-neutral-800">
+                    <a href="#newsletter" class="block w-full text-center bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg transition-colors" onclick="closeMobileMenu()"><i class="fas fa-envelope mr-2"></i> Get the Newsletter</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search overlay -->
+        <div id="search-overlay" class="hidden fixed inset-0 bg-black/50 z-[60] flex items-start justify-center pt-16 md:pt-24">
+            <div class="bg-card dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl mx-4 mt-8 animate-fade-in">
+                <div class="p-4 md:p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg md:text-xl font-bold">Search The Workspace Pro</h2>
+                        <button onclick="closeSearch()" class="p-2 hover:bg-surface dark:hover:bg-neutral-800 rounded-full transition-colors" aria-label="Close search">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Type to search guides, tips, products..." class="w-full p-3 md:p-4 pl-12 rounded-lg border border-border dark:border-neutral-700 bg-surface dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary text-text dark:text-neutral-100" autocomplete="off">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-text-light dark:text-neutral-500"></i>
+                    </div>
+                    <div id="search-results" class="mt-4 max-h-80 overflow-y-auto hidden">
+                        <!-- Results populated by search.min.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+  <main class="pt-14 md:pt-16 flex-grow max-w-7xl mx-auto px-6 py-12" id="main-content">
    <article class="max-w-4xl mx-auto">
     <header class="mb-10">
      <div class="flex flex-wrap items-center gap-3 mb-6">
@@ -1593,9 +1591,7 @@ Week 4: [ ] Order cable kit  [ ] Route cables  [ ] Label adapters  [ ] Personal 
     </div>
    </div>
   </footer>
-  <div aria-hidden="true" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden transition-opacity duration-300" id="search-overlay">
-   <div class="absolute inset-0" onclick="toggleSearch()">
-   </div>
+  
    <div class="relative max-w-3xl mx-auto mt-20 px-6">
     <div class="bg-white dark:bg-neutral-900 rounded-3xl shadow-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
      <div class="p-6 border-b border-neutral-200 dark:border-neutral-800">
@@ -1718,5 +1714,7 @@ Week 4: [ ] Order cable kit  [ ] Route cables  [ ] Label adapters  [ ] Personal 
   </script>
   <script src="/static/js/quiz.min.js" defer>
   </script>
- </body>
+ 
+    <script src="/static/js/nav.js" defer></script>
+</body>
 </html>
