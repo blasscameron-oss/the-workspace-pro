@@ -179,8 +179,8 @@
     </style>
 </head>
 <body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col">
-    <!-- Dark mode toggle -->
-    <button id="darkModeToggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Toggle dark mode">
+    <!-- Desktop dark mode toggle (hidden on mobile to avoid hamburger overlap) -->
+    <button id="darkModeToggle" class="hidden md:inline-flex fixed top-4 right-4 z-50 p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Toggle dark mode">
         <i class="fas fa-moon text-primary text-xl"></i>
         <i class="fas fa-sun text-primary text-xl hidden"></i>
     </button>
@@ -224,9 +224,15 @@
                 </nav>
                 
                 <!-- Mobile menu button -->
-                <button id="mobileMenuToggle" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Open menu">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobileDarkToggle" onclick="toggleDarkMode()" class="p-3 rounded-full hover:bg-surface transition-colors" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon text-primary text-lg"></i>
+                        <i class="fas fa-sun text-primary text-lg hidden"></i>
+                    </button>
+                    <button id="mobileMenuToggle" onclick="toggleMobileMenu()" class="min-w-[44px] min-h-[44px] p-2 rounded-lg hover:bg-surface transition-colors flex items-center justify-center" aria-label="Open menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
             
             <!-- Mobile Navigation (hidden) -->
@@ -1629,33 +1635,45 @@
         // ============================================
         // SITE-WIDE DARK MODE
         // ============================================
-        (function() {
-            const toggle = document.getElementById('darkModeToggle');
-            const moon = toggle.querySelector('.fa-moon');
-            const sun = toggle.querySelector('.fa-sun');
-            
-            function setDark(dark) {
-                if (dark) {
-                    document.documentElement.classList.add('dark');
-                    moon.classList.add('hidden');
-                    sun.classList.remove('hidden');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    moon.classList.remove('hidden');
-                    sun.classList.add('hidden');
+        var toggle = document.getElementById('darkModeToggle');
+        var moon = toggle.querySelector('.fa-moon');
+        var sun = toggle.querySelector('.fa-sun');
+        
+        function setDark(dark) {
+            if (dark) {
+                document.documentElement.classList.add('dark');
+                if (moon) moon.classList.add('hidden');
+                if (sun) sun.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (moon) moon.classList.remove('hidden');
+                if (sun) sun.classList.add('hidden');
+            }
+            // Sync mobile toggle icons
+            var mt = document.getElementById('mobileDarkToggle');
+            if (mt) {
+                var mMoon = mt.querySelector('.fa-moon');
+                var mSun = mt.querySelector('.fa-sun');
+                if (mMoon && mSun) {
+                    if (dark) { mMoon.classList.add('hidden'); mSun.classList.remove('hidden'); }
+                    else { mMoon.classList.remove('hidden'); mSun.classList.add('hidden'); }
                 }
             }
-            
-            const stored = localStorage.getItem('darkMode');
-            if (stored === 'true') setDark(true);
-            else if (stored === 'false') setDark(false);
-            
-            toggle.addEventListener('click', function() {
-                const isDark = document.documentElement.classList.contains('dark');
-                setDark(!isDark);
-                localStorage.setItem('darkMode', !isDark);
-            });
-        })();
+        }
+        
+        function toggleDarkMode() {
+            var isDark = document.documentElement.classList.contains('dark');
+            setDark(!isDark);
+            localStorage.setItem('darkMode', !isDark);
+        }
+        
+        var stored = localStorage.getItem('darkMode');
+        if (stored === 'true') setDark(true);
+        else if (stored === 'false') setDark(false);
+        
+        toggle.addEventListener('click', toggleDarkMode);
+        
+        // ============================================
         
         // ============================================
         // MOBILE MENU
