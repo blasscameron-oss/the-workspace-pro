@@ -46,11 +46,13 @@ NEW_NAV = """    <!-- Top Persistent Navigation Bar -->
             </div>
         </div>
         
+    </header>
+        
         <!-- Mobile menu backdrop -->
         <div id="mobileMenuOverlay" class="hidden fixed inset-0 z-40 bg-black/40" onclick="closeMobileMenu()"></div>
         
         <!-- Mobile slide-in panel -->
-        <div id="mobileMenu" class="hidden fixed top-0 right-0 h-full w-72 max-w-[85vw] z-50 bg-card dark:bg-neutral-900 shadow-2xl overflow-y-auto">
+        <div id="mobileMenu" class="hidden fixed top-0 right-0 h-screen w-72 max-w-[85vw] z-50 bg-card dark:bg-neutral-900 shadow-2xl overflow-y-auto">
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-between p-4 border-b border-border dark:border-neutral-800">
                     <span class="font-bold text-primary"><i class="fas fa-desktop mr-2"></i>Menu</span>
@@ -94,8 +96,7 @@ NEW_NAV = """    <!-- Top Persistent Navigation Bar -->
                     </div>
                 </div>
             </div>
-        </div>
-    </header>"""
+        </div>"""
 
 NAV_JS_SCRIPT = '\n    <script src="/static/js/nav.js" defer></script>'
 
