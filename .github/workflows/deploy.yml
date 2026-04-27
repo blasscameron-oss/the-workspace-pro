@@ -24,11 +24,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Tailwind CSS
-        run: npm install -g tailwindcss
-
       - name: Build Tailwind CSS
-        run: npx tailwindcss --input static/css/tailwind-input.css --output static/css/tailwind.min.css
+        run: |
+          npm ci
+          npx tailwindcss --input static/css/tailwind-input.css --output static/css/tailwind.min.css
 
       - name: Build site to _site
         run: |
