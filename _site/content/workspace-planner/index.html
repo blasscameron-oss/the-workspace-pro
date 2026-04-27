@@ -105,6 +105,7 @@
 <body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 antialiased">
     <!-- Navigation -->
     <!-- Top Persistent Navigation Bar -->
+    <!-- Top Persistent Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-border dark:border-neutral-800 shadow-sm" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-14 md:h-16">
@@ -896,24 +897,8 @@
             }
 
             return picks;
+        }, { passive: false });
         }
-
-        // Handle both click and touch for reliable mobile menu open
-        var mmBtn = document.querySelector('button[aria-label="Toggle mobile menu"]');
-        if (mmBtn) {
-            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); this.click(); }, { passive: false });
-        }
-
-        // Close mobile menu on click outside
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('mobileMenu');
-            const btn = document.querySelector('button[aria-label="Toggle mobile menu"]');
-            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-                menu.classList.add('hidden');
-                const icon = btn.querySelector('i');
-                if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
-            }
-        });
 
         // Init
         showStep(0);

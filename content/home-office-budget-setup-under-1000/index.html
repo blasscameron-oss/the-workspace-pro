@@ -112,6 +112,7 @@
    Skip to main content
   </a>
     <!-- Top Persistent Navigation Bar -->
+    <!-- Top Persistent Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-border dark:border-neutral-800 shadow-sm" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-14 md:h-16">
@@ -1675,40 +1676,16 @@ Week 4: [ ] Order cable kit  [ ] Route cables  [ ] Label adapters  [ ] Personal 
                     ? 'fa-solid fa-sun' 
                     : 'fa-solid fa-moon';
             }
-        }
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const button = document.getElementById('mobileMenuButton');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                button.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
+        } else {
                 menu.classList.add('hidden');
                 button.innerHTML = '<i class="fa-solid fa-bars"></i>';
             }
         }
         // Handle touch events for reliable mobile menu open
-        var mmBtn = document.getElementById('mobileMenuButton');
-        if (mmBtn) {
-            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
-        }
-
-
-        // Search toggle
-        function toggleSearch() {
-            const overlay = document.getElementById('search-overlay');
-            if (overlay.classList.contains('hidden')) {
-                overlay.classList.remove('hidden');
-                document.getElementById('search-input').focus();
-            } else {
+        } else {
                 overlay.classList.add('hidden');
             }
         }
-
-        // Initialize dark mode icon
-        updateDarkModeIcon();
   </script>
   <script src="/static/js/search.min.js" defer>
   </script>

@@ -87,6 +87,13 @@ function updateDarkModeIcon() {
     }
 }
 
+// Expose globally for inline onclick handlers
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
+window.toggleSearch = toggleSearch;
+window.closeSearch = closeSearch;
+window.updateDarkModeIcon = updateDarkModeIcon;
+
 // Initialize on load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', updateDarkModeIcon);

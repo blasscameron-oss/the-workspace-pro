@@ -73,6 +73,7 @@
 </head>
 <body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col">
     <!-- Top Persistent Navigation Bar -->
+    <!-- Top Persistent Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-card/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-border dark:border-neutral-800 shadow-sm" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-14 md:h-16">
@@ -510,73 +511,22 @@
         });
     </script>
     <script>
-        // ============================================
-        // SITE-WIDE DARK MODE & MOBILE MENU
-        // ============================================
-        (function() {
-            // Dark mode
-            var toggle = document.getElementById('darkModeToggle');
-            function setDark(dark) {
-                if (dark) {
-                    document.documentElement.classList.add('dark');
-                    if (toggle) { var moon = toggle.querySelector('.fa-moon'); var sun = toggle.querySelector('.fa-sun'); if (moon) moon.classList.add('hidden'); if (sun) sun.classList.remove('hidden'); }
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    if (toggle) { var moon = toggle.querySelector('.fa-moon'); var sun = toggle.querySelector('.fa-sun'); if (moon) moon.classList.remove('hidden'); if (sun) sun.classList.add('hidden'); }
-                }
-                // Sync mobile toggle
-                var mt = document.getElementById('mobileDarkToggle');
-                if (mt) { var mMoon = mt.querySelector('.fa-moon'); var mSun = mt.querySelector('.fa-sun'); if (mMoon && mSun) { if (dark) { mMoon.classList.add('hidden'); mSun.classList.remove('hidden'); } else { mMoon.classList.remove('hidden'); mSun.classList.add('hidden'); } } }
+        // Dark mode persistence
+        var stored = localStorage.getItem('darkMode');
+        if (stored === 'true') document.documentElement.classList.add('dark');
+        else if (stored === 'false') document.documentElement.classList.remove('dark');
+        function toggleDarkMode() {
+            var isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
             }
-            function toggleDarkMode() {
-                var isDark = document.documentElement.classList.contains('dark');
-                setDark(!isDark);
-                localStorage.setItem('darkMode', !isDark);
-            }
-            var stored = localStorage.getItem('darkMode');
-            if (stored === 'true') setDark(true);
-            else if (stored === 'false') setDark(false);
-            if (toggle) toggle.addEventListener('click', toggleDarkMode);
-            
-            // Mobile menu
-            function toggleMobileMenu() {
-                var menu = document.getElementById('mobileMenu');
-                if (menu) menu.classList.toggle('hidden');
-                var btn = document.getElementById('mobileMenuToggle');
-                if (btn) { var icon = btn.querySelector('i'); if (icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); } }
-            }
-            var mmBtn = document.getElementById('mobileMenuToggle');
-            if (mmBtn) {
-                mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
-                mmBtn.addEventListener('click', toggleMobileMenu);
-            }
-            document.addEventListener('click', function(e) {
-                var menu = document.getElementById('mobileMenu');
-                var btn = document.getElementById('mobileMenuToggle');
-                if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.classList.add('hidden');
-                    var icon = btn.querySelector('i');
-                    if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
-                }
-            });
-            
-            // Search overlay
-            var searchToggle = document.getElementById('searchToggle');
-            var searchOverlay = document.getElementById('searchOverlay');
-            var searchClose = document.getElementById('searchClose');
-            if (searchToggle && searchOverlay) {
-                searchToggle.addEventListener('click', function() {
-                    searchOverlay.classList.remove('hidden');
-                    setTimeout(function() { var inp = document.getElementById('searchInput'); if (inp) inp.focus(); }, 100);
-                });
-                if (searchClose) searchClose.addEventListener('click', function() { searchOverlay.classList.add('hidden'); });
-                searchOverlay.addEventListener('click', function(e) { if (e.target === this) this.classList.add('hidden'); });
-            }
-
-        // Expose to global scope for inline onclick handlers
+            if (window.updateDarkModeIcon) updateDarkModeIcon();
+        }
         window.toggleDarkMode = toggleDarkMode;
-        window.toggleMobileMenu = toggleMobileMenu;
-                })();
     </script>
 
     <script src="/static/js/nav.js" defer></script>
