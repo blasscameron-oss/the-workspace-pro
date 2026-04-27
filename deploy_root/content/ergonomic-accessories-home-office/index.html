@@ -507,10 +507,18 @@
             const menu = document.getElementById('mobileMenu');
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
-            } else {
+            }
+ else {
                 menu.classList.add('hidden');
             }
         }
+        // Handle touch events for reliable mobile menu open
+        var mmBtn = document.getElementById('mobileMenuButton');
+        if (mmBtn) {
+            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+        }
+
+
         
         // Close mobile menu on click outside
         document.addEventListener('click', function(event) {

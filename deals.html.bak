@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Deals & Discounts | Best Home Office Deals April 2026 | The Workspace Pro</title>
+    <meta name="description" content="Top-rated standing desks, ergonomic chairs, monitors, and accessories at verified discounts. 10+ curated deals updated daily with category filters and editor picks.">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Workspace Deals & Discounts | Best Home Office Deals April 2026">
+    <meta property="og:description" content="Top-rated standing desks, ergonomic chairs, monitors, and accessories at verified discounts. 10+ curated deals updated daily with category filters and editor picks.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theworkspacepro.com/deals/">
+    <meta property="og:image" content="/static/images/og-deals-2026.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Workspace Deals & Discounts | The Workspace Pro">
+    <meta name="twitter:description" content="Curated deals on standing desks, ergonomic chairs, monitors, and accessories. Updated daily with verified discounts.">
+    <meta name="twitter:image" content="/static/images/og-deals-2026.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.theworkspacepro.com/deals/">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Workspace Deals & Discounts",
+        "description": "Curated deals on home office products.",
+        "url": "https://www.theworkspacepro.com/deals/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "The Workspace Pro",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.theworkspacepro.com/images/logo.png"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2a6b7e',
+                        'primary-light': '#4a8fa3',
+                        'secondary': '#c86b4a',
+                        'secondary-light': '#e48c6d',
+                        'surface': '#fefcf8',
+                        'card': '#ffffff',
+                        'border': '#e8e3da',
+                        'text': '#1f2937',
+                        'text-light': '#6b7280',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col">
+    <!-- Dark mode toggle -->
+    <button id="darkModeToggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-card shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Toggle dark mode">
+        <i class="fas fa-moon text-primary text-xl"></i>
+        <i class="fas fa-sun text-primary text-xl hidden"></i>
+    </button>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-30 bg-card shadow-sm border-b border-border">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                        <i class="fas fa-desktop text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-primary font-serif">The Workspace Pro</h1>
+                        <p class="text-xs text-text-light">Build a workspace that works</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="font-medium hover:text-primary transition-colors">Home</a>
+                    <a href="/content/tips/" class="font-medium hover:text-primary transition-colors">All Tips</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary transition-colors">Guides</a>
+                    <a href="/deals/" class="font-medium text-primary border-b-2 border-primary pb-1">Deals</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/about/" class="font-medium hover:text-primary transition-colors">About</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary transition-colors">Quiz</a>
+                    <button id="searchToggle" class="p-2 hover:bg-surface rounded-full transition-colors" aria-label="Search">
+                        <i class="fas fa-search text-text-light"></i>
+                    </button>
+                    <a href="#newsletter" class="bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-colors">Newsletter</a>
+                </nav>
+                
+                <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Open menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="font-medium py-2 hover:text-primary transition-colors">Home</a>
+                    <a href="/content/tips/" class="font-medium py-2 hover:text-primary transition-colors">All Tips</a>
+                    <a href="/content/guides/" class="font-medium py-2 hover:text-primary transition-colors">Guides</a>
+                    <a href="/deals/" class="font-medium py-2 text-primary">Deals</a>
+                    <a href="/podcasts/" class="font-medium py-2 hover:text-primary transition-colors">Podcasts</a>
+                    <a href="/content/about/" class="font-medium py-2 hover:text-primary transition-colors">About</a>
+                    <a href="/quiz/" class="font-medium py-2 hover:text-primary transition-colors">Quiz</a>
+                    <a href="#newsletter" class="bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Newsletter</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <section class="relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="/static/images/og-deals-2026.jpg" alt="Modern home office workspace" class="w-full h-full object-cover opacity-25" loading="eager" fetchpriority="high">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 mix-blend-multiply"></div>
+            </div>
+            <div class="container mx-auto px-4 py-16 md:py-24 relative z-10 text-center text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Best Home Office Deals</h1>
+                <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">Hand-picked discounts on standing desks, ergonomic chairs, monitors, and accessories. Verified and updated daily.</p>
+                <div class="mt-6 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full py-2 px-5">
+                    <i class="fas fa-sync-alt text-sm"></i>
+                    <span class="text-sm font-semibold">Updated April 23, 2026</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4 py-12">
+            <!-- Category Filters -->
+            <div class="mb-10">
+                <div class="flex flex-wrap gap-3 justify-center" id="categoryFilters">
+                    <button class="filter-btn active bg-primary text-white py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:bg-primary-light" data-category="all">
+                        <i class="fas fa-th-list mr-2"></i>All Products
+                    </button>
+                    <button class="filter-btn bg-card border border-border text-text py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:border-primary hover:text-primary" data-category="standing-desks">
+                        <i class="fas fa-desktop mr-2"></i>Standing Desks
+                    </button>
+                    <button class="filter-btn bg-card border border-border text-text py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:border-primary hover:text-primary" data-category="chairs">
+                        <i class="fas fa-chair mr-2"></i>Chairs
+                    </button>
+                    <button class="filter-btn bg-card border border-border text-text py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:border-primary hover:text-primary" data-category="monitors">
+                        <i class="fas fa-tv mr-2"></i>Monitors
+                    </button>
+                    <button class="filter-btn bg-card border border-border text-text py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:border-primary hover:text-primary" data-category="lighting">
+                        <i class="fas fa-lightbulb mr-2"></i>Lighting
+                    </button>
+                    <button class="filter-btn bg-card border border-border text-text py-2.5 px-6 rounded-full font-semibold transition-all duration-200 hover:border-primary hover:text-primary" data-category="accessories">
+                        <i class="fas fa-toolbox mr-2"></i>Accessories
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results count -->
+            <div class="text-center mb-8">
+                <p id="resultsCount" class="text-text-light text-sm">Showing <span id="visibleCount">10</span> products</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid">
+                <!-- Product 1: IKEA BEKANT Desk -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="standing-desks" data-price="449.99" data-rating="4.7">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/bekant-desk-800.jpg" alt="IKEA BEKANT electric height-adjustable standing desk in white with monitor setup" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Editor's Pick</span>
+                        <span class="absolute top-4 right-4 bg-green-600 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">-15%</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">IKEA</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">IKEA BEKANT Sit/Stand Desk</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-text-light text-sm">4.7 (238 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Electric height-adjustable desk with memory settings, spacious 63" surface, and sturdy steel frame. Limited-time spring sale.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$449.99</span>
+                                <span class="text-text-light line-through ml-2">$529.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-truck"></i>
+                            <span>Free shipping over $499</span>
+                        </div>
+                        <a href="https://www.ikea.com/us/en/p/bekant-desk-sit-stand-white-s59280942/" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 2: Fully Jarvis Desk -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="standing-desks" data-price="589" data-rating="4.8">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/standing-desk-2026.jpg" alt="Fully Jarvis bamboo standing desk with dual monitors and plants" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 right-4 bg-blue-600 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Best Seller</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Fully</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Fully Jarvis Bamboo Standing Desk</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.8 (1,024 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Sustainably sourced bamboo top, programmable height presets, and whisper-quiet electric motor. 15-year warranty.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$589</span>
+                                <span class="text-text-light line-through ml-2">$649</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>15-year warranty</span>
+                        </div>
+                        <a href="https://www.fully.com/standing-desks.html" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 3: Staples Hyken Chair -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="chairs" data-price="229.99" data-rating="4.9">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/ergonomic-chair-800.jpg" alt="Staples Hyken ergonomic mesh task chair with headrest and lumbar support" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-green-700 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Best Value</span>
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">-20%</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Staples</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Staples Hyken Chair</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.9 (3,156 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Ergonomic mesh chair with adjustable lumbar support, headrest, and breathable mesh back. Use code HYKEN20 for extra savings.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$229.99</span>
+                                <span class="text-text-light line-through ml-2">$279.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-tag"></i>
+                            <span>Code: <strong class="text-secondary">HYKEN20</strong></span>
+                        </div>
+                        <a href="https://www.staples.com/Staples-Hyken-Technical-Mesh-Task-Chair-Black/product_990119" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 4: Herman Miller Aeron -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="chairs" data-price="1395" data-rating="4.8">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/ergonomic-chair-800.jpg" alt="Herman Miller Aeron ergonomic office chair in modern workspace" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Editor's Pick</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Herman Miller</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Herman Miller Aeron Chair</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.8 (2,847 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">The gold standard in ergonomic seating. Adjustable PostureFit SL lumbar support, 8Z Pellicle suspension, and breathable mesh.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$1,395</span>
+                                <span class="text-text-light line-through ml-2">$1,795</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-truck"></i>
+                            <span>Free shipping • 12-year warranty</span>
+                        </div>
+                        <a href="https://www.hermanmiller.com/products/seating/office-chairs/aeron-chairs/" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 5: Steelcase Gesture -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="chairs" data-price="1099" data-rating="4.7">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/ergo-chair-2026.jpg" alt="Steelcase Gesture office chair with 3D LiveBack technology" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 right-4 bg-blue-600 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Top Rated</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Steelcase</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Steelcase Gesture Chair</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-text-light text-sm">4.7 (1,892 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">3D LiveBack technology that mimics your spine's movement, adjustable armrests that move with you, and premium upholstery.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$1,099</span>
+                                <span class="text-text-light line-through ml-2">$1,299</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>10-year warranty</span>
+                        </div>
+                        <a href="https://www.steelcase.com/products/office-chairs/gesture/" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 6: Dell 24" Monitor -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="monitors" data-price="159.99" data-rating="4.8">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/dell-monitor-800.jpg" alt="Dell 24-inch Full HD IPS monitor on a clean desk setup" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-green-700 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Best Value</span>
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">-25%</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Dell</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Dell 24" Monitor (S2421HS)</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.8 (4,203 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Full HD IPS display with ultra-thin bezels, 75Hz refresh rate, AMD FreeSync, and built-in speakers. 3-year warranty included.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$159.99</span>
+                                <span class="text-text-light line-through ml-2">$199.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>3-year warranty included</span>
+                        </div>
+                        <a href="https://www.dell.com/en-us/shop/dell-24-monitor-s2421hs/apd/210-axqf/monitors-monitor-accessories" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 7: LG 27" 4K Monitor -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="monitors" data-price="399.99" data-rating="4.7">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/4k-monitor-2026.jpg" alt="LG 27-inch 4K UHD monitor with ultra-slim bezels on modern desk" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 right-4 bg-purple-700 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">4K UHD</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">LG</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">LG 27" 4K UHD Monitor (27UP850N)</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-text-light text-sm">4.7 (892 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">27" IPS 4K panel with USB-C 90W PD, DCI-P3 95% color gamut, and ergonomic stand. Perfect for creative professionals.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$399.99</span>
+                                <span class="text-text-light line-through ml-2">$499.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-plug"></i>
+                            <span>USB-C 90W PD</span>
+                        </div>
+                        <a href="https://www.lg.com/us/monitors/lg-27up850n-w-4k-uhd-ips-monitor" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 8: BenQ ScreenBar -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="lighting" data-price="89.99" data-rating="4.6">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/guide-lighting-2026.jpg" alt="BenQ ScreenBar LED monitor light bar attached to a computer display" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Best Seller</span>
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">-40%</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">BenQ</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">BenQ ScreenBar Monitor Light</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-text-light text-sm">4.6 (1,456 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Auto-dimming LED light bar that clips onto your monitor. Asymmetric lighting reduces screen glare while illuminating your desk.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$89.99</span>
+                                <span class="text-text-light line-through ml-2">$149.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-sun"></i>
+                            <span>Auto-dimming • Zero glare</span>
+                        </div>
+                        <a href="https://www.benq.com/en-us/lighting/screenbar/screenbar.html" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 9: Logitech MX Bundle -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="accessories" data-price="199.99" data-rating="4.8">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/products/ergo-keyboard-2026.jpg" alt="Logitech MX Keys keyboard and MX Master 3 mouse on a desk" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-blue-700 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Bundle Deal</span>
+                        <span class="absolute top-4 right-4 bg-secondary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Save $40</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Logitech</span>
+                            <span class="text-xs bg-blue-50 text-blue-700 py-1 px-2 rounded font-medium"><i class="fab fa-aws mr-1"></i>Prime</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Logitech MX Keys + MX Master 3S</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.8 (5,620 reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Premium wireless keyboard with perfect stroke keys and ergonomic mouse with 8K DPI sensor. Dual-device Flow support included.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$199.99</span>
+                                <span class="text-text-light line-through ml-2">$239.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-bolt"></i>
+                            <span>10-day battery • USB-C</span>
+                        </div>
+                        <a href="https://www.amazon.com/Logitech-Master-Advanced-Wireless-Mouse/dp/B07S5QDPF3" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+
+                <!-- Product 10: Cable Management Kit -->
+                <div class="product-card bg-card rounded-2xl shadow-lg border border-border overflow-hidden group" data-category="accessories" data-price="24.99" data-rating="4.8">
+                    <div class="relative overflow-hidden">
+                        <img src="/static/images/cable-management.jpg" alt="Cable management kit with velcro straps, clips, and sleeves for desk organization" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <span class="absolute top-4 left-4 bg-green-700 text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">Best Value</span>
+                        <span class="absolute top-4 right-4 bg-primary text-white text-sm font-bold py-1.5 px-3 rounded-full shadow-lg">-30%</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-text-light font-medium">Ugreen</span>
+                            <span class="text-xs bg-green-50 text-green-700 py-1 px-2 rounded font-medium"><i class="fas fa-check-circle mr-1"></i>Verified</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Cable Management Kit (100-Piece)</h3>
+                        <div class="flex items-center text-yellow-500 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="ml-2 text-text-light text-sm">4.8 (2,300+ reviews)</span>
+                        </div>
+                        <p class="text-text-light text-sm mb-4">Complete kit with Velcro straps, adhesive cable clips, cable sleeves, and under-desk cable trays. Everything you need to tame your wires.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-2xl font-bold text-primary">$24.99</span>
+                                <span class="text-text-light line-through ml-2">$34.99</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-text-light">
+                            <i class="fas fa-star"></i>
+                            <span>4.8★ from 2,300+ reviews</span>
+                        </div>
+                        <a href="https://www.amazon.com/UGREEN-Management-Organizer-Adjustable-100PCS/dp/B08B4VBSL9" target="_blank" rel="sponsored noopener noreferrer" class="block w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-4 rounded-lg text-center transition-colors">Shop Deal</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No results message -->
+            <div id="noResults" class="hidden text-center py-16">
+                <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-search text-primary text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text mb-2">No products found</h3>
+                <p class="text-text-light mb-6">Try selecting a different category or check back later for new deals.</p>
+                <button onclick="filterProducts('all')" class="bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg transition-colors">Show All Products</button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-card border-t border-border mt-24">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                            <i class="fas fa-desktop text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-primary font-serif">The Workspace Pro</h4>
+                            <p class="text-sm text-text-light">Build a workspace that works</p>
+                        </div>
+                    </div>
+                    <p class="text-text-light">Expert-curated guides, product recommendations, and ergonomic tips for a healthier, more productive home office.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-text mb-4">Explore</h5>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-text-light hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="/content/tips/" class="text-text-light hover:text-primary transition-colors">All Tips</a></li>
+                        <li><a href="/content/guides/" class="text-text-light hover:text-primary transition-colors">Guides</a></li>
+                        <li><a href="/deals/" class="text-text-light hover:text-primary transition-colors">Deals & Discounts</a></li>
+                        <li><a href="/podcasts/" class="text-text-light hover:text-primary transition-colors">Podcasts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-text mb-4">Resources</h5>
+                    <ul class="space-y-2">
+                        <li><a href="/content/about/" class="text-text-light hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="/quiz/" class="text-text-light hover:text-primary transition-colors">Workspace Quiz</a></li>
+                        <li><a href="/submit-tip/" class="text-text-light hover:text-primary transition-colors">Submit a Tip</a></li>
+                        <li><a href="/privacy/" class="text-text-light hover:text-primary transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-text mb-4">Stay Updated</h5>
+                    <p class="text-text-light mb-4">Get the latest workspace tips and deals directly in your inbox.</p>
+                    <form id="footerNewsletter" class="flex">
+                        <input type="email" placeholder="Email" class="flex-grow p-3 rounded-l-lg border border-border focus:outline-none" aria-label="Email for newsletter">
+                        <button type="submit" class="bg-primary hover:bg-primary-light text-white p-3 rounded-r-lg transition-colors"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-border mt-12 pt-8 text-center text-text-light text-sm">
+                <p>&copy; 2026 The Workspace Pro. All rights reserved. | <a href="/privacy/" class="hover:text-primary">Privacy Policy</a> | <a href="/terms/" class="hover:text-primary">Terms of Service</a></p>
+                <p class="mt-2"><i class="fas fa-exclamation-circle mr-1"></i> We earn a commission if you purchase through our links. This helps support our site at no extra cost to you.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Filter + Image JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize filter system
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('#productsGrid .product-card');
+            const visibleCount = document.getElementById('visibleCount');
+            const noResults = document.getElementById('noResults');
+            const productsGrid = document.getElementById('productsGrid');
+
+            window.filterProducts = function(category) {
+                // Update active button
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-card', 'border', 'border-border', 'text-text');
+                    if (btn.getAttribute('data-category') === category) {
+                        btn.classList.remove('bg-card', 'border', 'border-border', 'text-text');
+                        btn.classList.add('bg-primary', 'text-white');
+                    }
+                });
+
+                // Show/hide products
+                let visible = 0;
+                productCards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    if (category === 'all' || cat === category) {
+                        card.style.display = 'block';
+                        card.classList.add('animate-fade-in');
+                        visible++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                visibleCount.textContent = visible;
+                
+                if (visible === 0) {
+                    noResults.classList.remove('hidden');
+                    productsGrid.classList.add('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                    productsGrid.classList.remove('hidden');
+                }
+            };
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const category = this.getAttribute('data-category');
+                    filterProducts(category);
+                    
+                    // Smooth scroll to products
+                    productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            // Image error handling
+            document.querySelectorAll('#productsGrid img, main img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = '/static/images/og-deals-2026.jpg';
+                    this.alt = 'Home office workspace';
+                });
+            });
+        });
+    </script>
+
+    <!-- Shared site JS for dark mode, search, mobile menu, etc. -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

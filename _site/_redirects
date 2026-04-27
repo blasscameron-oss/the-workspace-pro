@@ -1,0 +1,12 @@
+# Allow Cloudflare Pages domain verification
+/.well-known/* 200
+
+# Exclude Google Search Console verification file from SPA fallback
+/google803b5c2f4a1e9d87.html 200
+
+# Redirect old /quiz/ path to correct content path
+/quiz/* /content/quiz/:splat 301
+/quiz /content/quiz/ 301
+
+# SPA fallback - for client-side routing (content pages now at clean URLs via deploy.yml)
+/* /index.html 200

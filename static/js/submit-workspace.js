@@ -1,0 +1,303 @@
+/**
+ * submit-workspace.js — Workspace Submission Handler
+ * Stores submissions in localStorage with moderation queue.
+ * Gallery loads from inline data OR localStorage with fallback samples.
+ */
+(function() {
+    'use strict';
+
+    const STORAGE_KEY = 'workspace_submissions';
+    const APPROVED_KEY = 'workspace_approved';
+
+    // --- Default sample setups (to fill the gallery) ---
+    const SAMPLE_SETUPS = [
+        {
+            id: 'sample-1',
+            name: 'Alex Chen',
+            title: 'The Minimalist Corner',
+            description: 'My corner desk with a Jarvis standing frame and an Aerond chair. Everything I need, nothing I don\'t. The cable management took a weekend but was worth every minute.',
+            budget: '$1,000–$2,000',
+            gear: 'Jarvis standing desk frame, IKEA Karlby top, Aeron chair, 34" ultrawide LG, Kanto YU2 speakers',
+            photo: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=800&h=600&fit=crop',
+            approved: true,
+            featured: true,
+            submittedAt: '2026-04-15'
+        },
+        {
+            id: 'sample-2',
+            name: 'Sarah Mitchell',
+            title: 'Creative Chaos (Organized)',
+            description: 'I\'m a graphic designer, so my workspace has to spark creativity while keeping me organized. The key was a massive whiteboard wall and a monitor arm that lets me switch between vertical and horizontal.',
+            budget: '$500–$1,000',
+            gear: 'Herman Miller Sayl, 2x Dell 27" 4K, Wacom Intuos Pro, Artisul whiteboard paint wall, Motorized sit-stand desktop',
+            photo: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop',
+            approved: true,
+            featured: true,
+            submittedAt: '2026-04-10'
+        },
+        {
+            id: 'sample-3',
+            name: 'Marcus Rivera',
+            title: 'Budget Build That Punches Above Its Weight',
+            description: 'Started with $500 total. Facebook Marketplace desk, refurbished monitor, and a used Steelcase Leap. $450 all in and I have a setup that rivals my office.',
+            budget: 'Under $500',
+            gear: 'Used Steelcase Leap ($200), Facebook Marketplace desk ($50), 2x Dell 24" refurb ($120 each), IKEA pegboard, Xiaomi light bar',
+            photo: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800&h=600&fit=crop',
+            approved: true,
+            featured: false,
+            submittedAt: '2026-04-05'
+        },
+        {
+            id: 'sample-4',
+            name: 'Jessica Park',
+            title: 'Standing Desk Convert',
+            description: 'After 8 months of working from home, my back couldn\'t take the dining table anymore. Took the plunge on a sit-stand desk and it completely changed my energy levels.',
+            budget: '$500–$1,000',
+            gear: 'Uplift V2 standing desk, Serta iComfort chair, LG 32" QHD monitor, Blue Yeti mic, Grovemade desk mat',
+            photo: 'https://images.unsplash.com/photo-1593642702749-b7d2a804fbcf?w=800&h=600&fit=crop',
+            approved: true,
+            featured: true,
+            submittedAt: '2026-03-28'
+        },
+        {
+            id: 'sample-5',
+            name: 'The Workspace Pro Team',
+            title: 'The Ultimate Productivity Hub',
+            description: 'Our team setup — 3 monitors, cable management that would make a network engineer proud, and a custom-built standing desk. The monitor light bar was the best $40 we ever spent.',
+            budget: '$2,000+',
+            gear: 'Custom standing desk, 3x Dell 27" 4K, Herman Miller Embody, Stream Deck, Logitech MX Master 3, Kanto TUK speakers, Philips Hue lighting',
+            photo: 'https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=800&h=600&fit=crop',
+            approved: true,
+            featured: true,
+            submittedAt: '2026-03-15'
+        },
+        {
+            id: 'sample-6',
+            name: 'Taylor Wong',
+            title: 'Small Desk, Big Productivity',
+            description: 'Living in a studio apartment means every inch counts. Found a 40" desk that fits perfectly in an alcove, paired with a wall-mounted monitor arm to reclaim desk real estate.',
+            budget: '$500–$1,000',
+            gear: 'IKEA Lagkapten/Alex 40" desk, Dell 27" on Ergotron arm, Keychron K2, Logitech MX Anywhere 3, Desk clamp power strip',
+            photo: 'https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?w=800&h=600&fit=crop',
+            approved: true,
+            featured: false,
+            submittedAt: '2026-03-20'
+        }
+    ];
+
+    function getSubmissions() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function saveSubmission(submission) {
+        const submissions = getSubmissions();
+        submission.id = 'sub-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7);
+        submission.approved = false;
+        submission.featured = false;
+        submission.submittedAt = new Date().toISOString().slice(0, 10);
+        submissions.push(submission);
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+        } catch(e) {
+            if (e.name === 'QuotaExceededError') {
+                alert('Storage is full. Please try a smaller photo URL or contact us directly.');
+            }
+        }
+        return submission;
+    }
+
+    // --- Gallery Page ---
+    function initGallery() {
+        const emptyState = document.getElementById('emptyState');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const galleryContainer = galleryGrid;
+        
+        if (!galleryContainer) return;
+
+        // Gather setups: inline data + user submissions + samples
+        const inlineData = window.galleryData || [];
+        const userSubmissions = getSubmissions().filter(s => s.approved);
+        const allSetups = [...inlineData, ...userSubmissions, ...SAMPLE_SETUPS];
+
+        if (allSetups.length === 0) {
+            if (emptyState) emptyState.classList.remove('hidden');
+            if (galleryGrid) galleryGrid.classList.add('hidden');
+            return;
+        }
+
+        if (emptyState) emptyState.classList.add('hidden');
+        if (galleryGrid) galleryGrid.classList.remove('hidden');
+
+        // Shuffle for variety
+        const shuffled = allSetups.sort(() => Math.random() - 0.5);
+
+        let html = '';
+        shuffled.forEach((setup, idx) => {
+            const budgetBadge = setup.budget ? 
+                `<span class="text-xs bg-surface text-text-light px-3 py-1 rounded-full">${escapeHtml(setup.budget)}</span>` : '';
+            const featuredBadge = setup.featured ? 
+                `<span class="absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-3 rounded-full"><i class="fas fa-star mr-1"></i>Featured</span>` : '';
+            const delay = 0.05 + (idx * 0.05);
+
+            html += `
+            <div class="bg-card rounded-2xl shadow-lg border border-border overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-fade-in" style="animation-delay: ${delay}s">
+                <div class="relative overflow-hidden">
+                    <img src="${escapeHtml(setup.photo)}" 
+                         alt="${escapeHtml(setup.title || setup.name)}"
+                         class="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
+                         loading="${idx < 3 ? 'eager' : 'lazy'}"
+                         width="800" height="400"
+                         onerror="this.src='/static/images/placeholder-workspace.jpg'; this.onerror=null">
+                    ${featuredBadge}
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                        <h3 class="text-white font-bold text-lg">${escapeHtml(setup.title)}</h3>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-semibold text-primary"><i class="fas fa-user mr-1"></i>${escapeHtml(setup.name)}</span>
+                        ${budgetBadge}
+                    </div>
+                    <p class="text-text-light text-sm mb-4 line-clamp-3">${escapeHtml(setup.description || '')}</p>
+                    ${setup.gear ? `
+                    <div class="mb-3">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-text-light mb-1">Key Gear</h4>
+                        <div class="flex flex-wrap gap-1">
+                            ${setup.gear.split(',').slice(0, 4).map(item => 
+                                `<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">${escapeHtml(item.trim())}</span>`
+                            ).join('')}
+                            ${setup.gear.split(',').length > 4 ? 
+                                `<span class="text-xs bg-primary/10 text-primary-light px-2 py-1 rounded">+${setup.gear.split(',').length - 4} more</span>` : ''}
+                        </div>
+                    </div>` : ''}
+                    <div class="flex items-center justify-between text-xs text-text-light mt-3 pt-3 border-t border-border">
+                        <span><i class="far fa-calendar mr-1"></i>${setup.submittedAt || 'Recently'}</span>
+                        <button class="like-btn hover:text-secondary transition-colors" data-id="${setup.id}">
+                            <i class="far fa-heart"></i> <span class="like-count">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        galleryContainer.innerHTML = html;
+
+        // Like buttons
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                const count = this.querySelector('.like-count');
+                if (icon.classList.contains('far')) {
+                    icon.classList.replace('far', 'fas');
+                    icon.classList.add('text-secondary');
+                    count.textContent = parseInt(count.textContent) + 1;
+                } else {
+                    icon.classList.replace('fas', 'far');
+                    icon.classList.remove('text-secondary');
+                    count.textContent = Math.max(0, parseInt(count.textContent) - 1);
+                }
+            });
+        });
+    }
+
+    // --- Submit Form Page ---
+    function initSubmitForm() {
+        const form = document.getElementById('workspaceSubmitForm');
+        if (!form) return;
+
+        // Photo preview
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview') || createPhotoPreview();
+        
+        if (photoInput) {
+            photoInput.addEventListener('input', function() {
+                const url = this.value.trim();
+                if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+                    photoPreview.innerHTML = `
+                        <div class="relative inline-block">
+                            <img src="${escapeHtml(url)}" alt="Preview" class="max-h-48 rounded-lg shadow" 
+                                 onerror="this.parentElement.innerHTML='<p class=\\'text-red-500 text-sm\\'><i class=\\'fas fa-exclamation-circle mr-1\\'></i>Could not load image. Check the URL.</p>'">
+                        </div>`;
+                    photoPreview.classList.remove('hidden');
+                } else {
+                    photoPreview.classList.add('hidden');
+                }
+            });
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name')?.value.trim() || 'Anonymous';
+            const email = document.getElementById('email')?.value.trim() || '';
+            const title = document.getElementById('title')?.value.trim();
+            const description = document.getElementById('description')?.value.trim();
+            const budget = document.getElementById('budget')?.value || '';
+            const gear = document.getElementById('gear')?.value.trim() || '';
+            const photo = document.getElementById('photo')?.value.trim() || '';
+            const terms = document.getElementById('terms')?.checked;
+
+            if (!title || !description) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            if (!terms) {
+                alert('Please agree to the terms by checking the box.');
+                return;
+            }
+
+            const submission = {
+                name, email, title, description, budget, gear, photo, terms: true
+            };
+
+            saveSubmission(submission);
+
+            // Show success
+            form.innerHTML = `
+                <div class="text-center py-12">
+                    <div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-6xl text-primary"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-text mb-4 font-serif">Thanks for Sharing!</h3>
+                    <p class="text-text-light text-lg mb-4">Your workspace has been submitted for review. We'll notify you at <strong>${escapeHtml(email || 'the email provided')}</strong> when it's featured.</p>
+                    <p class="text-text-light mb-8">In the meantime, check out other community setups for inspiration.</p>
+                    <a href="/content/community-setups/" class="bg-secondary hover:bg-secondary-light text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors shadow-lg">
+                        Browse the Gallery →
+                    </a>
+                    <button onclick="location.reload()" class="ml-4 bg-card border border-border hover:bg-surface text-text font-bold py-3 px-8 rounded-lg text-lg transition-colors">
+                        Submit Another
+                    </button>
+                </div>
+            `;
+        });
+    }
+
+    // --- Helpers ---
+    function createPhotoPreview() {
+        const container = document.createElement('div');
+        container.id = 'photoPreview';
+        container.className = 'hidden mt-3';
+        const photoInput = document.getElementById('photo');
+        photoInput.parentElement.appendChild(container);
+        return container;
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // --- Init ---
+    document.addEventListener('DOMContentLoaded', function() {
+        initGallery();
+        initSubmitForm();
+    });
+
+})();
