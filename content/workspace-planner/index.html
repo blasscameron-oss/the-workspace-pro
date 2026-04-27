@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Workspace Planner — Find Your Perfect Home Office Setup | The Workspace Pro</title>
+    <meta name="description" content="Build your ideal home office in 2 minutes. Input your height, work style, pain points, and budget for personalized desk height, monitor height, chair settings, and product recommendations.">
+    <meta property="og:title" content="Interactive Workspace Planner — Find Your Perfect Home Office Setup | The Workspace Pro">
+    <meta property="og:description" content="Build your ideal home office in 2 minutes. Get personalized desk height, monitor height, chair settings, lighting levels, and product recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theworkspacepro.com/content/workspace-planner/">
+    <meta property="og:image" content="https://www.theworkspacepro.com/static/images/home-hero-img.jpg">
+    <link rel="canonical" href="https://www.theworkspacepro.com/content/workspace-planner/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'surface': '#fefcf8',
+                        'card': '#ffffff',
+                        'border': '#e8e3da',
+                        'primary': '#2a6b7e',
+                        'primary-light': '#4a8fa3',
+                        'accent': '#c86b4a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .step-indicator { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; }
+        .step-dot { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; transition: all 0.3s; }
+        .step-dot.active { background: #2a6b7e; transform: scale(1.4); }
+        .step-dot.completed { background: #2a6b7e; opacity: 0.5; }
+        .planner-question { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .planner-question.hidden-slide { opacity: 0; transform: translateX(20px); pointer-events: none; height: 0; margin: 0; overflow: hidden; }
+        .planner-question.visible { opacity: 1; transform: translateX(0); }
+        .option-card { cursor: pointer; transition: all 0.15s ease; border: 2px solid transparent; }
+        .option-card:hover { border-color: #4a8fa3; background-color: rgba(42,107,126,0.04); }
+        .option-card.selected { border-color: #2a6b7e; background-color: rgba(42,107,126,0.08); }
+        .option-card input { display: none; }
+        .pain-chip { cursor: pointer; transition: all 0.15s ease; }
+        .pain-chip.selected { background-color: #2a6b7e; color: white; }
+        @media print {
+            body { background: white !important; }
+            nav, footer, .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .planner-form { display: none !important; }
+            .planner-results { box-shadow: none !important; border: 1px solid #ddd !important; page-break-inside: avoid; }
+            .print-summary { break-inside: avoid; }
+            @page { margin: 0.5in; }
+        }
+        .planner-results { display: none; }
+        .planner-results.visible { display: block; }
+        .print-only { display: none; }
+        .progress-bar { height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; margin-bottom: 1.5rem; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #2a6b7e, #4a8fa3); border-radius: 3px; transition: width 0.4s ease; }
+        .rec-card { transition: transform 0.15s ease; }
+        .rec-card:hover { transform: translateY(-2px); }
+        @media (max-width: 640px) {
+            .results-grid { grid-template-columns: 1fr !important; }
+        }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+        }
+    </script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CF_ANALYTICS_TOKEN_HERE"}'></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Interactive Workspace Planner",
+      "description": "Build your ideal home office with personalized recommendations for desk height, monitor height, chair settings, lighting levels, and product picks.",
+      "url": "https://www.theworkspacepro.com/content/workspace-planner/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "JavaScript required"
+    }
+    </script>
+</head>
+<body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 antialiased">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-border dark:border-zinc-800 no-print">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-chair text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">Workspace<span class="text-accent">Pro</span></span>
+                </a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="/" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary transition">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary transition">Products</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary transition">Quiz</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary transition">Podcasts</a>
+                    <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                </nav>
+                <div class="flex items-center gap-4 md:hidden">
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i id="darkModeIconMob" class="fa-solid fa-moon"></i>
+                    </button>
+                    <button onclick="var m=document.getElementById('mobileMenu');if(m){m.classList.toggle('hidden');var i=this.querySelector('i');if(i){i.classList.toggle('fa-bars');i.classList.toggle('fa-times')}}" aria-label="Toggle mobile menu" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border dark:border-zinc-800 pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="/" class="font-medium hover:text-primary py-2">Home</a>
+                    <a href="/content/guides/" class="font-medium hover:text-primary py-2">Guides</a>
+                    <a href="/#top-picks" class="font-medium hover:text-primary py-2">Products</a>
+                    <a href="/quiz/" class="font-medium hover:text-primary py-2">Quiz</a>
+                    <a href="/podcasts/" class="font-medium hover:text-primary py-2">Podcasts</a>
+                    <a href="/about/" class="font-medium hover:text-primary py-2">About</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-10 md:py-16">
+        <!-- Hero -->
+        <div class="text-center mb-10">
+            <span class="text-sm font-semibold px-4 py-1.5 rounded-full bg-primary/10 text-primary inline-block mb-4">
+                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Interactive Tool
+            </span>
+            <h1 class="text-3xl md:text-5xl font-display font-bold mb-4">Workspace Planner</h1>
+            <p class="text-lg text-gray-600 dark:text-zinc-400 max-w-2xl mx-auto">Answer 4 quick questions and we'll calculate your ideal desk height, monitor position, chair settings, lighting levels, and product recommendations — all personalized to your body and work style.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar no-print" id="progressBar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+
+        <!-- Step Dots -->
+        <div class="step-indicator no-print" id="stepDots">
+            <span class="step-dot active" data-step="0"></span>
+            <span class="step-dot" data-step="1"></span>
+            <span class="step-dot" data-step="2"></span>
+            <span class="step-dot" data-step="3"></span>
+        </div>
+
+        <!-- FORM -->
+        <form id="plannerForm" class="planner-form max-w-2xl mx-auto" onsubmit="return false;">
+            <!-- Step 1: Height -->
+            <div class="planner-question visible" data-step="0">
+                <h2 class="text-xl font-bold mb-6 text-center">What's your height?</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Height">
+                    <label class="option-card border border-border rounded-xl p-4 text-center flex flex-col items-center" data-value="short">
+                        <span class="text-3xl mb-1">&#128104;</span>
+                        <span class="font-semibold text-sm">Under 5'4"</span>
+                        <span class="text-xs text-gray-500">&lt; 163 cm</span>
+                        <input type="radio" name="height" value="short">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 text-center flex flex-col items-center" data-value="average">
+                        <span class="text-3xl mb-1">&#128104;&#8205;&#128187;</span>
+                        <span class="font-semibold text-sm">5'4" – 5'8"</span>
+                        <span class="text-xs text-gray-500">163–173 cm</span>
+                        <input type="radio" name="height" value="average">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 text-center flex flex-col items-center" data-value="tall">
+                        <span class="text-3xl mb-1">&#128104;&#8205;&#128200;</span>
+                        <span class="font-semibold text-sm">5'8" – 6'0"</span>
+                        <span class="text-xs text-gray-500">173–183 cm</span>
+                        <input type="radio" name="height" value="tall">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 text-center flex flex-col items-center" data-value="very-tall">
+                        <span class="text-3xl mb-1">&#129489;&#8205;&#128187;</span>
+                        <span class="font-semibold text-sm">6'0" – 6'4"</span>
+                        <span class="text-xs text-gray-500">183–193 cm</span>
+                        <input type="radio" name="height" value="very-tall">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 text-center flex flex-col items-center md:col-span-1 col-span-2" data-value="extra-tall">
+                        <span class="text-3xl mb-1">&#129489;</span>
+                        <span class="font-semibold text-sm">Over 6'4"</span>
+                        <span class="text-xs text-gray-500">> 193 cm</span>
+                        <input type="radio" name="height" value="extra-tall">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 2: Work Style -->
+            <div class="planner-question hidden-slide" data-step="1">
+                <h2 class="text-xl font-bold mb-6 text-center">What's your primary work style?</h2>
+                <div class="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Work style">
+                    <label class="option-card border border-border rounded-xl p-5 text-center" data-value="desk">
+                        <span class="text-3xl block mb-2">&#128187;</span>
+                        <span class="font-semibold block">Desk Work / Coding</span>
+                        <span class="text-xs text-gray-500 block mt-1">8+ hours at keyboard, focused on screen</span>
+                        <input type="radio" name="workstyle" value="desk">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-5 text-center" data-value="creative">
+                        <span class="text-3xl block mb-2">&#127912;</span>
+                        <span class="font-semibold block">Creative / Design</span>
+                        <span class="text-xs text-gray-500 block mt-1">Color-critical work, drawing, photo/video editing</span>
+                        <input type="radio" name="workstyle" value="creative">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-5 text-center" data-value="hybrid">
+                        <span class="text-3xl block mb-2">&#128242;</span>
+                        <span class="font-semibold block">Hybrid / Meetings</span>
+                        <span class="text-xs text-gray-500 block mt-1">Video calls, collaboration, shifting tasks</span>
+                        <input type="radio" name="workstyle" value="hybrid">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-5 text-center" data-value="gaming">
+                        <span class="text-3xl block mb-2">&#127918;</span>
+                        <span class="font-semibold block">Gaming</span>
+                        <span class="text-xs text-gray-500 block mt-1">Extended sessions, fast reflexes, immersion</span>
+                        <input type="radio" name="workstyle" value="gaming">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 3: Pain Points -->
+            <div class="planner-question hidden-slide" data-step="2">
+                <h2 class="text-xl font-bold mb-3 text-center">Any pain points or discomfort?</h2>
+                <p class="text-sm text-gray-500 text-center mb-6">Select all that apply — we'll tailor recommendations to address them.</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <label class="pain-chip px-5 py-3 rounded-full border border-border cursor-pointer select-none transition-all text-sm font-medium flex items-center gap-2 hover:border-primary" data-value="neck">
+                        <input type="checkbox" name="pain" value="neck" class="hidden">
+                        <span class="pain-icon">&#128066;</span> Neck / Upper Back
+                    </label>
+                    <label class="pain-chip px-5 py-3 rounded-full border border-border cursor-pointer select-none transition-all text-sm font-medium flex items-center gap-2 hover:border-primary" data-value="back">
+                        <input type="checkbox" name="pain" value="back" class="hidden">
+                        <span class="pain-icon">&#129311;</span> Lower Back
+                    </label>
+                    <label class="pain-chip px-5 py-3 rounded-full border border-border cursor-pointer select-none transition-all text-sm font-medium flex items-center gap-2 hover:border-primary" data-value="eyes">
+                        <input type="checkbox" name="pain" value="eyes" class="hidden">
+                        <span class="pain-icon">&#128083;</span> Eye Strain
+                    </label>
+                    <label class="pain-chip px-5 py-3 rounded-full border border-border cursor-pointer select-none transition-all text-sm font-medium flex items-center gap-2 hover:border-primary" data-value="wrists">
+                        <input type="checkbox" name="pain" value="wrists" class="hidden">
+                        <span class="pain-icon">&#128070;</span> Wrists / Hands
+                    </label>
+                    <label class="pain-chip px-5 py-3 rounded-full border border-border cursor-pointer select-none transition-all text-sm font-medium flex items-center gap-2 hover:border-primary" data-value="none">
+                        <input type="checkbox" name="pain" value="none" class="hidden">
+                        <span class="pain-icon">&#9989;</span> None — I'm fine
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4: Budget -->
+            <div class="planner-question hidden-slide" data-step="3">
+                <h2 class="text-xl font-bold mb-6 text-center">What's your budget range?</h2>
+                <div class="space-y-3" role="radiogroup" aria-label="Budget range">
+                    <label class="option-card border border-border rounded-xl p-4 flex items-center gap-4" data-value="500">
+                        <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-seedling text-green-700"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block">Under $500 — Starter</span>
+                            <span class="text-xs text-gray-500">Essential ergonomics on a tight budget</span>
+                        </div>
+                        <input type="radio" name="budget" value="500">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 flex items-center gap-4" data-value="1000">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-leaf text-blue-700"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block">$500 – $1,000 — Smart Value</span>
+                            <span class="text-xs text-gray-500">Quality picks where it matters most</span>
+                        </div>
+                        <input type="radio" name="budget" value="1000">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 flex items-center gap-4" data-value="2500">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-tree text-primary"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block">$1,000 – $2,500 — Professional</span>
+                            <span class="text-xs text-gray-500">Sweet spot for serious remote workers</span>
+                        </div>
+                        <input type="radio" name="budget" value="2500">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 flex items-center gap-4" data-value="5000">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-crown text-amber-700"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block">$2,500 – $5,000 — Premium</span>
+                            <span class="text-xs text-gray-500">Best-in-class components, buy-it-for-life</span>
+                        </div>
+                        <input type="radio" name="budget" value="5000">
+                    </label>
+                    <label class="option-card border border-border rounded-xl p-4 flex items-center gap-4" data-value="5000plus">
+                        <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-gem text-accent"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold block">$5,000+ — No Compromise</span>
+                            <span class="text-xs text-gray-500">Endgame everything — the ultimate setup</span>
+                        </div>
+                        <input type="radio" name="budget" value="5000plus">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="flex justify-between mt-8 no-print">
+                <button type="button" id="prevBtn" onclick="prevStep()" class="px-6 py-3 border border-border rounded-xl font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition disabled:opacity-30" disabled>
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                </button>
+                <button type="button" id="nextBtn" onclick="nextStep()" class="px-6 py-3 bg-primary hover:bg-primary-light text-white font-semibold rounded-xl transition disabled:opacity-50" disabled>
+                    Next <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- RESULTS -->
+        <div id="plannerResults" class="planner-results max-w-2xl mx-auto">
+            <!-- Print header -->
+            <div class="print-only text-center mb-6">
+                <h1 class="text-2xl font-bold">Your Personalized Workspace Plan</h1>
+                <p class="text-sm text-gray-500">Generated by The Workspace Pro — theworkspacepro.com</p>
+                <hr class="my-4">
+            </div>
+
+            <!-- Summary Card -->
+            <div class="bg-gradient-to-br from-primary/10 to-accent/5 rounded-2xl p-6 md:p-8 border border-primary/10 mb-6 print-summary">
+                <h2 class="text-2xl font-display font-bold mb-4">
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i> Your Workspace Profile
+                </h2>
+                <div class="grid grid-cols-2 gap-4 text-sm" id="profileSummary">
+                    <div><span class="text-gray-500">Height:</span><br><span class="font-semibold" id="resultHeight">—</span></div>
+                    <div><span class="text-gray-500">Work Style:</span><br><span class="font-semibold" id="resultWorkstyle">—</span></div>
+                    <div><span class="text-gray-500">Focus Areas:</span><br><span class="font-semibold" id="resultPain">—</span></div>
+                    <div><span class="text-gray-500">Budget Tier:</span><br><span class="font-semibold" id="resultBudget">—</span></div>
+                </div>
+            </div>
+
+            <!-- Ergonomic Settings -->
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-primary"></i> Your Recommended Settings
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4 mb-8" id="settingsGrid">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Product Recommendations -->
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping text-primary"></i> Product Recommendations
+            </h3>
+            <div class="space-y-3 mb-8" id="productRecs">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Related Guides -->
+            <div class="bg-surface dark:bg-zinc-800/30 rounded-xl p-6 border border-border mb-6">
+                <h4 class="font-bold mb-3">&#128214; Deep Dive Guides</h4>
+                <div class="grid md:grid-cols-3 gap-3 text-sm">
+                    <a href="/content/ergonomic-office-chair-buying-guide/" class="p-3 bg-white dark:bg-zinc-800 rounded-lg border border-border hover:border-primary/30 transition text-center">
+                        <i class="fa-solid fa-chair text-primary block text-xl mb-1"></i>
+                        Chair Guide &rarr;
+                    </a>
+                    <a href="/content/home-office-lighting-guide/" class="p-3 bg-white dark:bg-zinc-800 rounded-lg border border-border hover:border-primary/30 transition text-center">
+                        <i class="fa-solid fa-lightbulb text-primary block text-xl mb-1"></i>
+                        Lighting Guide &rarr;
+                    </a>
+                    <a href="/content/ultimate-home-office-setup-guide-2026/" class="p-3 bg-white dark:bg-zinc-800 rounded-lg border border-border hover:border-primary/30 transition text-center">
+                        <i class="fa-solid fa-desk text-primary block text-xl mb-1"></i>
+                        Ultimate Setup Guide &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center no-print">
+                <button onclick="window.print()" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-xl transition shadow-lg">
+                    <i class="fa-solid fa-file-pdf"></i> Save as PDF
+                </button>
+                <a href="/quiz/" class="inline-flex items-center justify-center gap-2 bg-white dark:bg-zinc-800 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-4 rounded-xl transition">
+                    <i class="fa-solid fa-clipboard-list"></i> Take the Full Quiz
+                </a>
+                <a href="/submit-workspace/" class="inline-flex items-center justify-center gap-2 bg-white dark:bg-zinc-800 border-2 border-accent text-accent hover:bg-accent hover:text-white font-bold px-8 py-4 rounded-xl transition">
+                    <i class="fa-solid fa-camera"></i> Share Your Setup
+                </a>
+            </div>
+
+            <p class="text-center text-sm text-gray-500 mt-4 no-print">
+                Browse the <a href="/community-setups/" class="text-primary hover:underline">Community Gallery</a> to see how others set up their workspaces
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-zinc-400 py-16 mt-12 no-print">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-chair text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">Workspace<span class="text-accent">Pro</span></span>
+                    </a>
+                    <p class="text-sm">Helping you build a healthier, more productive home office since 2021.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Guides</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/content/ergonomic-office-chair-buying-guide/" class="hover:text-white transition">Ergonomics</a></li>
+                        <li><a href="/content/productive-workspace-mindset/" class="hover:text-white transition">Productivity</a></li>
+                        <li><a href="/content/home-office-lighting-guide/" class="hover:text-white transition">Lighting</a></li>
+                        <li><a href="/content/cable-management-solutions/" class="hover:text-white transition">Cable Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Tools</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/content/workspace-planner/" class="hover:text-white transition">Workspace Planner</a></li>
+                        <li><a href="/quiz/" class="hover:text-white transition">Setup Quiz</a></li>
+                        <li><a href="/submit-workspace/" class="hover:text-white transition">Submit Your Setup</a></li>
+                        <li><a href="/community-setups/" class="hover:text-white transition">Community Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Connect</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#newsletter" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="/contact/" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-zinc-800 mt-12 pt-8 text-sm text-center">
+                <p>&copy; 2026 The Workspace Pro. All rights reserved. <a href="/privacy/" class="text-accent hover:underline">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Dark Mode =====
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateDarkModeIcons();
+        }
+        function updateDarkModeIcons() {
+            const cls = document.documentElement.classList.contains('dark') ? 'fa-sun' : 'fa-moon';
+            document.querySelectorAll('[id^="darkModeIcon"]').forEach(el => el.className = 'fa-solid ' + cls);
+        }
+        document.addEventListener('DOMContentLoaded', updateDarkModeIcons);
+
+        // ===== Planner State =====
+        let currentStep = 0;
+        const TOTAL_STEPS = 4;
+        let formData = { height: null, workstyle: null, pain: [], budget: null };
+
+        // ===== Step Navigation =====
+        function updateProgress() {
+            const pct = ((currentStep + 1) / TOTAL_STEPS) * 100;
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.querySelectorAll('.step-dot').forEach((dot, i) => {
+                dot.className = 'step-dot';
+                if (i < currentStep) dot.classList.add('completed');
+                else if (i === currentStep) dot.classList.add('active');
+            });
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.planner-question').forEach((el, i) => {
+                el.classList.toggle('hidden-slide', i !== step);
+            });
+            document.getElementById('prevBtn').disabled = step === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (step === TOTAL_STEPS - 1) {
+                if (formData.budget) {
+                    nextBtn.disabled = false;
+                    nextBtn.innerHTML = 'Get My Plan <i class="fa-solid fa-check ml-2"></i>';
+                } else {
+                    nextBtn.disabled = true;
+                    nextBtn.innerHTML = 'Get My Plan <i class="fa-solid fa-check ml-2"></i>';
+                }
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-arrow-right ml-2"></i>';
+                // Enable if current step's field is filled
+                nextBtn.disabled = !isStepComplete(step);
+            }
+            updateProgress();
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function isStepComplete(step) {
+            switch (step) {
+                case 0: return formData.height !== null;
+                case 1: return formData.workstyle !== null;
+                case 2: return true; // pain is optional
+                case 3: return formData.budget !== null;
+                default: return true;
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < TOTAL_STEPS - 1) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                generatePlan();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // ===== Option Selection =====
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const input = this.querySelector('input[type="radio"]');
+                if (!input) return;
+                // Deselect siblings within the same question group
+                const group = this.closest('[role="radiogroup"]') || this.parentElement;
+                group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                input.checked = true;
+                input.dispatchEvent(new Event('change'));
+            });
+        });
+
+        document.querySelectorAll('input[type="radio"][name="height"]').forEach(el => {
+            el.addEventListener('change', function() { formData.height = this.value; updateNextBtn(); });
+        });
+        document.querySelectorAll('input[type="radio"][name="workstyle"]').forEach(el => {
+            el.addEventListener('change', function() { formData.workstyle = this.value; updateNextBtn(); });
+        });
+        document.querySelectorAll('input[type="radio"][name="budget"]').forEach(el => {
+            el.addEventListener('change', function() { formData.budget = this.value; updateNextBtn(); });
+        });
+
+        // Pain points
+        document.querySelectorAll('.pain-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const cb = this.querySelector('input[type="checkbox"]');
+                if (!cb) return;
+                cb.checked = !cb.checked;
+                this.classList.toggle('selected');
+
+                // "None" checkbox clears others
+                if (cb.value === 'none' && cb.checked) {
+                    document.querySelectorAll('.pain-chip').forEach(c => {
+                        if (c.querySelector('input[value="none"]')) return;
+                        c.classList.remove('selected');
+                        c.querySelector('input').checked = false;
+                    });
+                } else if (cb.value !== 'none') {
+                    // Uncheck "none" if another is selected
+                    const noneChip = document.querySelector('.pain-chip input[value="none"]');
+                    if (noneChip && noneChip.checked) {
+                        noneChip.checked = false;
+                        noneChip.closest('.pain-chip').classList.remove('selected');
+                    }
+                }
+
+                formData.pain = [];
+                document.querySelectorAll('.pain-chip').forEach(c => {
+                    if (c.classList.contains('selected')) {
+                        formData.pain.push(c.querySelector('input').value);
+                    }
+                });
+                updateNextBtn();
+            });
+        });
+
+        function updateNextBtn() {
+            const btn = document.getElementById('nextBtn');
+            if (currentStep === TOTAL_STEPS - 1) {
+                btn.disabled = !formData.budget;
+            } else {
+                btn.disabled = !isStepComplete(currentStep);
+            }
+        }
+
+        // ===== Recommendation Engine =====
+        function generatePlan() {
+            // Inputs
+            const height = formData.height;
+            const workstyle = formData.workstyle;
+            const pain = formData.pain;
+            const budget = formData.budget;
+
+            // Display profile
+            const heightLabels = { 'short': "Under 5'4\"", 'average': '5\'4" – 5\'8"', 'tall': '5\'8" – 6\'0"', 'very-tall': '6\'0" – 6\'4"', 'extra-tall': 'Over 6\'4"' };
+            const workstyleLabels = { 'desk': 'Desk Work / Coding', 'creative': 'Creative / Design', 'hybrid': 'Hybrid / Meetings', 'gaming': 'Gaming' };
+            const budgetLabels = { '500': 'Under $500', '1000': '$500 – $1,000', '2500': '$1,000 – $2,500', '5000': '$2,500 – $5,000', '5000plus': '$5,000+' };
+            const painLabels = { 'neck': 'Neck/Upper Back', 'back': 'Lower Back', 'eyes': 'Eye Strain', 'wrists': 'Wrists/Hands', 'none': 'None' };
+            const painDisplay = pain.length ? pain.map(p => painLabels[p] || p).join(', ') : 'None specified';
+
+            document.getElementById('resultHeight').textContent = heightLabels[height] || height;
+            document.getElementById('resultWorkstyle').textContent = workstyleLabels[workstyle] || workstyle;
+            document.getElementById('resultPain').textContent = painDisplay;
+            document.getElementById('resultBudget').textContent = budgetLabels[budget] || budget;
+
+            // Ergonomic settings
+            const settings = getSettings(height, workstyle, pain);
+            const settingsGrid = document.getElementById('settingsGrid');
+            settingsGrid.innerHTML = '';
+            settings.forEach(s => {
+                const card = document.createElement('div');
+                card.className = 'rec-card bg-white dark:bg-zinc-800 border border-border rounded-xl p-5';
+                card.innerHTML = '<div class="flex items-start gap-3">' +
+                    '<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:' + s.color + '20">' +
+                        '<i class="fa-solid ' + s.icon + '" style="color:' + s.color + '"></i>' +
+                    '</div>' +
+                    '<div>' +
+                        '<p class="font-bold text-sm">' + s.label + '</p>' +
+                        '<p class="text-xs text-gray-500 mt-1">' + s.value + '</p>' +
+                        (s.note ? '<p class="text-xs text-primary mt-1">' + s.note + '</p>' : '') +
+                    '</div>' +
+                '</div>';
+                settingsGrid.appendChild(card);
+            });
+
+            // Product recommendations
+            const products = getProducts(workstyle, budget, pain);
+            const productRecs = document.getElementById('productRecs');
+            productRecs.innerHTML = '';
+            products.forEach(p => {
+                const card = document.createElement('a');
+                card.href = p.link;
+                card.className = 'rec-card flex items-center gap-4 bg-white dark:bg-zinc-800 border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all group';
+                card.innerHTML = '' +
+                    '<div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:' + p.color + '20">' +
+                        '<i class="fa-solid ' + p.icon + '" style="color:' + p.color + '"></i>' +
+                    '</div>' +
+                    '<div class="flex-grow">' +
+                        '<p class="font-bold text-sm group-hover:text-primary transition-colors">' + p.name + '</p>' +
+                        '<p class="text-xs text-gray-500">' + p.desc + '</p>' +
+                    '</div>' +
+                    '<div class="text-right flex-shrink-0">' +
+                        '<span class="font-semibold text-sm">' + p.price + '</span>' +
+                        '<span class="block text-xs text-primary group-hover:underline">View &rarr;</span>' +
+                    '</div>' +
+                '</div>';
+                productRecs.appendChild(card);
+            });
+
+            // Show results
+            document.getElementById('plannerForm').style.display = 'none';
+            document.getElementById('progressBar').style.display = 'none';
+            document.getElementById('stepDots').style.display = 'none';
+            document.getElementById('plannerResults').classList.add('visible');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== Settings Calculator =====
+        function getSettings(height, workstyle, pain) {
+            const h = height || 'average';
+            const ws = workstyle || 'desk';
+
+            const deskHeights = {
+                'short': '25" – 27" (63–68 cm)',
+                'average': '27" – 29" (68–74 cm)',
+                'tall': '29" – 31" (74–79 cm)',
+                'very-tall': '31" – 33" (79–84 cm)',
+                'extra-tall': '33" – 36" (84–91 cm)',
+            };
+            const chairHeights = {
+                'short': '16" – 18" seat height. Look for chairs labeled "Size A" (Aeron) or smaller frame.',
+                'average': '17" – 20" seat height. Standard size (Aeron Size B) fits well.',
+                'tall': '18" – 21" seat height. Size B or C depending on build.',
+                'very-tall': '20" – 23" seat height. Look for Size C or XL frames.',
+                'extra-tall': '22" – 25" seat height. Extra-tall cylinders or specific tall models.',
+            };
+            const monitorHeights = {
+                'short': 'Top of screen at 40" – 42" from floor. Arm\'s length (20" – 24" from eyes).',
+                'average': 'Top of screen at 42" – 45" from floor. Arm\'s length (20" – 28" from eyes).',
+                'tall': 'Top of screen at 45" – 48" from floor. Arm\'s length (24" – 30" from eyes).',
+                'very-tall': 'Top of screen at 48" – 51" from floor. Monitor arm strongly recommended.',
+                'extra-tall': 'Top of screen at 51" – 54" from floor. Monitor arm or tall stand required.',
+            };
+            const lightingNotes = {
+                'desk': '500–800 lux task lighting (monitor bar ideal). 6500K for morning focus.',
+                'creative': 'High-CRI lighting (95+). 5000K bias light behind monitor for color accuracy.',
+                'hybrid': '400–600 lux ambient + key light at face level for video calls.',
+                'gaming': 'Ambient 300 lux + RGB bias lighting behind monitor. Avoid overhead glare.',
+            };
+
+            let settings = [
+                { icon: 'fa-desk', label: 'Desk Height', value: deskHeights[h], note: 'Use adjustable or fixed at elbow height (90° angle).', color: '#2a6b7e' },
+                { icon: 'fa-chair', label: 'Chair Setup', value: chairHeights[h], note: 'Feet flat on floor, knees at 90°.', color: '#c86b4a' },
+                { icon: 'fa-display', label: 'Monitor Height', value: monitorHeights[h], note: 'Top bezel at eye level.', color: '#2a6b7e' },
+                { icon: 'fa-lightbulb', label: 'Lighting Levels', value: lightingNotes[ws] || '300–500 lux ambient, 500–800 lux task lighting.', color: '#c86b4a' },
+            ];
+
+            // Pain-specific recommendations
+            if (pain.includes('neck')) {
+                settings.push({ icon: 'fa-head-side', label: 'Neck Relief', value: 'Monitor arm recommended. Top of screen at exact eye level. Consider a headrest for reclining.', color: '#7c3aed' });
+            }
+            if (pain.includes('back')) {
+                settings.push({ icon: 'fa-spine', label: 'Back Support', value: 'Chair with adjustable lumbar (depth + height). Sit-stand desk to alternate postures every 45 min.', color: '#7c3aed' });
+            }
+            if (pain.includes('eyes')) {
+                settings.push({ icon: 'fa-eye', label: 'Eye Strain Relief', value: '500+ lux task light. Bias lighting behind monitor. 20-20-20 rule. Consider 120Hz+ monitor.', color: '#7c3aed' });
+            }
+            if (pain.includes('wrists')) {
+                settings.push({ icon: 'fa-hand', label: 'Wrist Relief', value: 'Ergonomic keyboard (split or tented). Vertical mouse. Wrist rest. Forearms parallel to floor.', color: '#7c3aed' });
+            }
+
+            return settings;
+        }
+
+        // ===== Product Recommendations =====
+        function getProducts(workstyle, budget, pain) {
+            const ws = workstyle || 'desk';
+            const b = budget || '2500';
+            const p = pain || [];
+
+            const allProducts = {
+                // Chairs
+                'chair-budget': { name: 'Staples Hyken', desc: 'Best budget ergonomic chair — mesh back, adjustable lumbar', price: '$199', icon: 'fa-chair', color: '#2a6b7e', link: '/content/ergonomic-office-chair-buying-guide/#hyken', tier: ['500','1000'] },
+                'chair-mid': { name: 'Autonomous ErgoChair Pro', desc: 'Best mid-range — 4D armrests, adjustable lumbar, headrest', price: '$349', icon: 'fa-chair', color: '#2a6b7e', link: '/content/ergonomic-office-chair-buying-guide/#autonomous', tier: ['1000','2500'] },
+                'chair-premium': { name: 'Herman Miller Aeron', desc: 'Gold standard ergonomic chair — 12-year warranty, 3 sizes', price: '$1,395', icon: 'fa-chair', color: '#2a6b7e', link: '/content/ergonomic-office-chair-buying-guide/#aeron', tier: ['5000','5000plus'] },
+                'chair-gaming': { name: 'Secretlab Titan Evo', desc: 'Best gaming chair with proper ergonomics', price: '$449', icon: 'fa-chair', color: '#2a6b7e', link: '/content/ergonomic-office-chair-buying-guide/#secretlab', tier: ['1000','2500'] },
+
+                // Desks
+                'desk-budget': { name: 'Used/Fixed Desk + Converter', desc: 'Budget standing solution — fixed desk + add-on converter', price: '$80–150', icon: 'fa-desk', color: '#c86b4a', link: '/content/standing-desk-benefits-setup/', tier: ['500','1000'] },
+                'desk-mid': { name: 'Uplift V2 72" Standing Desk', desc: 'Dual motor, programmable height, 72" x 30" workspace', price: '$599', icon: 'fa-desk', color: '#c86b4a', link: '/content/standing-desk-benefits-setup/', tier: ['2500','5000'] },
+                'desk-premium': { name: 'Uplift Commercial 80" + Walnut', desc: 'Commercial frame + solid walnut top — 15-year warranty', price: '$999', icon: 'fa-desk', color: '#c86b4a', link: '/content/standing-desk-benefits-setup/', tier: ['5000plus'] },
+
+                // Lighting
+                'light-budget': { name: 'IKEA Tertial + Govee Strip', desc: 'Best value — task lamp + bias lighting for $41 total', price: '$41', icon: 'fa-lightbulb', color: '#c86b4a', link: '/content/home-office-lighting-guide/', tier: ['500','1000'] },
+                'light-mid': { name: 'BenQ ScreenBar Pro', desc: 'Zero-glare monitor light bar — auto dimming, 95+ CRI', price: '$129', icon: 'fa-lightbulb', color: '#c86b4a', link: '/content/home-office-lighting-guide/', tier: ['1000','2500','5000'] },
+                'light-premium': { name: 'Philips Hue Full Ecosystem', desc: 'Complete circadian lighting — hub + bars + bulbs + automations', price: '$449', icon: 'fa-lightbulb', color: '#c86b4a', link: '/content/home-office-lighting-guide/', tier: ['5000','5000plus'] },
+
+                // Monitor
+                'monitor-budget': { name: 'Dell S2421HS 24" 1080p IPS', desc: 'Solid 1080p IPS panel — VESA mountable, good for starter setups', price: '$120', icon: 'fa-display', color: '#2a6b7e', link: '/content/dual-monitor-setup-productivity/', tier: ['500','1000'] },
+                'monitor-mid': { name: 'Dell U2724D 27" QHD IPS', desc: 'Dual 27" QHD — USB-C hub, 120Hz, factory-calibrated', price: '$310', icon: 'fa-display', color: '#2a6b7e', link: '/content/dual-monitor-setup-productivity/', tier: ['2500','5000'] },
+                'monitor-premium': { name: 'Dell U4025QW 40" 5K2K Curved', desc: 'Ultimate productivity — replaces dual monitors, Thunderbolt 4', price: '$1,699', icon: 'fa-display', color: '#2a6b7e', link: '/content/dual-monitor-setup-productivity/', tier: ['5000plus'] },
+                'monitor-creative': { name: 'Dell U2723QE 27" 4K IPS Black', desc: 'Color-critical — DCI-P3, USB-C hub, 4K resolution', price: '$619', icon: 'fa-display', color: '#2a6b7e', link: '/content/dual-monitor-setup-productivity/', tier: ['2500','5000','5000plus'] },
+
+                // Input
+                'input-budget': { name: 'Logitech MK270 Combo', desc: 'Reliable budget wireless keyboard + mouse', price: '$30', icon: 'fa-keyboard', color: '#2a6b7e', link: '/content/ergonomic-accessories-home-office/', tier: ['500','1000'] },
+                'input-mid': { name: 'Keychron Q3 + MX Master 3S', desc: 'Hot-swappable mechanical + best ergo mouse', price: '$230', icon: 'fa-keyboard', color: '#2a6b7e', link: '/content/ergonomic-accessories-home-office/', tier: ['2500','5000'] },
+                'input-premium': { name: 'HHKB Hybrid Type-S + MX Vertical', desc: 'Topre electrostatic silent typing + vertical ergo mouse', price: '$487', icon: 'fa-keyboard', color: '#2a6b7e', link: '/content/ergonomic-accessories-home-office/', tier: ['5000plus'] },
+
+                // Audio
+                'audio-mid': { name: 'ATH-M50x + Blue Yeti Nano', desc: 'Studio headphones + USB condenser mic — meeting ready', price: '$199', icon: 'fa-headphones', color: '#2a6b7e', link: '/content/ergonomic-accessories-home-office/', tier: ['2500','5000'] },
+                'audio-premium': { name: 'Sonos Era 100 + Shure MV7 + XM5', desc: 'Best-in-class audio — room speaker, broadcast mic, ANC cans', price: '$957', icon: 'fa-headphones', color: '#2a6b7e', link: '/content/ergonomic-accessories-home-office/', tier: ['5000plus'] },
+            };
+
+            // Determine budget tier key
+            const tierMap = { '500': '500', '1000': '1000', '2500': '2500', '5000': '5000', '5000plus': '5000plus' };
+            const budgetKey = tierMap[b] || '2500';
+
+            // Select products based on workstyle + budget + pain
+            let picks = [];
+
+            // Chair pick
+            if (ws === 'gaming') {
+                picks.push(allProducts['chair-gaming'] || allProducts['chair-mid']);
+            } else if (budgetKey === '500' || budgetKey === '1000') {
+                picks.push(allProducts['chair-budget']);
+            } else if (budgetKey === '2500') {
+                picks.push(allProducts['chair-mid']);
+            } else {
+                picks.push(allProducts['chair-premium']);
+            }
+
+            // Desk pick
+            if (budgetKey === '500' || budgetKey === '1000') {
+                picks.push(allProducts['desk-budget']);
+            } else if (budgetKey === '2500' || budgetKey === '5000') {
+                picks.push(allProducts['desk-mid']);
+            } else {
+                picks.push(allProducts['desk-premium']);
+            }
+
+            // Lighting pick
+            if (budgetKey === '500' || budgetKey === '1000') {
+                picks.push(allProducts['light-budget']);
+            } else if (budgetKey === '2500') {
+                picks.push(allProducts['light-mid']);
+            } else {
+                picks.push(allProducts['light-premium']);
+            }
+
+            // Monitor pick
+            if (ws === 'creative' && (budgetKey === '2500' || budgetKey === '5000')) {
+                picks.push(allProducts['monitor-creative']);
+            } else if (budgetKey === '500' || budgetKey === '1000') {
+                picks.push(allProducts['monitor-budget']);
+            } else if (budgetKey === '2500' || budgetKey === '5000') {
+                picks.push(allProducts['monitor-mid']);
+            } else {
+                picks.push(allProducts['monitor-premium']);
+            }
+
+            // Input pick
+            if (budgetKey === '500' || budgetKey === '1000') {
+                picks.push(allProducts['input-budget']);
+            } else if (budgetKey === '2500' || budgetKey === '5000') {
+                picks.push(allProducts['input-mid']);
+            } else {
+                picks.push(allProducts['input-premium']);
+            }
+
+            // Audio pick (skip for budget tier)
+            if (budgetKey === '2500' || budgetKey === '5000') {
+                picks.push(allProducts['audio-mid']);
+            } else if (budgetKey === '5000plus') {
+                picks.push(allProducts['audio-premium']);
+            }
+
+            // Pain-specific add-ons
+            if (p.includes('back') && budgetKey !== '500') {
+                picks.push({ name: 'Anti-Fatigue Mat', desc: 'Essential for standing desk transitions — reduces back strain', price: '$40–60', icon: 'fa-mat', color: '#7c3aed', link: '/content/standing-desk-benefits-setup/' });
+            }
+            if (p.includes('wrists')) {
+                picks.push({ name: 'Ergonomic Wrist Rest', desc: 'Gel wrist rest + tented keyboard for neutral wrist position', price: '$20–40', icon: 'fa-hand', color: '#7c3aed', link: '/content/ergonomic-accessories-home-office/' });
+            }
+
+            return picks;
+        }
+
+        // Handle both click and touch for reliable mobile menu open
+        var mmBtn = document.querySelector('button[aria-label="Toggle mobile menu"]');
+        if (mmBtn) {
+            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); this.click(); }, { passive: false });
+        }
+
+        // Close mobile menu on click outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.querySelector('button[aria-label="Toggle mobile menu"]');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
+            }
+        });
+
+        // Init
+        showStep(0);
+    </script>
+</body>
+</html>

@@ -779,6 +779,12 @@
             if (menu.classList.contains('hidden')) { menu.classList.remove('hidden'); button.innerHTML = '<i class="fa-solid fa-xmark"></i>'; }
             else { menu.classList.add('hidden'); button.innerHTML = '<i class="fa-solid fa-bars"></i>'; }
         }
+        // Handle touch events for reliable mobile menu open
+        var mmBtn = document.getElementById('mobileMenuButton');
+        if (mmBtn) {
+            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+        }
+
         function toggleSearch() {
             const overlay = document.getElementById('search-overlay');
             if (overlay.classList.contains('hidden')) { overlay.classList.remove('hidden'); document.getElementById('search-input').focus(); }

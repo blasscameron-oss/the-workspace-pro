@@ -82,10 +82,100 @@
         .gradient-accent { background: linear-gradient(135deg, #2a6b7e 0%, #c86b4a 100%); }
         .product-card { transition: all 0.3s ease; }
         .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15); }
+        /* ===== Print Styles for PDF Checklist ===== */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+            .no-print, nav, footer, .sticky-bar, #quizSection, #newsletterSection,
+            .share-result-btn, #copyShareLinkBtn, #downloadPlanBtn, #downloadChecklistBtn,
+            .result-card > *:not(.print-checklist-content),
+            #resultsSection > *:not(#checklistContainer) {
+                display: none !important;
+            }
+            #checklistContainer, .print-checklist-content, #checklistSection {
+                display: block !important;
+            }
+            #resultsSection {
+                display: block !important;
+                padding: 0 !important;
+            }
+            .print-checklist-content {
+                page-break-after: avoid;
+            }
+            .checklist-card {
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 16px;
+                margin-bottom: 12px;
+                break-inside: avoid;
+            }
+            .checklist-item {
+                padding: 6px 0;
+                border-bottom: 1px dashed #ddd;
+            }
+            .checklist-item:last-child { border-bottom: none; }
+            .checklist-checkbox {
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                border: 2px solid #2a6b7e;
+                border-radius: 3px;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+            .step-number {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: #2a6b7e;
+                color: white;
+                font-weight: bold;
+                font-size: 12px;
+                margin-right: 8px;
+            }
+            .product-chip {
+                display: inline-block;
+                background: #f0f4f4;
+                border: 1px solid #2a6b7e;
+                border-radius: 4px;
+                padding: 2px 8px;
+                margin: 2px;
+                font-size: 10pt;
+            }
+            @page {
+                margin: 0.6in;
+            }
+            h1 { font-size: 18pt; }
+            h2 { font-size: 14pt; }
+            h3 { font-size: 12pt; }
+            a { color: #2a6b7e !important; text-decoration: underline !important; }
+            .print-header { text-align: center; margin-bottom: 20px; }
+            .print-header img { max-width: 180px; }
+            .print-header h1 { margin: 8px 0 4px; }
+            .print-header p { color: #666; font-size: 10pt; margin: 0; }
+        }
+        #checklistContainer { display: none; }
+        #checklistContainer.visible { display: block; }
+
         @keyframes slideInRight { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .slide-in-right { animation: slideInRight 0.4s ease-out; }
         @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .scale-in { animation: scaleIn 0.3s ease-out; }
+        @keyframes celebratePop { 0% { transform: scale(0); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        .celebrate-pop { animation: celebratePop 0.5s ease-out; }
+        @media (max-width: 640px) {
+            .share-result-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; }
+            #personaHero .text-3xl { font-size: 1.75rem; line-height: 2rem; }
+            #productCardsContainer .grid { gap: 0.75rem; }
+            .gradient-accent.p-8 { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col">
@@ -134,7 +224,7 @@
                 </nav>
                 
                 <!-- Mobile menu button -->
-                <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Open menu">
+                <button id="mobileMenuToggle" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Open menu">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -601,11 +691,33 @@
                                         <input type="email" id="quizEmailInput" placeholder="your@email.com" required class="flex-grow p-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary">
                                         <input type="hidden" id="quizPersonaHidden" name="persona" value="">
                                         <input type="hidden" id="quizAnswersHidden" name="answers" value="">
+                                        <label class="flex items-start gap-2 text-xs text-text-light mb-2">
+                                            <input type="checkbox" id="quizEmailConsent" checked class="mt-0.5">
+                                            <span>I agree to receive personalized tips and product recommendations. Unsubscribe anytime. <a href="/content/privacy/" class="text-primary hover:underline">Privacy policy</a></span>
+                                        </label>
                                         <button type="submit" class="bg-secondary hover:bg-secondary-light text-white font-semibold py-3 px-6 rounded-lg transition-colors whitespace-nowrap">
                                             <i class="fas fa-download mr-2"></i> Send My Plan
                                         </button>
                                     </form>
-                                    <p id="quizEmailMessage" class="text-xs text-green-600 mt-2 hidden"><i class="fas fa-check mr-1"></i> Thanks! Your personalized plan is on its way.</p>
+                                    <div id="quizEmailSuccess" class="hidden scale-in">
+                                        <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6 text-center">
+                                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-800/30 flex items-center justify-center">
+                                                <i class="fas fa-party-horn text-green-600 dark:text-green-400 text-2xl"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold text-text mb-2">🎉 You're All Set!</h4>
+                                            <p class="text-text-light mb-1">Your personalized workspace plan is on its way to your inbox.</p>
+                                            <p class="text-sm text-text-light mb-4">Check your email for a detailed checklist, product links, and exclusive tips.</p>
+                                            <div class="flex flex-wrap justify-center gap-3">
+                                                <a href="/content/ultimate-home-office-setup-guide-2026/" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white text-sm font-semibold py-2 px-4 rounded-lg transition-colors">
+                                                    <i class="fas fa-book-open"></i> Read the Full Guide
+                                                </a>
+                                                <a href="/content/community-setups/" class="inline-flex items-center gap-2 bg-surface hover:bg-border text-text text-sm font-semibold py-2 px-4 rounded-lg border border-border transition-colors">
+                                                    <i class="fas fa-images"></i> Browse Community Setups
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p id="quizEmailMessage" class="text-xs text-red-600 mt-2 hidden"><i class="fas fa-exclamation-circle mr-1"></i> Something went wrong. Please try again.</p>
                                 </div>
                             </div>
                         </div>
@@ -614,18 +726,19 @@
                 
                 <!-- Download / Copy Plan -->
                 <div class="mb-8">
-                    <div class="bg-card rounded-2xl shadow-lg border border-border p-6">
-                        <div class="flex flex-col md:flex-row md:items-center gap-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                    <i class="fas fa-file-download text-primary text-xl"></i>
+                    <div class="bg-card rounded-2xl shadow-lg border border-border p-5 md:p-6">
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-file-download text-primary text-lg md:text-xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-text">Download Your Personalized Plan</h4>
-                                    <p class="text-text-light text-sm">Copy a text summary to save or share</p>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-text text-sm md:text-base">Save Your Personalized Plan</h4>
+                                    <p class="text-text-light text-xs md:text-sm">Copy a text summary to save, share, or reference later</p>
                                 </div>
                             </div>
-                            <button id="downloadPlanBtn" class="bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg transition-colors"><i class="fas fa-copy mr-2"></i> Copy Plan Summary</button>
+                            <button id="downloadPlanBtn" class="w-full md:w-auto bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg transition-colors text-sm md:text-base"><i class="fas fa-copy mr-2"></i> Copy Plan Summary</button>
+                            <button id="downloadChecklistBtn" onclick="generateChecklist()" class="w-full md:w-auto border-2 border-accent text-accent hover:bg-accent hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors text-sm md:text-base"><i class="fas fa-file-pdf mr-2"></i> Download Printable Checklist</button>
                         </div>
                         <div id="copySuccess" class="mt-3 text-sm text-green-600 hidden"><i class="fas fa-check-circle mr-1"></i> Plan copied to clipboard!</div>
                     </div>
@@ -633,19 +746,19 @@
                 
                 <!-- Share Results -->
                 <div class="mb-8 text-center">
-                    <h4 class="text-lg font-bold text-text mb-3">Share Your Results</h4>
-                    <div class="flex justify-center gap-4">
-                        <button class="share-result-btn bg-[#1DA1F2] hover:bg-[#0d8bd9] text-white p-3 rounded-full transition-colors" data-network="twitter" aria-label="Share on Twitter">
-                            <i class="fab fa-twitter text-xl"></i>
+                    <h4 class="text-lg font-bold text-text mb-4">Share Your Results</h4>
+                    <div class="flex justify-center flex-wrap gap-3 md:gap-4">
+                        <button class="share-result-btn bg-[#1DA1F2] hover:bg-[#0d8bd9] text-white w-12 h-12 md:w-14 md:h-14 rounded-full transition-colors flex items-center justify-center" data-network="twitter" aria-label="Share on Twitter">
+                            <i class="fab fa-twitter text-lg md:text-xl"></i>
                         </button>
-                        <button class="share-result-btn bg-[#0A66C2] hover:bg-[#09569e] text-white p-3 rounded-full transition-colors" data-network="linkedin" aria-label="Share on LinkedIn">
-                            <i class="fab fa-linkedin text-xl"></i>
+                        <button class="share-result-btn bg-[#0A66C2] hover:bg-[#09569e] text-white w-12 h-12 md:w-14 md:h-14 rounded-full transition-colors flex items-center justify-center" data-network="linkedin" aria-label="Share on LinkedIn">
+                            <i class="fab fa-linkedin text-lg md:text-xl"></i>
                         </button>
-                        <button class="share-result-btn bg-[#1877F2] hover:bg-[#166fe5] text-white p-3 rounded-full transition-colors" data-network="facebook" aria-label="Share on Facebook">
-                            <i class="fab fa-facebook text-xl"></i>
+                        <button class="share-result-btn bg-[#1877F2] hover:bg-[#166fe5] text-white w-12 h-12 md:w-14 md:h-14 rounded-full transition-colors flex items-center justify-center" data-network="facebook" aria-label="Share on Facebook">
+                            <i class="fab fa-facebook text-lg md:text-xl"></i>
                         </button>
-                        <button id="copyShareLinkBtn" class="bg-card border border-border hover:bg-surface text-text p-3 rounded-full transition-colors" aria-label="Copy share link">
-                            <i class="fas fa-link text-xl"></i>
+                        <button id="copyShareLinkBtn" class="bg-card border border-border hover:bg-surface text-text w-12 h-12 md:w-14 md:h-14 rounded-full transition-colors flex items-center justify-center" aria-label="Copy share link">
+                            <i class="fas fa-link text-lg md:text-xl"></i>
                         </button>
                     </div>
                 </div>
@@ -670,6 +783,70 @@
                 </form>
             </div>
         </section>
+        
+        <!-- CHECKLIST SECTION (hidden, shown when printing/downloading) -->
+        <div id="checklistContainer" class="container mx-auto px-4 py-8 max-w-4xl">
+            <div id="checklistSection" class="print-checklist-content">
+                <!-- Print-only header with logo -->
+                <div class="print-header no-print" style="display:none">
+                    <img src="/static/images/logo-print.png" alt="The Workspace Pro" style="max-width:180px">
+                </div>
+                <div class="print-header">
+                    <h1 class="font-serif font-bold text-2xl md:text-3xl" style="font-family: 'Playfair Display', serif;">
+                        Your Personalized Workspace Checklist
+                    </h1>
+                    <p id="checklistPersonaLine" class="text-gray-600" style="font-size: 11pt;">Generated by The Workspace Pro</p>
+                    <hr style="margin: 12px auto; max-width: 200px; border-color: #2a6b7e;">
+                </div>
+                
+                <!-- Profile Summary -->
+                <div class="checklist-card" style="background:#f8fafc;">
+                    <h2><span class="step-number" style="background:#2a6b7e;">P</span> Your Profile</h2>
+                    <div id="checklistProfile" style="margin: 8px 0 0 36px;">
+                        <p><strong>Workspace Personality:</strong> <span id="checkPersonaName">—</span></p>
+                        <p><strong>Priority Focus:</strong> <span id="checkPriority">—</span></p>
+                        <p><strong>Description:</strong> <span id="checkDescription" style="color:#555;">—</span></p>
+                    </div>
+                </div>
+                
+                <!-- Setup Checklist -->
+                <div class="checklist-card">
+                    <h2><span class="step-number" style="background:#2a6b7e;">1</span> Ergonomic Setup Steps</h2>
+                    <div id="checklistSteps" style="margin: 8px 0 0 36px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Product Recommendations -->
+                <div class="checklist-card">
+                    <h2><span class="step-number" style="background:#2a6b7e;">2</span> Recommended Products</h2>
+                    <div id="checklistProducts" style="margin: 8px 0 0 36px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Daily Checklist -->
+                <div class="checklist-card">
+                    <h2><span class="step-number" style="background:#2a6b7e;">3</span> Daily &amp; Weekly Habits</h2>
+                    <div id="checklistHabits" style="margin: 8px 0 0 36px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Deep Dive Links -->
+                <div class="checklist-card" style="page-break-inside: avoid;">
+                    <h2><span class="step-number" style="background:#2a6b7e;">4</span> Full Guides &amp; Next Steps</h2>
+                    <div id="checklistLinks" style="margin: 8px 0 0 36px; font-size: 10pt;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <div style="text-align:center; margin-top:24px; color:#888; font-size:9pt; border-top:1px solid #ddd; padding-top:12px;">
+                    Generated at The Workspace Pro — <span id="checklistDate"></span><br>
+                    Visit <a href="https://www.theworkspacepro.com" style="color:#2a6b7e;">theworkspacepro.com</a> for more guides and tools
+                </div>
+            </div>
+        </div>
     </main>
     
     <!-- Footer -->
@@ -825,28 +1002,28 @@
         // PERSONA DATA
         // ============================================
         const personaScores = {
-            seated: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 0, hybrid_hustler: 1 },
-            mixed: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
-            active: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 0, creative_spirit: 2, hybrid_hustler: 1 },
-            budget: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 3, creative_spirit: 1, hybrid_hustler: 0 },
-            midrange: { productivity_pro: 1, ergo_enthusiast: 2, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 1 },
-            premium: { productivity_pro: 2, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
-            small: { productivity_pro: 1, ergo_enthusiast: 0, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 0 },
-            medium: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 1 },
-            large: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 1 },
-            neck: { productivity_pro: 0, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 1 },
-            back: { productivity_pro: 1, ergo_enthusiast: 2, budget_builder: 1, creative_spirit: 0, hybrid_hustler: 1 },
-            eyes: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 1 },
-            wrist: { productivity_pro: 0, ergo_enthusiast: 1, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 2 },
-            light: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 0 },
-            moderate: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 1 },
-            heavy: { productivity_pro: 2, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 0, hybrid_hustler: 2 },
-            want: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
-            maybe: { productivity_pro: 0, ergo_enthusiast: 1, budget_builder: 1, creative_spirit: 0, hybrid_hustler: 1 },
-            no: { productivity_pro: 1, ergo_enthusiast: 0, budget_builder: 1, creative_spirit: 0, hybrid_hustler: 0 },
-            functional: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 2, creative_spirit: 0, hybrid_hustler: 0 },
-            balanced: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 1 },
-            design: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 0, creative_spirit: 3, hybrid_hustler: 2 }
+            seated: { productivity_pro: 3, ergo_enthusiast: 2, budget_builder: 1, creative_spirit: 0, hybrid_hustler: 0 },
+            mixed: { productivity_pro: 1, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 4 },
+            active: { productivity_pro: 0, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 3, hybrid_hustler: 2 },
+            budget: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 5, creative_spirit: 1, hybrid_hustler: 0 },
+            midrange: { productivity_pro: 2, ergo_enthusiast: 3, budget_builder: 2, creative_spirit: 1, hybrid_hustler: 1 },
+            premium: { productivity_pro: 3, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
+            small: { productivity_pro: 1, ergo_enthusiast: 0, budget_builder: 4, creative_spirit: 2, hybrid_hustler: 0 },
+            medium: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 2 },
+            large: { productivity_pro: 3, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
+            neck: { productivity_pro: 0, ergo_enthusiast: 4, budget_builder: 0, creative_spirit: 0, hybrid_hustler: 1 },
+            back: { productivity_pro: 0, ergo_enthusiast: 3, budget_builder: 2, creative_spirit: 0, hybrid_hustler: 1 },
+            eyes: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 1, creative_spirit: 1, hybrid_hustler: 1 },
+            wrist: { productivity_pro: 0, ergo_enthusiast: 1, budget_builder: 2, creative_spirit: 1, hybrid_hustler: 3 },
+            light: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 3, creative_spirit: 2, hybrid_hustler: 0 },
+            moderate: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 2 },
+            heavy: { productivity_pro: 3, ergo_enthusiast: 3, budget_builder: 0, creative_spirit: 0, hybrid_hustler: 2 },
+            want: { productivity_pro: 2, ergo_enthusiast: 1, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 3 },
+            maybe: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 3, creative_spirit: 1, hybrid_hustler: 1 },
+            no: { productivity_pro: 1, ergo_enthusiast: 0, budget_builder: 4, creative_spirit: 0, hybrid_hustler: 0 },
+            functional: { productivity_pro: 4, ergo_enthusiast: 1, budget_builder: 3, creative_spirit: 0, hybrid_hustler: 0 },
+            balanced: { productivity_pro: 1, ergo_enthusiast: 2, budget_builder: 0, creative_spirit: 1, hybrid_hustler: 3 },
+            design: { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 0, creative_spirit: 5, hybrid_hustler: 2 }
         };
         
         const personas = {
@@ -857,10 +1034,10 @@
                 priority: "Premium standing desk, monitor arms, cable management",
                 guide: "/content/ultimate-home-office-setup-guide-2026/",
                 products: [
-                    { name: "2026 Electric Standing Desk", price: "$449.99", cat: "Desk", link: "/deals/#desk", img: "/static/images/products/bekant-desk-800.jpg", badge: "Top Pick" },
-                    { name: "Ergonomic Mesh Chair Pro", price: "$699.99", cat: "Chair", link: "/deals/#chair", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Best Seller" },
-                    { name: '32" 4K IPS Monitor', price: "$529.99", cat: "Monitor", link: "/deals/#monitor", img: "/static/images/products/dell-monitor-800.jpg", badge: "Editor's Choice" },
-                    { name: "Premium Monitor Arm", price: "$129.99", cat: "Accessory", link: "/deals/#arm", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Essential" }
+                    { name: "2026 Electric Standing Desk", price: "$449.99", cat: "Desk", link: "/content/best-standing-desks-under-500/", img: "/static/images/products/bekant-desk-800.jpg", badge: "Top Pick" },
+                    { name: "Ergonomic Mesh Chair Pro", price: "$699.99", cat: "Chair", link: "/content/best-ergonomic-office-chairs-2026/", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Best Seller" },
+                    { name: '32" 4K IPS Monitor', price: "$529.99", cat: "Monitor", link: "/content/ultimate-home-office-setup-guide-2026/#choosing-the-right-monitor", img: "/static/images/products/dell-monitor-800.jpg", badge: "Editor's Choice" },
+                    { name: "Premium Monitor Arm", price: "$129.99", cat: "Accessory", link: "/content/ergonomic-accessories-home-office/", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Essential" }
                 ],
                 tips: [
                     "Keep your most-used items within arm's reach using a desk organizer",
@@ -874,10 +1051,10 @@
                 priority: "High-end chair, monitor arms, proper lighting",
                 guide: "/content/ergonomic-office-chair-buying-guide/",
                 products: [
-                    { name: "Herman Miller Aeron", price: "$1,395", cat: "Chair", link: "/deals/#aeron", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Gold Standard" },
-                    { name: "Adjustable Monitor Arm", price: "$89.99", cat: "Accessory", link: "/deals/#arm", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Recommended" },
-                    { name: "Bias Lighting Kit", price: "$34.99", cat: "Lighting", link: "/deals/#lighting", img: "/static/images/products/bekant-desk-800.jpg", badge: "Budget Friendly" },
-                    { name: "Logitech Ergo K860 Keyboard", price: "$129.99", cat: "Accessory", link: "/deals/#keyboard", img: "/static/images/products/ergo-keyboard-2026.jpg", badge: "Ergonomic" }
+                    { name: "Herman Miller Aeron", price: "$1,395", cat: "Chair", link: "/content/best-ergonomic-office-chairs-2026/#top-picks", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Gold Standard" },
+                    { name: "Adjustable Monitor Arm", price: "$89.99", cat: "Accessory", link: "/content/ergonomic-accessories-home-office/", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Recommended" },
+                    { name: "Bias Lighting Kit", price: "$34.99", cat: "Lighting", link: "/content/home-office-lighting-guide/", img: "/static/images/products/bekant-desk-800.jpg", badge: "Budget Friendly" },
+                    { name: "Logitech Ergo K860 Keyboard", price: "$129.99", cat: "Accessory", link: "/content/ergonomic-accessories-home-office/", img: "/static/images/products/ergo-keyboard-2026.jpg", badge: "Ergonomic" }
                 ],
                 tips: [
                     "Adjust your chair so your thighs are parallel to the floor with feet flat",
@@ -891,10 +1068,10 @@
                 priority: "Best-value chair, functional desk, smart allocations",
                 guide: "/content/home-office-budget-setup-under-1000/",
                 products: [
-                    { name: "Staples Hyken Mesh Chair", price: "$199.99", cat: "Chair", link: "/deals/#hyken", img: "/static/images/products/hyken-chair-800.jpg", badge: "Best Value" },
-                    { name: "IKEA BEKANT Sit/Stand Desk", price: "$449.99", cat: "Desk", link: "/deals/#desk", img: "/static/images/products/bekant-desk-800.jpg", badge: "Great Deal" },
-                    { name: "Basic Monitor Arm", price: "$79.99", cat: "Accessory", link: "/deals/#arm", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Affordable" },
-                    { name: "LED Desk Lamp", price: "$29.99", cat: "Lighting", link: "/deals/#lighting", img: "/static/images/products/dell-monitor-800.jpg", badge: "Budget" }
+                    { name: "Staples Hyken Mesh Chair", price: "$199.99", cat: "Chair", link: "/content/best-ergonomic-office-chairs-2026/#budget-picks", img: "/static/images/products/hyken-chair-800.jpg", badge: "Best Value" },
+                    { name: "IKEA BEKANT Sit/Stand Desk", price: "$449.99", cat: "Desk", link: "/content/best-standing-desks-under-500/", img: "/static/images/products/bekant-desk-800.jpg", badge: "Great Deal" },
+                    { name: "Basic Monitor Arm", price: "$79.99", cat: "Accessory", link: "/content/ergonomic-accessories-home-office/", img: "/static/images/products/monitor-arm-2026.jpg", badge: "Affordable" },
+                    { name: "LED Desk Lamp", price: "$29.99", cat: "Lighting", link: "/content/home-office-lighting-guide/", img: "/static/images/products/dell-monitor-800.jpg", badge: "Budget" }
                 ],
                 tips: [
                     "A $30 monitor riser made from stacked books works as well as a $100 one",
@@ -908,10 +1085,10 @@
                 priority: "Beautiful desk, great lighting, design-forward accessories",
                 guide: "/content/small-home-office-organization-hacks/",
                 products: [
-                    { name: "Jarvis Standing Desk Bamboo Top", price: "$599.99", cat: "Desk", link: "/deals/#desk", img: "/static/images/products/bekant-desk-800.jpg", badge: "Beautiful" },
-                    { name: "Branch Ergonomic Chair", price: "$349", cat: "Chair", link: "/deals/#branch", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Stylish" },
-                    { name: "Monitor Light Bar", price: "$89.99", cat: "Lighting", link: "/deals/#lighting", img: "/static/images/products/dell-monitor-800.jpg", badge: "Design Forward" },
-                    { name: "Cable Management Kit", price: "$24.99", cat: "Accessory", link: "/deals/#cable", img: "/static/images/products/ergo-keyboard-2026.jpg", badge: "Clean Setup" }
+                    { name: "Jarvis Standing Desk Bamboo Top", price: "$599.99", cat: "Desk", link: "/content/best-standing-desks-under-500/", img: "/static/images/products/bekant-desk-800.jpg", badge: "Beautiful" },
+                    { name: "Branch Ergonomic Chair", price: "$349", cat: "Chair", link: "/content/best-ergonomic-office-chairs-2026/", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Stylish" },
+                    { name: "Monitor Light Bar", price: "$89.99", cat: "Lighting", link: "/content/home-office-lighting-guide/", img: "/static/images/products/dell-monitor-800.jpg", badge: "Design Forward" },
+                    { name: "Cable Management Kit", price: "$24.99", cat: "Accessory", link: "/content/cable-management-solutions/", img: "/static/images/products/ergo-keyboard-2026.jpg", badge: "Clean Setup" }
                 ],
                 tips: [
                     "Add a plant — studies show greenery boosts creativity by 15%",
@@ -925,10 +1102,10 @@
                 priority: "Standing desk, adjustable chair, versatile setup",
                 guide: "/content/ultimate-home-office-setup-guide-2026/",
                 products: [
-                    { name: "Autonomous SmartDesk Core", price: "$449", cat: "Desk", link: "/deals/#desk", img: "/static/images/products/bekant-desk-800.jpg", badge: "Versatile" },
-                    { name: "Steelcase Gesture", price: "$1,499", cat: "Chair", link: "/deals/#gesture", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Premium" },
-                    { name: '34" Ultrawide Monitor', price: "$649.99", cat: "Monitor", link: "/deals/#monitor", img: "/static/images/products/dell-monitor-800.jpg", badge: "Multitasker" },
-                    { name: "Standing Desk Mat", price: "$59.99", cat: "Accessory", link: "/deals/#mat", img: "/static/images/products/hyken-chair-800.jpg", badge: "Comfort" }
+                    { name: "Autonomous SmartDesk Core", price: "$449", cat: "Desk", link: "/content/best-standing-desks-under-500/", img: "/static/images/products/bekant-desk-800.jpg", badge: "Versatile" },
+                    { name: "Steelcase Gesture", price: "$1,499", cat: "Chair", link: "/content/best-ergonomic-office-chairs-2026/#top-picks", img: "/static/images/products/ergo-chair-2026.jpg", badge: "Premium" },
+                    { name: '34" Ultrawide Monitor', price: "$649.99", cat: "Monitor", link: "/content/ultimate-home-office-setup-guide-2026/#choosing-the-right-monitor", img: "/static/images/products/dell-monitor-800.jpg", badge: "Multitasker" },
+                    { name: "Standing Desk Mat", price: "$59.99", cat: "Accessory", link: "/content/ergonomic-accessories-home-office/", img: "/static/images/products/hyken-chair-800.jpg", badge: "Comfort" }
                 ],
                 tips: [
                     "Alternate between sitting and standing every 45-60 minutes",
@@ -973,6 +1150,8 @@
         // CORE QUIZ FUNCTIONS
         // ============================================
         
+        let currentPersona = null;
+
         function calculatePersona(answers) {
             const scores = { productivity_pro: 0, ergo_enthusiast: 0, budget_builder: 0, creative_spirit: 0, hybrid_hustler: 0 };
             
@@ -1054,7 +1233,7 @@
         function updateNextButton(index) {
             const q = document.getElementById('question-' + index);
             const nextBtn = q ? q.querySelector('.next-btn') : null;
-            const resultsBtn = q ? q.getElementById('seeResultsBtn') : null;
+            const resultsBtn = q ? q.querySelector('#seeResultsBtn') : null;
             const qKey = questionKeys[index];
             
             if (nextBtn) {
@@ -1341,6 +1520,12 @@
             const persona = document.getElementById('quizPersonaHidden').value;
             const answersData = document.getElementById('quizAnswersHidden').value;
             
+            const consent = document.getElementById('quizEmailConsent');
+            if (consent && !consent.checked) {
+                alert('Please agree to the privacy policy to receive your plan.');
+                return;
+            }
+            
             if (!email) return;
             
             // Send to Formspree
@@ -1354,10 +1539,11 @@
                     _subject: 'New Quiz Result: ' + (personas[persona] ? personas[persona].name : persona)
                 })
             }).then(r => {
-                document.getElementById('quizEmailMessage').classList.remove('hidden');
+                document.getElementById('quizEmailForm').classList.add('hidden');
+                document.getElementById('quizEmailSuccess').classList.remove('hidden');
+                document.getElementById('quizEmailSuccess').classList.add('celebrate-pop');
                 document.getElementById('quizEmailForm').reset();
             }).catch(err => {
-                document.getElementById('quizEmailMessage').textContent = 'Something went wrong. Please try again.';
                 document.getElementById('quizEmailMessage').classList.remove('hidden');
             });
         });
@@ -1474,16 +1660,33 @@
         // ============================================
         // MOBILE MENU
         // ============================================
-        (function() {
-            const toggle = document.getElementById('mobileMenuToggle');
+        function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            toggle.addEventListener('click', function() {
-                menu.classList.toggle('hidden');
-                const icon = toggle.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-        })();
+            if (!menu) return;
+            menu.classList.toggle('hidden');
+            const btn = document.getElementById('mobileMenuToggle');
+            if (btn) {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            }
+        }
+        // Handle both click and touch for reliable mobile menu open
+        var mmBtn = document.getElementById('mobileMenuToggle');
+        if (mmBtn) {
+            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+        }
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('mobileMenuToggle');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.add('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
+            }
+        });
         
         // ============================================
         // SEARCH OVERLAY
@@ -1587,6 +1790,189 @@
         if (!loadFromHash()) {
             restoreFromLocalStorage();
         }
+        // ===== PDF CHECKLIST GENERATOR =====
+        function generateChecklist() {
+            const personaKey = window.currentPersona || 'productivity_pro';
+            const personaData = personas[personaKey];
+            if (!personaData) return;
+            
+            // Profile
+            document.getElementById('checkPersonaName').textContent = personaData.name;
+            document.getElementById('checkPriority').textContent = personaData.priority;
+            document.getElementById('checkDescription').textContent = personaData.description;
+            document.getElementById('checklistPersonaLine').innerHTML = 'Your Workspace Personality: <strong>' + personaData.name + '</strong> &mdash; theworkspacepro.com/quiz';
+            
+            // Steps
+            const steps = getSetupSteps(personaKey);
+            const stepsHtml = steps.map((s, i) => 
+                '<div class="checklist-item" style="padding:5px 0;">' +
+                '<span class="checklist-checkbox"></span>' +
+                '<span style="font-weight:600;">' + (i+1) + '.</span> ' + s +
+                '</div>'
+            ).join('');
+            document.getElementById('checklistSteps').innerHTML = stepsHtml;
+            
+            // Products
+            const prodsHtml = personaData.products.map(p =>
+                '<span class="product-chip">' + p.name + ' (' + p.price + ')</span>'
+            ).join(' ');
+            const tipsHtml = personaData.tips.map((t, i) =>
+                '<div class="checklist-item" style="padding:4px 0;">' +
+                '<span style="color:#2a6b7e;margin-right:6px;">&#8226;</span>' + t +
+                '</div>'
+            ).join('');
+            document.getElementById('checklistProducts').innerHTML = 
+                '<p style="margin-bottom:6px;"><strong>Top Picks for You:</strong></p>' +
+                '<div style="line-height:2;">' + prodsHtml + '</div>' +
+                '<div style="margin-top:8px;">' + tipsHtml + '</div>';
+            
+            // Habits
+            const habits = getDailyHabits(personaKey);
+            const habitsHtml = habits.map(h =>
+                '<div class="checklist-item" style="padding:4px 0;">' +
+                '<span class="checklist-checkbox"></span>' + h +
+                '</div>'
+            ).join('');
+            document.getElementById('checklistHabits').innerHTML = habitsHtml;
+            
+            // Links
+            const links = getGuideLinks();
+            const linksHtml = links.map(l =>
+                '<div style="margin:3px 0;">' +
+                '<a href="' + l.url + '" target="_blank">' + l.name + '</a>' +
+                '<span style="color:#666; margin-left:8px; font-size:9pt;">' + l.desc + '</span></div>'
+            ).join('');
+            document.getElementById('checklistLinks').innerHTML = linksHtml;
+            
+            // Date
+            document.getElementById('checklistDate').textContent = new Date().toLocaleDateString('en-US', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+            
+            // Show container and trigger print
+            document.getElementById('checklistContainer').classList.add('visible');
+            setTimeout(function() {
+                window.print();
+                setTimeout(function() {
+                    document.getElementById('checklistContainer').classList.remove('visible');
+                }, 500);
+            }, 300);
+        }
+        
+        function getSetupSteps(personaId) {
+            const steps = [
+                'Set your chair height so your thighs are parallel to the floor (knees at 90°)',
+                'Position your monitor at arm\'s length with the top bezel at or just below eye level',
+                'Place keyboard and mouse at the same height so your elbows rest at 90°',
+                'Ensure feet are flat on the floor (use a footrest if needed)',
+                'Set up task lighting to 500-800 lux without screen glare',
+                'Position your desk perpendicular to windows to minimize glare',
+                'Add bias lighting behind your monitor to reduce eye strain',
+                'Organize cables to keep them off the floor and away from your feet',
+            ];
+            
+            const personaSteps = {
+                productivity_pro: [
+                    ...steps.slice(0, 4),
+                    'Set up dual monitors or an ultrawide for efficient multitasking',
+                    'Add a monitor arm to free up desk space and improve ergonomics',
+                    'Configure keyboard shortcuts and hotkeys for your most-used apps',
+                    ...steps.slice(4),
+                ],
+                ergo_enthusiast: [
+                    'Adjust your chair lumbar support to fit the curve of your spine',
+                    'Set armrest height so shoulders are relaxed, elbows at 90°',
+                    ...steps.slice(0, 4),
+                    'Tilt your keyboard slightly negative (tenting) for neutral wrists',
+                    'Position bias lighting at 6500K for daytime, 3000K for evening',
+                    'Set a timer for sit-stand transitions every 45 minutes',
+                    ...steps.slice(6),
+                ],
+                budget_builder: [
+                    ...steps.slice(0, 4),
+                    'Use a DIY monitor riser (books or stand) to hit proper height',
+                    'Configure your existing lighting to reduce shadows on your work surface',
+                    'Add a free posture reminder app (Stretchly, Time Out, etc.)',
+                    ...steps.slice(5),
+                    'Focus your budget upgrade on the chair first, desk second',
+                ],
+                creative_spirit: [
+                    ...steps.slice(0, 2),
+                    'Calibrate your monitor (sRGB or DCI-P3 profile for color accuracy)',
+                    'Position a bias light at 5000K behind monitor for color-critical work',
+                    ...steps.slice(4, 6),
+                    'Add a secondary surface (side table or cart) for reference materials',
+                    'Keep your most-used creative tools within arm\'s reach',
+                    'Ensure your chair allows free arm movement for drawing/writing',
+                    ...steps.slice(7),
+                ],
+                hybrid_hustler: [
+                    ...steps.slice(0, 3),
+                    'Set up your camera at eye level for natural video calls',
+                    'Position a key light at face level (ring light or window-facing)',
+                    'Configure your desk for quick transitions between sit and stand',
+                    'Add a secondary screen or tablet for meeting notes',
+                    'Keep a notebook and pen for rapid idea capture',
+                    ...steps.slice(6),
+                ],
+            };
+            
+            return personaSteps[personaId] || steps;
+        }
+        
+        function getDailyHabits(personaId) {
+            const common = [
+                'Use the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds',
+                'Stand up and stretch for 2 minutes every hour',
+                'Check your posture at 3 set times during the day (e.g., 10AM, 1PM, 4PM)',
+                'Keep a water bottle on your desk and stay hydrated',
+                'End each day by clearing your desk for a fresh start tomorrow',
+            ];
+            
+            const extra = {
+                productivity_pro: [
+                    'Plan your 3 most important tasks before opening your computer',
+                    'Review and optimize at least one workspace workflow per week',
+                    'Clean your screens and desk surface every Friday afternoon',
+                ],
+                ergo_enthusiast: [
+                    'Perform one ergonomic check-in per day: chair, screen height, keyboard position',
+                    'Alternate between sitting and standing at least twice per work session',
+                    'End your day with a 5-minute desk yoga or stretching routine',
+                ],
+                budget_builder: [
+                    'Track which pieces of gear you use most - upgrade those first',
+                    'Check local Facebook Marketplace or Craigslist for used ergonomic chairs weekly',
+                    'Invest savings from one skipped coffee run into your workspace fund',
+                ],
+                creative_spirit: [
+                    'Re-arrange one item on your desk to keep your space feeling fresh',
+                    'Take a 5-minute creative walk when you feel stuck',
+                    'Document your workspace setup with a photo once a month to track evolution',
+                ],
+                hybrid_hustler: [
+                    'Review your meeting setup (lighting, camera angle, background) every Monday',
+                    'Pack a go-bag (laptop, charger, notebook) for unexpected coffee shop days',
+                    'Test your audio/video setup 5 minutes before every important call',
+                ],
+            };
+            
+            return [...common, ...(extra[personaId] || [])];
+        }
+        
+        function getGuideLinks() {
+            return [
+                { name: 'Ultimate Home Office Setup Guide 2026', url: '/content/ultimate-home-office-setup-guide-2026/', desc: 'Complete room-by-room build guide with 3 budget tiers' },
+                { name: 'Ergonomic Office Chair Buying Guide', url: '/content/ergonomic-office-chair-buying-guide/', desc: '6 chairs tested, 6 user personas, full buying advice' },
+                { name: 'Home Office Lighting Guide', url: '/content/home-office-lighting-guide/', desc: '3-layer lighting system, 4 product reviews, common mistakes' },
+                { name: 'Best Standing Desks Under $500', url: '/content/best-standing-desks-under-500/', desc: 'Top budget-friendly standing desks compared' },
+                { name: 'Home Office Budget Setup Under $1,000', url: '/content/home-office-budget-setup-under-1000/', desc: 'Complete budget workspace build for under a grand' },
+                { name: 'Cable Management Solutions', url: '/content/cable-management-solutions/', desc: 'Clean up your workspace with these cable tips' },
+                { name: 'Dual Monitor Setup & Productivity Guide', url: '/content/dual-monitor-setup-productivity/', desc: 'Maximize productivity with the right multi-monitor setup' },
+                { name: 'Interactive Workspace Planner', url: '/content/workspace-planner/', desc: 'Build your ideal setup with the step-by-step planner' },
+            ];
+        }
+
     </script>
 </body>
 </html>

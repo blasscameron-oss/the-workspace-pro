@@ -956,6 +956,12 @@
                 button.innerHTML = '<i class="fa-solid fa-bars"></i>';
             }
         }
+        // Handle touch events for reliable mobile menu open
+        var mmBtn = document.getElementById('mobileMenuButton');
+        if (mmBtn) {
+            mmBtn.addEventListener('touchstart', function(e) { e.preventDefault(); toggleMobileMenu(); }, { passive: false });
+        }
+
         function toggleSearch() {
             const overlay = document.getElementById('search-overlay');
             if (overlay.classList.contains('hidden')) {
