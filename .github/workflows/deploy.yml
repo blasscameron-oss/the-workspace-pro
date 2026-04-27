@@ -19,16 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Build Tailwind CSS
-        run: |
-          npm ci
-          npx tailwindcss --input static/css/tailwind-input.css --output static/css/tailwind.min.css
-
       - name: Build site to _site
         run: |
           mkdir -p _site
@@ -44,7 +34,13 @@ jobs:
             ./ _site/
 
       - name: Debug build output
-        run: ls -la _site/ && ls _site/static/css/ && wc -c _site/static/css/tailwind.min.css
+        run: |
+          echo "=== _site structure ==="
+          ls -la _site/
+          echo "=== Content pages ==="
+          ls _site/content/ | head -15
+          echo "=== Total HTML files ==="
+          find _site -name '*.html' | wc -l
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
