@@ -615,7 +615,11 @@
                 if (searchClose) searchClose.addEventListener('click', function() { searchOverlay.classList.add('hidden'); });
                 searchOverlay.addEventListener('click', function(e) { if (e.target === this) this.classList.add('hidden'); });
             }
-        })();
+
+        // Expose to global scope for inline onclick handlers
+        window.toggleDarkMode = toggleDarkMode;
+        window.toggleMobileMenu = toggleMobileMenu;
+                })();
     </script>
 </body>
 </html>
